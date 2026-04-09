@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBERPUNK RED — キャラクターシート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #CC2222;
+  --red-dim: #991a1a;
+  --red-glow: rgba(204,34,34,0.15);
+  --bg: #0d0d0d;
+  --bg2: #141414;
+  --bg3: #1a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8e8e0;
+  --text2: #888880;
+  --text3: #555550;
+  --mono: 'Share Tech Mono', monospace;
+  --cond: 'Barlow Condensed', sans-serif;
+  --body: 'Barlow', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 13px;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  height: 46px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--red);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-family: var(--cond);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 28px;
+}
+
+.logo-icon {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: skewX(-8deg);
+  flex-shrink: 0;
+}
+
+.logo-icon svg { width: 12px; height: 12px; }
+
+.nav-tab {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  height: 46px;
+  padding: 0 16px;
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: color 0.15s;
+}
+
+.nav-tab.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.handle-display {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text2);
+}
+
+.handle-display span {
+  color: var(--text);
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+.btn-pdf {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-pdf:hover { opacity: 0.8; }
+
+/* ── LAYOUT ── */
+.app-body {
+  display: flex;
+  height: calc(100vh - 46px);
+  overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+.id-card {
+  border: 1px solid var(--red);
+  background: var(--red-glow);
+  padding: 10px;
+}
+
+.field-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.handle-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  line-height: 1.1;
+}
+
+.handle-input::placeholder { color: var(--text3); }
+
+.role-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.role-select {
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 3px 6px;
+  outline: none;
+  flex: 1;
+  cursor: pointer;
+}
+
+.rank-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  background: var(--red);
+  color: #fff;
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.stat-cell {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 5px 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.1s;
+  position: relative;
+}
+
+.stat-cell:hover { border-color: var(--red); }
+
+.stat-abbr {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--red);
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 1px;
+}
+
+.stat-num {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.stat-input-hidden {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: transparent;
+}
+
+/* HP */
+.hp-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 10px;
+}
+
+.hp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+
+.hp-label { font-family: var(--mono); font-size: 8px; color: var(--red); letter-spacing: 0.15em; }
+
+.hp-counter {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.hp-max-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text3);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 30px;
+  text-align: center;
+}
+
+.hp-pips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.pip {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--text3);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.08s;
+}
+
+.pip.hp-on { background: var(--red); border-color: var(--red); }
+.pip.critical-zone { border-color: #FF6600; }
+.pip.critical-zone.hp-on { background: #FF6600; border-color: #FF6600; }
+
+.hp-sub {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.hp-sub span {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text3);
+}
+
+/* Humanity */
+.humanity-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 10px;
+}
+
+.humanity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.bar-track {
+  height: 5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--red);
+  transition: width 0.3s;
+}
+
+.bar-fill.low { background: #FF6600; }
+
+/* Luck */
+.luck-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 10px;
+}
+
+.luck-pips {
+  display: flex;
+  gap: 5px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.luck-pip {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--text3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+.luck-pip.on {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+/* Role Ability */
+.role-ability {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  padding: 10px;
+}
+
+.ability-name {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--red);
+  letter-spacing: 0.1em;
+}
+
+.ability-rank {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.rank-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 36px;
+  text-align: center;
+}
+
+/* Sidebar section sep */
+.sb-sep {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  color: var(--text3);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+  margin-top: 2px;
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+/* Page tabs (skill / weapon / lifepath / cyber) */
+.page-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-tab {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.1s, background 0.1s;
+  margin-bottom: -1px;
+}
+
+.page-tab:hover { color: var(--text2); }
+
+.page-tab.active {
+  color: var(--red);
+  background: var(--bg2);
+  border-color: var(--border);
+  border-bottom-color: var(--bg2);
+}
+
+/* PAGE: SKILLS */
+.skills-page { display: none; }
+.skills-page.active { display: block; }
+
+.skill-section-title {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: rgba(204,34,34,0.08);
+  border-left: 3px solid var(--red);
+  padding: 4px 10px;
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+.skill-section-title:first-child { margin-top: 0; }
+
+.skills-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.1s;
+  min-height: 28px;
+}
+
+.skill-row:hover { border-color: var(--border2); }
+.skill-row.core { border-left: 2px solid var(--red); }
+
+.skill-name-text {
+  font-size: 11px;
+  color: var(--text2);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--body);
+}
+
+.skill-attr-tag {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+
+.skill-lv-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 22px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.skill-lv-input:focus {
+  background: var(--bg3);
+  color: var(--red);
+}
+
+.skill-total {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text3);
+  min-width: 20px;
+  text-align: center;
+  border-left: 1px solid var(--border);
+  padding-left: 5px;
+  margin-left: 3px;
+}
+
+/* PAGE: WEAPONS & ARMOR */
+.weapons-page { display: none; }
+.weapons-page.active { display: block; }
+
+.section-head {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: rgba(204,34,34,0.08);
+  border-left: 3px solid var(--red);
+  padding: 4px 10px;
+  margin-bottom: 8px;
+}
+
+.weapons-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.weapons-table th {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 5px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--red);
+  background: rgba(204,34,34,0.05);
+}
+
+.weapons-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text);
+}
+
+.weapons-table td input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 12px;
+  width: 100%;
+}
+
+.weapons-table td input:focus {
+  background: var(--bg3);
+  color: var(--red);
+}
+
+.damage-cell {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--red) !important;
+}
+
+.weapons-table tr:hover td { background: var(--bg3); }
+
+.btn-add {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  margin-bottom: 20px;
+}
+
+.btn-add:hover { background: var(--red); color: #fff; }
+
+.armor-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.armor-slot {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: center;
+}
+
+.armor-slot-name {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.armor-item-input {
+  font-size: 10px;
+  color: var(--text2);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.armor-sp {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.sp-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 48px;
+  text-align: center;
+}
+
+.sp-input:focus { color: var(--red); }
+
+.armor-pen {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text3);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pen-input {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text2);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 20px;
+  text-align: center;
+}
+
+.armor-note {
+  background: rgba(255,100,0,0.08);
+  border: 1px solid rgba(255,100,0,0.2);
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(255,150,50,0.8);
+  letter-spacing: 0.05em;
+}
+
+/* PAGE: LIFEPATH */
+.lifepath-page { display: none; }
+.lifepath-page.active { display: block; }
+
+.lp-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.lp-one-col { margin-bottom: 6px; }
+
+.lp-field {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+}
+
+.lp-field-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.lp-field textarea,
+.lp-field input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text2);
+  font-family: var(--body);
+  font-size: 12px;
+  width: 100%;
+  resize: none;
+  line-height: 1.5;
+}
+
+.lp-field textarea { min-height: 40px; }
+
+/* Enemy table */
+.enemy-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+
+.enemy-table th {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 4px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border2);
+  background: rgba(204,34,34,0.05);
+}
+
+.enemy-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.enemy-table td input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text2);
+  font-size: 11px;
+  width: 100%;
+}
+
+/* PAGE: CYBERWARE */
+.cyber-page { display: none; }
+.cyber-page.active { display: block; }
+
+.cyber-layout {
+  display: grid;
+  grid-template-columns: 1fr 90px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.cyber-col { display: flex; flex-direction: column; gap: 8px; }
+
+.cyber-slot-block {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 8px;
+}
+
+.cyber-slot-head {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cyber-installed-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cyber-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+
+.cyber-check {
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--text3);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cyber-check.on {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.cyber-check.on::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 3px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.cyber-item-text {
+  font-size: 11px;
+  color: var(--text2);
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.cyber-item-text:focus { color: var(--text); }
+
+.cyber-body-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 12px 8px;
+}
+
+.cyber-extra-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* Equipment & Money */
+.equip-section {
+  margin-top: 20px;
+}
+
+.equip-money {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.money-box {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 10px;
+}
+
+.money-val-input {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.money-val-input:focus { color: var(--red); }
+
+.equip-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.equip-table th {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 5px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border2);
+  background: rgba(204,34,34,0.05);
+}
+
+.equip-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.equip-table td input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text2);
+  font-size: 12px;
+  width: 100%;
+}
+
+/* Memo */
+.memo-area {
+  width: 100%;
+  min-height: 80px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: var(--body);
+  font-size: 12px;
+  padding: 10px;
+  resize: vertical;
+  outline: none;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.memo-area:focus { border-color: var(--border2); }
+
+/* Scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.04) 2px,
+    rgba(0,0,0,0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); }
+
+/* ── UTILITY ── */
+.hidden { display: none !important; }
+
+/* ── CHARACTER SELECTION SCREEN ── */
+#screen-select {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  overflow-y: auto;
+}
+#screen-sheet {
+  display: none;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.sel-topbar {
+  height: 46px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--red);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.sel-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--text2);
+  text-transform: uppercase;
+  margin-left: 12px;
+}
+.sel-content {
+  flex: 1;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 10px;
+}
+.char-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.char-card:hover { border-color: var(--red); background: var(--bg3); }
+.char-card-role {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+.char-card-name {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.char-card-date {
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--text3);
+  margin-top: auto;
+  padding-top: 4px;
+}
+.char-card-del {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  color: var(--text3);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 5px;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s;
+  line-height: 1;
+}
+.char-card:hover .char-card-del { opacity: 1; }
+.char-card-del:hover { color: var(--red); }
+.char-card-new {
+  border-style: dashed;
+  align-items: center;
+  justify-content: center;
+}
+.char-card-new:hover { border-color: var(--red); }
+.char-card-new-icon { font-size: 24px; color: var(--text3); line-height: 1; }
+.char-card-new:hover .char-card-new-icon { color: var(--red); }
+.char-card-new-label {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  margin-top: 4px;
+}
+.char-card-new:hover .char-card-new-label { color: var(--red); }
+.btn-back {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 0.1s, border-color 0.1s;
+  margin-right: 4px;
+}
+.btn-back:hover { color: var(--text); border-color: var(--text2); }
+
+/* ── SKILL STEPPER ── */
+.skill-stepper {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.step-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  width: 14px;
+  height: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+  transition: background 0.1s, color 0.1s;
+}
+.step-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+/* Hide native number spinners */
+.skill-lv-input::-webkit-outer-spin-button,
+.skill-lv-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.skill-lv-input { -moz-appearance: textfield; width: 24px; text-align: center; }
+
+/* ── PRINT / PDF STYLES ── */
+@media print {
+  html, body {
+    overflow: visible !important;
+    height: auto !important;
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 10px;
+  }
+  body::after { display: none; }
+  .topbar { display: none !important; }
+  .app-body { display: block !important; height: auto !important; overflow: visible !important; }
+  .sidebar {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px !important;
+    border: none !important;
+    background: #fff !important;
+    overflow: visible !important;
+    padding: 8px !important;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #CC2222;
+  }
+  .main-content {
+    overflow: visible !important;
+    padding: 8px !important;
+  }
+  .page-tabs { display: none !important; }
+  .skills-page, .weapons-page, .lifepath-page, .cyber-page {
+    display: block !important;
+    page-break-before: auto;
+  }
+  .id-card, .hp-block, .humanity-block, .luck-block, .role-ability, .stat-cell, .skill-row,
+  .weapons-table, .armor-slot, .lp-field, .cyber-slot-block, .money-box, .equip-table {
+    background: #fff !important;
+    color: #111 !important;
+    border-color: #999 !important;
+  }
+  .skill-name-text, .stat-num, .hp-counter, .armor-sp, .damage-cell { color: #111 !important; }
+  .field-label, .skill-attr-tag, .stat-abbr, .hp-label, .ability-name,
+  .sb-sep, .skill-section-title, .section-head, .lp-field-label, .cyber-slot-head { color: #CC2222 !important; }
+  .skill-total { color: #333 !important; border-color: #ccc !important; }
+  .step-btn, .btn-add, .btn-pdf { display: none !important; }
+  input, textarea, select {
+    border: none !important;
+    background: transparent !important;
+    color: #111 !important;
+    font-size: 10px !important;
+  }
+  .bar-track { border-color: #999 !important; }
+  .bar-fill { background: #CC2222 !important; }
+  .pip { border-color: #999 !important; }
+  .pip.hp-on { background: #CC2222 !important; }
+  .luck-pip { border-color: #999 !important; }
+  .luck-pip.on { background: #CC2222 !important; }
+  .skills-cols { grid-template-columns: repeat(3,1fr) !important; }
+  .weapons-table th, .equip-table th { color: #CC2222 !important; background: #fee !important; }
+  .skills-page:not(:last-child) { page-break-after: always; }
+}
+</style>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+
+<!-- ── CHARACTER SELECTION SCREEN ── -->
+<div id="screen-select">
+  <div class="sel-topbar">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,1 11,4 11,8 6,11 1,8 1,4" stroke="#CC2222" stroke-width="1.5" fill="none"/>
+          <line x1="6" y1="1" x2="6" y2="11" stroke="#CC2222" stroke-width="0.8"/>
+        </svg>
+      </div>
+      CYBERPUNK RED
+    </div>
+    <span class="sel-label">キャラクター選択</span>
+  </div>
+  <div class="sel-content">
+    <div class="skill-section-title" style="margin-top:0;">キャラクター</div>
+    <div class="char-grid" id="char-grid"></div>
+  </div>
+</div>
+
+<!-- ── CHARACTER SHEET SCREEN ── -->
+<div id="screen-sheet">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="6,1 11,4 11,8 6,11 1,8 1,4" stroke="#CC2222" stroke-width="1.5" fill="none"/>
+        <line x1="6" y1="1" x2="6" y2="11" stroke="#CC2222" stroke-width="0.8"/>
+      </svg>
+    </div>
+    CYBERPUNK RED
+  </div>
+  <button class="btn-back" onclick="goToSelection()">◀ 一覧</button>
+  <button class="nav-tab active">キャラクターシート</button>
+  <div class="topbar-right">
+    <div class="handle-display">HANDLE / <span id="topbar-handle">—</span></div>
+    <button class="btn-pdf" onclick="exportToPDF()">PDF 出力</button>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- ID -->
+    <div class="id-card">
+      <label class="field-label">ハンドル</label>
+      <input class="handle-input" id="handle" placeholder="名前を入力" oninput="document.getElementById('topbar-handle').textContent=this.value||'—'">
+      <div class="role-row">
+        <select class="role-select" id="role-select" onchange="updateRoleAbility()">
+          <option value="">ロール選択</option>
+          <option value="ロッカーボーイ">ロッカーボーイ</option>
+          <option value="ソロ">ソロ</option>
+          <option value="ネットランナー">ネットランナー</option>
+          <option value="テク">テク</option>
+          <option value="メドテク">メドテク</option>
+          <option value="メディア">メディア</option>
+          <option value="エグゼク">エグゼク</option>
+          <option value="ローマン">ローマン</option>
+          <option value="フィクサー">フィクサー</option>
+          <option value="ノマッド">ノマッド</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="sb-sep">能力値</div>
+
+    <!-- Stats -->
+    <div class="stats-grid" id="stats-grid">
+      <!-- generated by JS -->
+    </div>
+
+    <div class="sb-sep">ヒット・ポイント</div>
+
+    <!-- HP -->
+    <div class="hp-block">
+      <div class="hp-header">
+        <span class="hp-label">HP</span>
+        <div>
+          <span class="hp-counter" id="hp-current">40</span>
+          <span style="color:var(--text3);font-size:13px;"> / </span>
+          <input class="hp-max-input" id="hp-max" value="40" type="number" min="1" max="80" oninput="rebuildHpPips()">
+        </div>
+      </div>
+      <div class="hp-pips" id="hp-pips"></div>
+      <div class="hp-sub">
+        <span>重傷境界値：<span id="crit-thresh">—</span></span>
+        <span id="death-label">致命的損傷</span>
+      </div>
+    </div>
+
+    <div class="sb-sep">人間性</div>
+
+    <!-- Humanity -->
+    <div class="humanity-block">
+      <div class="humanity-header">
+        <span class="field-label" style="margin-bottom:0;">共感残量</span>
+        <span style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);">
+          <input id="emp-cur" type="number" style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;width:28px;text-align:right;" value="50" oninput="updateHumanityBar()"> / <input id="emp-max" type="number" style="font-family:var(--cond);font-size:12px;color:var(--text3);background:transparent;border:none;outline:none;width:28px;" value="50" oninput="updateHumanityBar()">
+        </span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" id="humanity-bar" style="width:100%;"></div>
+      </div>
+    </div>
+
+    <div class="sb-sep">運命</div>
+
+    <!-- Luck -->
+    <div class="luck-block">
+      <div class="luck-pips" id="luck-pips">
+        <!-- generated -->
+      </div>
+    </div>
+
+    <div class="sb-sep">ロール特技</div>
+
+    <!-- Role ability -->
+    <div class="role-ability" id="role-ability-block">
+      <div class="ability-name" id="ability-name">—</div>
+      <div class="ability-rank">
+        <input class="rank-input" id="rank-input" type="number" min="1" max="10" value="1">
+        <span style="font-family:var(--mono);font-size:8px;color:var(--text3);">ランク</span>
+      </div>
+    </div>
+
+    <div class="sb-sep">メモ</div>
+    <textarea class="memo-area" placeholder="自由メモ…" style="margin-top:0;"></textarea>
+
+  </div><!-- /sidebar -->
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- Page Tabs -->
+    <div class="page-tabs">
+      <button class="page-tab active" onclick="showPage('skills',this)">技能</button>
+      <button class="page-tab" onclick="showPage('weapons',this)">武器・防具</button>
+      <button class="page-tab" onclick="showPage('lifepath',this)">ライフパス</button>
+      <button class="page-tab" onclick="showPage('cyber',this)">サイバーウェア</button>
+      <button class="page-tab" onclick="showPage('equip',this)">装備・所持金</button>
+    </div>
+
+    <!-- ── PAGE: SKILLS ── -->
+    <div class="skills-page active" id="page-skills"></div>
+
+    <!-- ── PAGE: WEAPONS ── -->
+    <div class="weapons-page" id="page-weapons">
+      <div class="section-head">武器</div>
+      <table class="weapons-table" id="weapons-table">
+        <thead>
+          <tr>
+            <th style="width:24%">武器名</th>
+            <th style="width:14%">ダメージ</th>
+            <th style="width:12%">装弾数</th>
+            <th style="width:12%">攻撃回数</th>
+            <th>メモ</th>
+            <th style="width:28px;"></th>
+          </tr>
+        </thead>
+        <tbody id="weapons-body">
+          <tr>
+            <td><input placeholder="武器名"></td>
+            <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
+            <td><input placeholder="—"></td>
+            <td><input placeholder="—"></td>
+            <td><input placeholder="メモ"></td>
+            <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
+          </tr>
+          <tr>
+            <td><input placeholder="武器名"></td>
+            <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
+            <td><input placeholder="—"></td>
+            <td><input placeholder="—"></td>
+            <td><input placeholder="メモ"></td>
+            <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn-add" onclick="addWeaponRow()">＋ 武器を追加</button>
+
+      <div class="section-head">防具</div>
+      <div class="armor-row">
+        <div class="armor-slot">
+          <span class="armor-slot-name">頭部</span>
+          <input class="armor-item-input" placeholder="防具名">
+          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0"></div>
+          <div class="armor-pen">PEN <input class="pen-input" placeholder="—"></div>
+        </div>
+        <div class="armor-slot">
+          <span class="armor-slot-name">身体</span>
+          <input class="armor-item-input" placeholder="防具名">
+          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0" id="body-sp" oninput="updateArmorNote()"></div>
+          <div class="armor-pen">PEN <input class="pen-input" placeholder="—" id="body-pen" oninput="updateArmorNote()"></div>
+        </div>
+        <div class="armor-slot" style="border-style:dashed;">
+          <span class="armor-slot-name">盾</span>
+          <input class="armor-item-input" placeholder="防具名">
+          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0"></div>
+          <div class="armor-pen">PEN <input class="pen-input" placeholder="—"></div>
+        </div>
+      </div>
+      <div class="armor-note" id="armor-note">防具ペナルティは【反応】【敏捷】【移動】に適用される</div>
+    </div>
+
+    <!-- ── PAGE: LIFEPATH ── -->
+    <div class="lifepath-page" id="page-lifepath">
+      <div class="section-head">ライフパス</div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">出身文化圏</label><input placeholder="例: ノースアム、ユーロ…"></div>
+        <div class="lp-field"><label class="lp-field-label">性格</label><input placeholder="例: 内向的、強引…"></div>
+      </div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">ファッション・スタイル</label><input placeholder=""></div>
+        <div class="lp-field"><label class="lp-field-label">ヘアスタイル / 必ず身につけているもの</label><input placeholder=""></div>
+      </div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">最も重視するもの</label><textarea placeholder=""></textarea></div>
+        <div class="lp-field"><label class="lp-field-label">世間の連中をどう思っている？</label><textarea placeholder=""></textarea></div>
+      </div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">人生で一番大事な人物</label><input placeholder=""></div>
+        <div class="lp-field"><label class="lp-field-label">一番大事な持ち物</label><input placeholder=""></div>
+      </div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">実家の家庭環境</label><textarea placeholder=""></textarea></div>
+        <div class="lp-field"><label class="lp-field-label">幼少期の環境</label><textarea placeholder=""></textarea></div>
+      </div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">家族を襲った災厄</label><textarea placeholder=""></textarea></div>
+        <div class="lp-field"><label class="lp-field-label">人生の目標</label><textarea placeholder=""></textarea></div>
+      </div>
+
+      <div class="section-head" style="margin-top:16px;">親友・愛の悲劇</div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">親友</label><textarea placeholder="1人目&#10;2人目&#10;3人目" style="min-height:64px;"></textarea></div>
+        <div class="lp-field"><label class="lp-field-label">愛の悲劇</label><textarea placeholder="" style="min-height:64px;"></textarea></div>
+      </div>
+
+      <div class="section-head" style="margin-top:16px;">敵</div>
+      <table class="enemy-table">
+        <thead>
+          <tr>
+            <th style="width:22%">どんな奴？</th>
+            <th style="width:22%">敵対の理由</th>
+            <th style="width:28%">差し向けてくる手下</th>
+            <th>どんな反応をする？</th>
+          </tr>
+        </thead>
+        <tbody id="enemy-body">
+          <tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr>
+          <tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="section-head" style="margin-top:16px;">ロール別ライフパス</div>
+      <div class="lp-field"><textarea placeholder="ロール固有の設定を記入…" style="min-height:80px;"></textarea></div>
+    </div>
+
+    <!-- ── PAGE: CYBERWARE ── -->
+    <div class="cyber-page" id="page-cyber">
+      <div class="section-head">サイバーウェア</div>
+      <div class="cyber-layout">
+        <!-- LEFT COL -->
+        <div class="cyber-col">
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head"><div class="cyber-installed-dot"></div> サイバーアイ（右目）</div>
+            <div id="ceye-r"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('ceye-r')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head"><div class="cyber-installed-dot"></div> サイバーアーム（右腕）</div>
+            <div id="carm-r"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('carm-r')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">サイバーレッグ（右脚）</div>
+            <div id="cleg-r"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('cleg-r')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">サイバー聴覚基本システム</div>
+            <div id="c-audio"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-audio')">＋</button>
+          </div>
+        </div>
+
+        <!-- CENTER: body diagram -->
+        <div class="cyber-body-svg">
+          <svg width="78" height="230" viewBox="0 0 78 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- head -->
+            <ellipse cx="39" cy="22" rx="16" ry="18" stroke="#CC2222" stroke-width="1.5"/>
+            <!-- neck -->
+            <rect x="33" y="38" width="12" height="10" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <!-- torso -->
+            <rect x="18" y="48" width="42" height="68" rx="3" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <!-- neural spine -->
+            <line x1="39" y1="48" x2="39" y2="116" stroke="#CC2222" stroke-width="0.8" stroke-dasharray="4,3"/>
+            <!-- L arm -->
+            <rect x="4" y="52" width="14" height="56" rx="4" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <!-- R arm -->
+            <rect x="60" y="52" width="14" height="56" rx="4" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+            <!-- L leg -->
+            <rect x="19" y="116" width="16" height="72" rx="3" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <!-- R leg -->
+            <rect x="43" y="116" width="16" height="72" rx="3" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <!-- eyes -->
+            <circle cx="32" cy="20" r="3.5" stroke="#CC2222" stroke-width="1"/>
+            <circle cx="46" cy="20" r="3.5" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <!-- crosshair on right eye -->
+            <line x1="60" y1="14" x2="32" y2="20" stroke="#CC2222" stroke-width="0.5" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
+
+        <!-- RIGHT COL -->
+        <div class="cyber-col">
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">サイバーアイ（左目）</div>
+            <div id="ceye-l"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('ceye-l')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">サイバーアーム（左腕）</div>
+            <div id="carm-l"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('carm-l')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">サイバーレッグ（左脚）</div>
+            <div id="cleg-l"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('cleg-l')">＋</button>
+          </div>
+          <div class="cyber-slot-block">
+            <div class="cyber-slot-head">ニューラル・リンク</div>
+            <div id="c-neural"></div>
+            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-neural')">＋</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- extra cyberware -->
+      <div class="cyber-extra-grid">
+        <div class="cyber-slot-block">
+          <div class="cyber-slot-head">体内用サイバーウェア</div>
+          <div id="c-internal"></div>
+          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-internal')">＋</button>
+        </div>
+        <div class="cyber-slot-block">
+          <div class="cyber-slot-head">体表用サイバーウェア</div>
+          <div id="c-external"></div>
+          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-external')">＋</button>
+        </div>
+        <div class="cyber-slot-block">
+          <div class="cyber-slot-head">ファッションウェア</div>
+          <div id="c-fashion"></div>
+          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-fashion')">＋</button>
+        </div>
+        <div class="cyber-slot-block">
+          <div class="cyber-slot-head">ボーグウェア</div>
+          <div id="c-borg"></div>
+          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-borg')">＋</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: EQUIP ── -->
+    <div class="skills-page" id="page-equip">
+      <div class="section-head">所持金・弾薬</div>
+      <div class="equip-money">
+        <div class="money-box">
+          <label class="field-label">所持金（eb）</label>
+          <input class="money-val-input" type="number" placeholder="0" min="0">
+        </div>
+        <div class="money-box">
+          <label class="field-label">弾薬メモ</label>
+          <textarea class="memo-area" style="margin-top:4px;min-height:50px;" placeholder="ハンドガン 30発&#10;ライフル 60発…"></textarea>
+        </div>
+      </div>
+
+      <div class="section-head" style="margin-top:4px;">装備品</div>
+      <table class="equip-table" id="equip-table">
+        <thead>
+          <tr>
+            <th style="width:35%">アイテム名</th>
+            <th>メモ</th>
+            <th style="width:24px;"></th>
+          </tr>
+        </thead>
+        <tbody id="equip-body">
+          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
+          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
+          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
+        </tbody>
+      </table>
+      <button class="btn-add" onclick="addEquipRow()" style="margin-top:6px;">＋ アイテムを追加</button>
+
+      <div class="section-head" style="margin-top:20px;">住居・ライフスタイル</div>
+      <div class="lp-two-col">
+        <div class="lp-field"><label class="lp-field-label">住居</label><input placeholder="例: コンテナ、低層アパート…"></div>
+        <div class="lp-field"><label class="lp-field-label">家賃 / ライフスタイル</label><input placeholder="例: スカッター、低階層…"></div>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /app-body -->
+
+</div><!-- /screen-sheet -->
+
+<script>
+// ── CHARACTER MANAGEMENT ──
+const CHAR_KEY = 'cpred-v1-characters';
+let characters = [];
+let currentCharId = null;
+let autoSaveTimer = null;
+
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function fmtDate(ts) {
+  const d = new Date(ts);
+  return d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0');
+}
+
+function persistCharacters() { localStorage.setItem(CHAR_KEY, JSON.stringify(characters)); }
+function loadCharactersFromStorage() {
+  try { characters = JSON.parse(localStorage.getItem(CHAR_KEY) || '[]'); }
+  catch(e) { characters = []; }
+}
+
+function showSelectionScreen() {
+  document.getElementById('screen-select').style.display = 'flex';
+  document.getElementById('screen-sheet').style.display = 'none';
+  currentCharId = null;
+  renderCharGrid();
+}
+function showSheetScreen() {
+  document.getElementById('screen-select').style.display = 'none';
+  document.getElementById('screen-sheet').style.display = 'flex';
+}
+function goToSelection() { saveNow(); showSelectionScreen(); }
+
+function renderCharGrid() {
+  const grid = document.getElementById('char-grid');
+  grid.innerHTML = '';
+  // New card
+  const nc = document.createElement('div');
+  nc.className = 'char-card char-card-new';
+  nc.innerHTML = '<div class="char-card-new-icon">＋</div><div class="char-card-new-label">新規作成</div>';
+  nc.onclick = () => createNewCharacter();
+  grid.appendChild(nc);
+  // Existing (newest first)
+  [...characters].reverse().forEach(ch => {
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    card.innerHTML = `
+      <div class="char-card-role">${ch.role || 'ロール未設定'}</div>
+      <div class="char-card-name">${ch.name || '名無し'}</div>
+      <div class="char-card-date">${fmtDate(ch.updatedAt)}</div>
+      <button class="char-card-del" title="削除">×</button>
+    `;
+    card.onclick = () => openCharacter(ch.id);
+    card.querySelector('.char-card-del').onclick = (e) => { e.stopPropagation(); deleteCharacter(ch.id); };
+    grid.appendChild(card);
+  });
+}
+
+function createNewCharacter() {
+  const id = genId();
+  characters.push({ id, name: '名無し', role: '', updatedAt: Date.now(), data: null });
+  persistCharacters();
+  currentCharId = id;
+  resetSheet();
+  showSheetScreen();
+}
+
+function openCharacter(id) {
+  const ch = characters.find(c => c.id === id);
+  if (!ch) return;
+  currentCharId = id;
+  if (ch.data) restoreSheet(ch.data); else resetSheet();
+  showSheetScreen();
+}
+
+function deleteCharacter(id) {
+  if (!confirm('このキャラクターを削除しますか？')) return;
+  characters = characters.filter(c => c.id !== id);
+  persistCharacters();
+  renderCharGrid();
+}
+
+// Auto-save
+function scheduleAutoSave() { clearTimeout(autoSaveTimer); autoSaveTimer = setTimeout(saveNow, 600); }
+function saveNow() {
+  if (!currentCharId) return;
+  const ch = characters.find(c => c.id === currentCharId);
+  if (!ch) return;
+  const data = collectSheet();
+  ch.name = data.handle || '名無し';
+  ch.role = data.role || '';
+  ch.updatedAt = Date.now();
+  ch.data = data;
+  persistCharacters();
+  document.getElementById('topbar-handle').textContent = ch.name;
+}
+
+// ── COLLECT ALL DATA FROM SHEET ──
+function collectSheet() {
+  const weapons = Array.from(document.querySelectorAll('#weapons-body tr')).map(tr => {
+    const ins = tr.querySelectorAll('input');
+    return { name: ins[0]?.value||'', damage: ins[1]?.value||'', ammo: ins[2]?.value||'', attacks: ins[3]?.value||'', note: ins[4]?.value||'' };
+  });
+  const armors = Array.from(document.querySelectorAll('.armor-slot')).map(sl => ({
+    name: sl.querySelector('.armor-item-input')?.value||'',
+    sp:   sl.querySelector('.sp-input')?.value||'',
+    pen:  sl.querySelector('.pen-input')?.value||'',
+  }));
+  const lpFields = Array.from(document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea')).map(e => e.value);
+  const enemies   = Array.from(document.querySelectorAll('#enemy-body tr')).map(tr => Array.from(tr.querySelectorAll('input')).map(i => i.value));
+  const equips    = Array.from(document.querySelectorAll('#equip-body tr')).map(tr => Array.from(tr.querySelectorAll('input')).map(i => i.value));
+  const CYBER_IDS = ['ceye-r','ceye-l','carm-r','carm-l','cleg-r','cleg-l','c-audio','c-neural','c-internal','c-external','c-fashion','c-borg'];
+  const cyberware = {};
+  CYBER_IDS.forEach(cid => {
+    const el = document.getElementById(cid);
+    if (!el) return;
+    cyberware[cid] = Array.from(el.querySelectorAll('.cyber-item-row')).map(row => ({
+      name: row.querySelector('.cyber-item-text')?.value||'',
+      on:   row.querySelector('.cyber-check')?.classList.contains('on')||false,
+    }));
+  });
+  const memoAreas = document.querySelectorAll('.memo-area');
+  return {
+    handle: document.getElementById('handle').value,
+    role:   document.getElementById('role-select').value,
+    rank:   document.getElementById('rank-input').value,
+    memo:   memoAreas[0]?.value||'',
+    stats:  {...statVals},
+    hpMax:  document.getElementById('hp-max').value,
+    hpCurrent,
+    empCur: document.getElementById('emp-cur').value,
+    empMax: document.getElementById('emp-max').value,
+    luckMax, luckOn,
+    skillLevels: {...skillLevels},
+    weapons, armors, lpFields, enemies, equips, cyberware,
+    money:  document.querySelector('.money-val-input')?.value||'',
+    ammo:   memoAreas[1]?.value||'',
+  };
+}
+
+// ── RESTORE DATA TO SHEET ──
+const CYBER_IDS = ['ceye-r','ceye-l','carm-r','carm-l','cleg-r','cleg-l','c-audio','c-neural','c-internal','c-external','c-fashion','c-borg'];
+
+function restoreSheet(d) {
+  if (!d) { resetSheet(); return; }
+  // Basic
+  const hEl = document.getElementById('handle');
+  if (hEl) { hEl.value = d.handle||''; hEl.dispatchEvent(new Event('input')); }
+  const rEl = document.getElementById('role-select');
+  if (rEl) { rEl.value = d.role||''; } updateRoleAbility();
+  const rkEl = document.getElementById('rank-input');
+  if (rkEl) rkEl.value = d.rank||'1';
+  const memoEls = document.querySelectorAll('.memo-area');
+  if (memoEls[0]) memoEls[0].value = d.memo||'';
+  if (memoEls[1]) memoEls[1].value = d.ammo||'';
+  // Stats
+  if (d.stats) {
+    Object.entries(d.stats).forEach(([k,v]) => {
+      statVals[k] = v;
+      const nEl = document.getElementById('sv-'+k); if(nEl) nEl.textContent = v;
+      const iEl = document.getElementById('si-'+k); if(iEl) iEl.value = v;
+    });
+  }
+  // Skills
+  if (d.skillLevels) Object.assign(skillLevels, d.skillLevels);
+  buildSkills(); rebuildSkillTotals();
+  // HP
+  hpCurrent = d.hpCurrent ?? 40;
+  const hmEl = document.getElementById('hp-max'); if(hmEl) hmEl.value = d.hpMax||'40';
+  rebuildHpPips();
+  // Humanity
+  const ecEl = document.getElementById('emp-cur'); if(ecEl) ecEl.value = d.empCur||'50';
+  const emEl = document.getElementById('emp-max'); if(emEl) emEl.value = d.empMax||'50';
+  updateHumanityBar();
+  // Luck
+  luckMax = d.luckMax??6; luckOn = d.luckOn??0; rebuildLuck();
+  // Weapons
+  const wb = document.getElementById('weapons-body');
+  if (wb && d.weapons) {
+    wb.innerHTML = '';
+    d.weapons.forEach(w => {
+      addWeaponRow();
+      const ins = wb.rows[wb.rows.length-1].querySelectorAll('input');
+      if(ins[0]) ins[0].value=w.name||''; if(ins[1]) ins[1].value=w.damage||'';
+      if(ins[2]) ins[2].value=w.ammo||'';  if(ins[3]) ins[3].value=w.attacks||'';
+      if(ins[4]) ins[4].value=w.note||'';
+    });
+    if (!wb.rows.length) { addWeaponRow(); addWeaponRow(); }
+  }
+  // Armor
+  if (d.armors) {
+    document.querySelectorAll('.armor-slot').forEach((sl, i) => {
+      if (!d.armors[i]) return;
+      const ni=sl.querySelector('.armor-item-input'); if(ni) ni.value=d.armors[i].name||'';
+      const si=sl.querySelector('.sp-input');         if(si) si.value=d.armors[i].sp||'0';
+      const pi=sl.querySelector('.pen-input');        if(pi) pi.value=d.armors[i].pen||'';
+    });
+  }
+  // Lifepath
+  if (d.lpFields) {
+    const els = document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea');
+    d.lpFields.forEach((v,i) => { if(els[i]) els[i].value=v; });
+  }
+  // Enemies
+  const eb = document.getElementById('enemy-body');
+  if (eb && d.enemies) {
+    eb.innerHTML = '';
+    d.enemies.forEach(en => {
+      const tr = eb.insertRow();
+      tr.innerHTML = '<td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td>';
+      en.forEach((v,j) => { const i = tr.querySelectorAll('input')[j]; if(i) i.value=v; });
+    });
+    if (!eb.rows.length) eb.innerHTML = '<tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr><tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr>';
+  }
+  // Equipment
+  const eqb = document.getElementById('equip-body');
+  if (eqb && d.equips) {
+    eqb.innerHTML = '';
+    d.equips.forEach(eq => { addEquipRow(); const ins=eqb.rows[eqb.rows.length-1].querySelectorAll('input'); eq.forEach((v,j)=>{if(ins[j])ins[j].value=v;}); });
+    if (!eqb.rows.length) { addEquipRow(); addEquipRow(); addEquipRow(); }
+  }
+  // Money
+  const mEl = document.querySelector('.money-val-input'); if(mEl) mEl.value=d.money||'';
+  // Cyberware
+  if (d.cyberware) {
+    CYBER_IDS.forEach(cid => {
+      const el = document.getElementById(cid); if(!el) return;
+      el.innerHTML = '';
+      const items = d.cyberware[cid] || [];
+      items.forEach(item => {
+        addCyberItem(cid);
+        const rows = el.querySelectorAll('.cyber-item-row');
+        const last = rows[rows.length-1];
+        if (last) {
+          const ti=last.querySelector('.cyber-item-text'); if(ti) ti.value=item.name||'';
+          const ch=last.querySelector('.cyber-check'); if(ch&&item.on) ch.classList.add('on');
+        }
+      });
+      if (!items.length) addCyberItem(cid);
+    });
+  }
+}
+
+function resetSheet() {
+  // Basic
+  const hEl=document.getElementById('handle'); if(hEl){hEl.value='';hEl.dispatchEvent(new Event('input'));}
+  const rEl=document.getElementById('role-select'); if(rEl) rEl.value=''; updateRoleAbility();
+  const rkEl=document.getElementById('rank-input'); if(rkEl) rkEl.value='1';
+  document.querySelectorAll('.memo-area').forEach(e=>e.value='');
+  // Stats
+  STATS.forEach(s=>{statVals[s.key]=5; const n=document.getElementById('sv-'+s.key); if(n)n.textContent=5; const i=document.getElementById('si-'+s.key); if(i)i.value=5;});
+  // Skills
+  Object.keys(skillLevels).forEach(k=>skillLevels[k]=0); buildSkills();
+  // HP
+  hpCurrent=40; const hmEl=document.getElementById('hp-max'); if(hmEl)hmEl.value='40'; rebuildHpPips();
+  // Humanity
+  const ecEl=document.getElementById('emp-cur'); if(ecEl)ecEl.value='50';
+  const emEl=document.getElementById('emp-max'); if(emEl)emEl.value='50'; updateHumanityBar();
+  // Luck
+  luckMax=6; luckOn=0; rebuildLuck();
+  // Weapons
+  const wb=document.getElementById('weapons-body'); if(wb){wb.innerHTML='';addWeaponRow();addWeaponRow();}
+  // Armor
+  document.querySelectorAll('.armor-slot .armor-item-input').forEach(e=>e.value='');
+  document.querySelectorAll('.armor-slot .sp-input').forEach(e=>e.value='0');
+  document.querySelectorAll('.armor-slot .pen-input').forEach(e=>e.value='');
+  // Lifepath
+  document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea').forEach(e=>e.value='');
+  // Enemies
+  const eb=document.getElementById('enemy-body'); if(eb)eb.innerHTML='<tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr><tr><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td><td><input placeholder="—"></td></tr>';
+  // Equipment
+  const eqb=document.getElementById('equip-body'); if(eqb){eqb.innerHTML='';addEquipRow();addEquipRow();addEquipRow();}
+  // Money
+  const mEl=document.querySelector('.money-val-input'); if(mEl)mEl.value='';
+  // Cyberware
+  CYBER_IDS.forEach(cid=>{const el=document.getElementById(cid);if(el){el.innerHTML='';addCyberItem(cid);}});
+  rebuildSkillTotals();
+}
+
+// ── STATS ──
+const STATS = [
+  { key:'int', label:'知力' },
+  { key:'agi', label:'敏捷' },
+  { key:'ref', label:'反応' },
+  { key:'tec', label:'技術' },
+  { key:'cha', label:'魅力' },
+  { key:'wil', label:'意志' },
+  { key:'mov', label:'移動' },
+  { key:'bod', label:'体格' },
+  { key:'emp', label:'共感' },
+];
+
+const statVals = {};
+STATS.forEach(s => statVals[s.key] = 5);
+
+const statsGrid = document.getElementById('stats-grid');
+STATS.forEach(s => {
+  const cell = document.createElement('div');
+  cell.className = 'stat-cell';
+  cell.innerHTML = `
+    <span class="stat-abbr">${s.label}</span>
+    <span class="stat-num" id="sv-${s.key}">${statVals[s.key]}</span>
+    <input class="stat-input-hidden" type="number" min="1" max="10" value="${statVals[s.key]}" id="si-${s.key}"
+      oninput="updateStat('${s.key}',this.value)">
+  `;
+  statsGrid.appendChild(cell);
+});
+
+function updateStat(key, val) {
+  const v = Math.max(1, Math.min(10, parseInt(val)||1));
+  statVals[key] = v;
+  document.getElementById('sv-'+key).textContent = v;
+  if (key === 'emp') updateHumanityBar();
+  rebuildSkillTotals();
+}
+
+// ── HP PIPS ──
+let hpCurrent = 40;
+const hpPipsEl = document.getElementById('hp-pips');
+const hpCurrentEl = document.getElementById('hp-current');
+const hpMaxEl = document.getElementById('hp-max');
+const critThreshEl = document.getElementById('crit-thresh');
+
+function rebuildHpPips() {
+  const max = parseInt(hpMaxEl.value) || 40;
+  const crit = Math.ceil(max / 2);
+  critThreshEl.textContent = crit;
+  hpPipsEl.innerHTML = '';
+  if (hpCurrent > max) hpCurrent = max;
+  for (let i = 1; i <= max; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i > crit ? ' critical-zone' : '') + (i <= hpCurrent ? ' hp-on' : '');
+    pip.addEventListener('click', () => {
+      hpCurrent = (hpCurrent === i) ? i - 1 : i;
+      rebuildHpPips();
+      hpCurrentEl.textContent = hpCurrent;
+    });
+    hpPipsEl.appendChild(pip);
+  }
+  hpCurrentEl.textContent = hpCurrent;
+}
+
+rebuildHpPips();
+
+// ── HUMANITY ──
+function updateHumanityBar() {
+  const cur = parseInt(document.getElementById('emp-cur').value) || 0;
+  const max = parseInt(document.getElementById('emp-max').value) || 50;
+  const pct = max > 0 ? Math.min(100, Math.max(0, (cur / max) * 100)) : 0;
+  const bar = document.getElementById('humanity-bar');
+  bar.style.width = pct + '%';
+  bar.className = 'bar-fill' + (pct < 30 ? ' low' : '');
+}
+
+// ── LUCK PIPS ──
+let luckMax = 6; let luckOn = 0;
+const luckPipsEl = document.getElementById('luck-pips');
+
+function rebuildLuck() {
+  luckPipsEl.innerHTML = '';
+  for (let i = 1; i <= luckMax; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'luck-pip' + (i <= luckOn ? ' on' : '');
+    pip.addEventListener('click', () => {
+      luckOn = (luckOn === i) ? i - 1 : i;
+      rebuildLuck();
+    });
+    luckPipsEl.appendChild(pip);
+  }
+}
+rebuildLuck();
+
+// ── ROLE ABILITY ──
+const roleAbilities = {
+  'ロッカーボーイ': 'カリズマティック・インパクト',
+  'ソロ':          'コンバット・アウェアネス',
+  'ネットランナー': 'インターフェイス',
+  'テク':           'メイカー',
+  'メドテク':       'メディシン',
+  'メディア':       'クレディビリティ',
+  'エグゼク':       'チームワーク',
+  'ローマン':       'バックアップ',
+  'フィクサー':     'オペレーター',
+  'ノマッド':       'モト',
+};
+
+function updateRoleAbility() {
+  const role = document.getElementById('role-select').value;
+  const ability = roleAbilities[role] || '—';
+  document.getElementById('ability-name').textContent = ability;
+}
+
+// ── SKILLS ──
+const SKILL_SECTIONS = [
+  { title: '遠隔戦闘系技能', skills: [
+    { name:'弓術', attr:'反応', key:'ref' },
+    { name:'重火器 ×2', attr:'反応', key:'ref', double:true },
+    { name:'ハンドガン', attr:'反応', key:'ref', core:true },
+    { name:'フルオート射撃 ×2', attr:'反応', key:'ref', double:true },
+    { name:'ライフル', attr:'反応', key:'ref', core:true },
+  ]},
+  { title: '近接戦闘系技能', skills: [
+    { name:'回避', attr:'敏捷', key:'agi', core:true },
+    { name:'格闘', attr:'敏捷', key:'agi', core:true },
+    { name:'近接武器', attr:'敏捷', key:'agi', core:true },
+    { name:'武術 ×2', attr:'敏捷', key:'agi', double:true },
+  ]},
+  { title: '学術系技能', skills: [
+    { name:'暗号学', attr:'知力', key:'int' },
+    { name:'科学', attr:'知力', key:'int' },
+    { name:'官僚制度', attr:'知力', key:'int' },
+    { name:'ギャンブル', attr:'知力', key:'int' },
+    { name:'教養', attr:'知力', key:'int', core:true },
+    { name:'経理', attr:'知力', key:'int' },
+    { name:'言語', attr:'知力', key:'int', core:true },
+    { name:'推理', attr:'知力', key:'int', core:true },
+    { name:'戦術', attr:'知力', key:'int' },
+    { name:'動物使い', attr:'知力', key:'int' },
+    { name:'土地鑑', attr:'知力', key:'int', core:true },
+    { name:'犯罪捜査', attr:'知力', key:'int' },
+    { name:'ビジネス', attr:'知力', key:'int' },
+    { name:'文筆', attr:'知力', key:'int' },
+    { name:'野外生存術', attr:'知力', key:'int' },
+    { name:'ライブラリ検索', attr:'知力', key:'int', core:true },
+  ]},
+  { title: '感知系技能', skills: [
+    { name:'隠蔽／発見', attr:'知力', key:'int', core:true },
+    { name:'精神集中', attr:'意志', key:'wil', core:true },
+    { name:'知覚', attr:'知力', key:'int', core:true },
+    { name:'追跡', attr:'知力', key:'int' },
+    { name:'読唇術', attr:'知力', key:'int' },
+  ]},
+  { title: '社交系技能', skills: [
+    { name:'裏社会', attr:'魅力', key:'cha', core:true },
+    { name:'会話術', attr:'共感', key:'emp', core:true },
+    { name:'真意看破', attr:'共感', key:'emp', core:true },
+    { name:'尋問', attr:'魅力', key:'cha' },
+    { name:'説得', attr:'魅力', key:'cha', core:true },
+    { name:'売買', attr:'魅力', key:'cha', core:true },
+    { name:'ファッション', attr:'魅力', key:'cha' },
+    { name:'賄賂', attr:'魅力', key:'cha' },
+    { name:'美容', attr:'魅力', key:'cha' },
+  ]},
+  { title: '技術系技能', skills: [
+    { name:'応急手当', attr:'技術', key:'tec', core:true },
+    { name:'絵画／彫刻', attr:'技術', key:'tec' },
+    { name:'海洋ヴィークル技術', attr:'技術', key:'tec' },
+    { name:'鍵開け', attr:'技術', key:'tec', core:true },
+    { name:'偽造', attr:'技術', key:'tec' },
+    { name:'基礎技術', attr:'技術', key:'tec', core:true },
+    { name:'救急医療 ×2', attr:'技術', key:'tec', double:true },
+    { name:'航空ヴィークル技術', attr:'技術', key:'tec' },
+    { name:'サイバー技術', attr:'技術', key:'tec' },
+    { name:'撮影', attr:'技術', key:'tec' },
+    { name:'スリ', attr:'技術', key:'tec', core:true },
+    { name:'電子／保安技術 ×2', attr:'技術', key:'tec', double:true },
+    { name:'爆発物 ×2', attr:'技術', key:'tec', double:true },
+    { name:'武器技術', attr:'技術', key:'tec' },
+    { name:'陸上ヴィークル技術', attr:'技術', key:'tec' },
+  ]},
+  { title: '操作系技能', skills: [
+    { name:'海洋ヴィークル操縦', attr:'反応', key:'ref' },
+    { name:'騎乗', attr:'反応', key:'ref' },
+    { name:'航空ヴィークル操縦 ×2', attr:'反応', key:'ref', double:true },
+    { name:'陸上ヴィークル運転', attr:'反応', key:'ref', core:true },
+  ]},
+  { title: '動作系技能', skills: [
+    { name:'運動', attr:'敏捷', key:'agi', core:true },
+    { name:'隠密', attr:'敏捷', key:'agi', core:true },
+    { name:'拷問／薬物抵抗', attr:'意志', key:'wil' },
+    { name:'柔軟', attr:'敏捷', key:'agi' },
+    { name:'忍耐', attr:'意志', key:'wil', core:true },
+    { name:'舞踊', attr:'敏捷', key:'agi' },
+  ]},
+  { title: '芸能系技能', skills: [
+    { name:'演技', attr:'魅力', key:'cha' },
+    { name:'演奏', attr:'技術', key:'tec' },
+  ]},
+];
+
+const skillLevels = {};
+const skillPage = document.getElementById('page-skills');
+
+function buildSkills() {
+  skillPage.innerHTML = '';
+  SKILL_SECTIONS.forEach(sec => {
+    const title = document.createElement('div');
+    title.className = 'skill-section-title';
+    title.textContent = sec.title;
+    skillPage.appendChild(title);
+
+    const grid = document.createElement('div');
+    grid.className = 'skills-cols';
+
+    sec.skills.forEach(sk => {
+      const id = sk.name;
+      if (!skillLevels[id]) skillLevels[id] = 0;
+
+      const row = document.createElement('div');
+      row.className = 'skill-row' + (sk.core ? ' core' : '');
+
+      const lv = skillLevels[id];
+      const attr = statVals[sk.key] || 0;
+      const mult = sk.double ? 2 : 1;
+      const total = attr + lv * mult;
+
+      row.innerHTML = `
+        <span class="skill-name-text">${sk.name}</span>
+        <span class="skill-attr-tag">${sk.attr}</span>
+        <div class="skill-stepper">
+          <button class="step-btn" onclick="stepSkill(this,-1)" tabindex="-1">−</button>
+          <input class="skill-lv-input" type="number" min="0" max="10" value="${lv || ''}" placeholder="0" data-id="${id}" data-mult="${mult}" oninput="onSkillInput(this)">
+          <button class="step-btn" onclick="stepSkill(this,1)" tabindex="-1">＋</button>
+        </div>
+        <span class="skill-total" id="st-${id.replace(/ /g,'_')}">${total || attr}</span>
+      `;
+
+      grid.appendChild(row);
+    });
+    skillPage.appendChild(grid);
+  });
+}
+
+function onSkillInput(el) {
+  const id = el.dataset.id;
+  const mult = parseInt(el.dataset.mult) || 1;
+  const lv = parseInt(el.value) || 0;
+  skillLevels[id] = lv;
+
+  const sk = SKILL_SECTIONS.flatMap(s => s.skills).find(s => s.name === id);
+  const attr = statVals[sk.key] || 0;
+  const total = attr + lv * mult;
+  const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
+  if (totalEl) totalEl.textContent = total;
+}
+
+function rebuildSkillTotals() {
+  SKILL_SECTIONS.forEach(sec => {
+    sec.skills.forEach(sk => {
+      const id = sk.name;
+      const mult = sk.double ? 2 : 1;
+      const lv = skillLevels[id] || 0;
+      const attr = statVals[sk.key] || 0;
+      const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
+      if (totalEl) totalEl.textContent = attr + lv * mult;
+    });
+  });
+}
+
+buildSkills();
+
+// ── SKILL STEPPER ──
+function stepSkill(btn, delta) {
+  const row = btn.closest('.skill-row');
+  const input = row.querySelector('.skill-lv-input');
+  const cur = parseInt(input.value) || 0;
+  const next = Math.max(0, Math.min(10, cur + delta));
+  input.value = next;
+  onSkillInput(input);
+}
+
+// ── PDF EXPORT ──
+async function exportToPDF() {
+  if (typeof PDFLib === 'undefined') {
+    alert('pdf-lib が読み込まれていません。\nインターネット接続を確認してページを再読み込みしてください。');
+    return;
+  }
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/pdf';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const btn = document.querySelector('.btn-pdf');
+    const orig = btn.textContent;
+    btn.textContent = '処理中…';
+    btn.disabled = true;
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      await fillAndDownloadPDF(arrayBuffer);
+    } catch(err) {
+      alert('PDFの出力に失敗しました:\n' + err.message);
+      console.error(err);
+    } finally {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }
+  };
+  input.click();
+}
+
+async function fillAndDownloadPDF(templateBytes) {
+  if (typeof PDFLib === 'undefined') {
+    alert('pdf-lib が読み込まれていません。インターネット接続を確認してください。');
+    return;
+  }
+  const { PDFDocument } = PDFLib;
+  const pdfDoc = await PDFDocument.load(templateBytes, { ignoreEncryption: true });
+  const form = pdfDoc.getForm();
+
+  // Build field index (handle duplicate names)
+  const allFields = form.getFields();
+  const fieldIndex = {};
+  allFields.forEach(f => {
+    const n = f.getName();
+    if (!fieldIndex[n]) fieldIndex[n] = [];
+    fieldIndex[n].push(f);
+  });
+
+  function setTF(name, value, idx) {
+    const list = fieldIndex[name];
+    if (!list) return;
+    const i = (idx !== undefined && idx < list.length) ? idx : 0;
+    try { list[i].setText(value != null ? String(value) : ''); } catch(e) {}
+  }
+
+  // ── 基本情報 ──
+  setTF('ハンドル', document.getElementById('handle').value);
+  setTF('ロール', document.getElementById('role-select').value);
+  setTF('ロール特技', document.getElementById('ability-name').textContent);
+  setTF('ロールランク', document.getElementById('rank-input').value);
+  setTF('メモ', document.querySelector('.memo-area').value);
+
+  // ── 能力値 ──
+  setTF('知力', String(statVals.int));
+  setTF('反応', String(statVals.ref));
+  setTF('敏捷', String(statVals.agi));
+  setTF('技術', String(statVals.tec));
+  setTF('魅力', String(statVals.cha));
+  setTF('意志', String(statVals.wil));
+  setTF('移動', String(statVals.mov));
+  setTF('体格', String(statVals.bod));
+  setTF('共感', String(statVals.emp));
+  setTF('共感大', document.getElementById('emp-max').value);
+
+  // ── HP ──
+  const hpMax = parseInt(document.getElementById('hp-max').value) || 40;
+  setTF('HP最大', String(hpMax));
+  setTF('HP', String(hpCurrent));
+  setTF('重症', String(Math.ceil(hpMax / 2)));
+
+  // ── 人間性 ──
+  setTF('人間性最大', document.getElementById('emp-max').value);
+  setTF('人間性', document.getElementById('emp-cur').value);
+
+  // ── 運命 ──
+  setTF('運命大', String(luckMax));
+  setTF('運命', String(luckOn));
+
+  // ── 技能 ──
+  const skillPdfMap = {
+    '弓術':             ['〈弓術〉Lv','〈弓術〉能力値','〈弓術〉基本値'],
+    '重火器 ×2':        ['〈重火器〉Lv','〈重火器〉能力値','〈重火器〉基本値'],
+    'ハンドガン':        ['〈ハンドガン〉 Lv','〈ハンドガン〉 能力値','〈ハンドガン〉 基本値'],
+    'フルオート射撃 ×2': ['〈フルオート射撃〉Lv','〈フルオート射撃〉能力値','〈フルオート射撃〉基本値'],
+    'ライフル':          ['〈ライフル〉Lv','〈ライフル〉能力値','〈ライフル〉基本値'],
+    '回避':             ['〈回避〉Lv','〈回避〉能力値','〈回避〉基本値'],
+    '格闘':             ['〈格闘〉 Lv','〈格闘〉 能力値','〈格闘〉 基本値'],
+    '近接武器':          ['〈近接武器〉 Lv','〈近接武器〉 能力値','〈近接武器〉 基本値'],
+    '武術 ×2':          ['〈武術〉Lv','〈武術〉能力値','〈武術〉基本値'],
+    '暗号学':            ['〈暗号学〉Lv','〈暗号学〉能力値','〈暗号学〉基本値'],
+    '科学':              ['科学選1Lv','科学選1能力値','科学選1基本値'],
+    '官僚制度':          ['〈官僚制度〉 Lv','〈官僚制度〉 能力値','〈官僚制度〉 基本値'],
+    'ギャンブル':        ['〈ギャンブル〉 Lv','〈ギャンブル〉能力値','〈ギャンブル〉基本値'],
+    '教養':              ['〈教養〉Lv','〈教養〉能力値','〈教養〉基本値'],
+    '経理':              ['〈経理〉 Lv','〈経理〉 能力値','〈経理〉 基本値'],
+    '言語':              ['ストリートスラングLv','ストリートスラング能力値','ストリートスラング基本値'],
+    '推理':              ['〈推理〉 Lv','〈推理〉能力値','〈推理〉基本値'],
+    '戦術':              ['〈戦術〉Lv','〈戦術〉能力値','〈戦術〉基本値'],
+    '動物使い':          ['〈動物使い〉 Lv','〈動物使い〉 能力値','〈動物使い〉 基本値'],
+    '土地鑑':            ['土地鑑1Lv','土地鑑1能力値','土地鑑1基本値'],
+    '犯罪捜査':          ['〈犯罪捜査〉 Lv','〈犯罪捜査〉能力値','〈犯罪捜査〉基本値'],
+    'ビジネス':          ['〈ビジネス〉Lv','〈ビジネス〉能力値','〈ビジネス〉基本値'],
+    '文筆':              ['〈文筆〉 Lv','〈文筆〉 能力値','〈文筆〉 基本値'],
+    '野外生存術':        ['〈野外生存術〉Lv','〈野外生存術〉能力値','〈野外生存術〉基本値'],
+    'ライブラリ検索':    ['〈ライブラリ検索〉 Lv','〈ライブラリ検索〉 能力値','〈ライブラリ検索〉 基本値'],
+    '隠蔽／発見':        ['〈隠蔽／発見〉 Lv','〈隠蔽／発見〉 能力値','〈隠蔽／発見〉 基本値'],
+    '精神集中':          ['〈精神集中〉Lv','〈精神集中〉能力値','〈精神集中〉基本値'],
+    '知覚':              ['〈知覚〉 Lv','〈知覚〉 能力値','〈知覚〉 基本値'],
+    '追跡':              ['〈追跡〉Lv','〈追跡〉能力値','〈追跡〉基本値'],
+    '読唇術':            ['〈読唇術〉 Lv','〈読唇術〉 能力値','〈読唇術〉 基本値'],
+    '応急手当':          ['〈応急手当〉Lv','〈応急手当〉能力値','〈応急手当〉基本値'],
+    '絵画／彫刻':        ['〈絵画／彫刻〉Lv','〈絵画／彫刻〉能力値','〈絵画／彫刻〉基本値'],
+    '海洋ヴィークル技術':['〈海洋ヴィークル技術〉 Lv','〈海洋ヴィークル技術〉 能力値','〈海洋ヴィークル技術〉 基本値'],
+    '鍵開け':            ['〈鍵開け〉 Lv','〈鍵開け〉 能力値','〈鍵開け〉 基本値'],
+    '偽造':              ['〈偽造〉 Lv','〈偽造〉 能力値','〈偽造〉 基本値'],
+    '基礎技術':          ['〈基礎技術〉 Lv','〈基礎技術〉 能力値','〈基礎技術〉基本値'],
+    '救急医療 ×2':       ['〈救急医療〉Lv','〈救急医療〉能力値','〈救急医療〉基本値'],
+    '航空ヴィークル技術':['〈航空ヴィークル技術〉 Lv','〈航空ヴィークル技術〉 能力値','〈航空ヴィークル技術〉 基本値'],
+    'サイバー技術':      ['〈サイバー技術〉 Lv','〈サイバー技術〉 能力値','〈サイバー技術〉 基本値'],
+    '撮影':              ['〈撮影〉Lv','〈撮影〉能力値','〈撮影〉基本値'],
+    'スリ':              ['〈スリ〉 Lv','〈スリ〉  能力値','〈スリ〉 基本値'],
+    '電子／保安技術 ×2': ['〈電子／保安技術〉Lv','〈電子／保安技術〉能力値','〈電子／保安技術〉基本値'],
+    '爆発物 ×2':         ['〈爆発物〉Lv','〈爆発物〉能力値','〈爆発物〉基本値'],
+    '武器技術':          ['〈武器技術〉 Lv','〈武器技術〉 能力値','〈武器技術〉 基本値'],
+    '陸上ヴィークル技術':['〈陸上ヴィークル技術〉 Lv','〈陸上ヴィークル技術〉 能力値','〈陸上ヴィークル技術〉 基本値'],
+    '裏社会':            ['〈裏社会〉Lv','〈裏社会〉能力値','〈裏社会〉基本値'],
+    '会話術':            ['〈会話術〉Lv','〈会話術〉能力値','〈会話術〉基本値'],
+    '真意看破':          ['〈真意看破〉Lv','〈真意看破〉能力値','〈真意看破〉基本値'],
+    '尋問':              ['〈尋問〉Lv','〈尋問〉能力値','〈尋問〉 基本値'],
+    '説得':              ['〈説得〉 Lv','〈説得〉 能力値','〈説得〉 基本値'],
+    '売買':              ['〈売買〉Lv','〈売買〉能力値','〈売買〉基本値'],
+    'ファッション':       ['〈ファッション〉 Lv','〈ファッション〉 能力値','〈ファッション〉 基本値'],
+    '賄賂':              ['〈賄賂〉Lv','〈賄賂〉能力値','〈賄賂〉基本値'],
+    '美容':              ['〈美容〉Lv','〈美容〉能力値','〈美容〉基本値'],
+    '海洋ヴィークル操縦':['〈海洋ヴィークル操縦〉 Lv','〈海洋ヴィークル操縦〉 能力値','〈海洋ヴィークル操縦〉 基本値'],
+    '騎乗':              ['〈騎乗〉 Lv','〈騎乗〉 能力値','〈騎乗〉 基本値'],
+    '航空ヴィークル操縦 ×2':['〈航空ヴィークル操縦〉Lv','〈航空ヴィークル操縦〉能力値','〈航空ヴィークル操縦〉基本値'],
+    '陸上ヴィークル運転':['〈陸上ヴィークル運転〉 Lv','〈陸上ヴィークル運転〉 能力値','〈陸上ヴィークル運転〉 基本値'],
+    '運動':              ['〈運動〉Lv','〈運動〉能力値','〈運動〉基本値'],
+    '隠密':              ['〈隠密〉 Lv','〈隠密〉 能力値','〈隠密〉 基本値'],
+    '拷問／薬物抵抗':    ['〈拷問／薬物抵抗〉Lv','〈拷問／薬物抵抗〉能力値','〈拷問／薬物抵抗〉 基本値'],
+    '柔軟':              ['〈柔軟〉 Lv','〈柔軟〉 能力値','〈柔軟〉 基本値'],
+    '忍耐':              ['〈忍耐〉Lv','〈忍耐〉能力値','〈忍耐〉 基本値'],
+    '舞踊':              ['〈舞踊〉 Lv','〈舞踊〉 能力値','〈舞踊〉 基本値'],
+    '演技':              ['〈演技〉Lv','〈演技〉能力値','〈演技〉基本値'],
+    '演奏':              ['演奏選1Lv','演奏選1能力値','演奏選1基本値'],
+  };
+
+  SKILL_SECTIONS.flatMap(s => s.skills).forEach(sk => {
+    const map = skillPdfMap[sk.name];
+    if (!map) return;
+    const lv = skillLevels[sk.name] || 0;
+    const attr = statVals[sk.key] || 0;
+    const mult = sk.double ? 2 : 1;
+    const total = attr + lv * mult;
+    setTF(map[0], String(lv));
+    setTF(map[1], String(attr));
+    setTF(map[2], String(total));
+  });
+
+  // ── 武器（重複フィールド名をインデックスで処理）──
+  const wRows = document.querySelectorAll('#weapons-body tr');
+  wRows.forEach((tr, i) => {
+    if (i >= 6) return;
+    const ins = tr.querySelectorAll('input');
+    setTF('武器',   ins[0]?.value || '', i);
+    setTF('ダメージ', ins[1]?.value || '', i);
+    setTF('装弾数',  ins[2]?.value || '', i);
+    setTF('攻撃回数', ins[3]?.value || '', i);
+    setTF('武器詳細', ins[4]?.value || '', i);
+  });
+
+  // ── 防具 ──
+  const armorSlots = document.querySelectorAll('.armor-slot');
+  armorSlots.forEach((slot, i) => {
+    const nameInp = slot.querySelector('.armor-item-input');
+    const spInp   = slot.querySelector('.sp-input');
+    const penInp  = slot.querySelector('.pen-input');
+    const nameField = ['防具頭部','防具身体','防具盾'][i];
+    if (nameField) setTF(nameField, nameInp?.value || '');
+    setTF('SP',      spInp?.value || '', i);
+    setTF('ペナルティ', penInp?.value || '', i);
+  });
+
+  // ── ライフパス ──
+  const lpInputs = document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea');
+  const lpMap = [
+    '出身文化圏','性格','ファッション・スタイル','ヘアスタイル',
+    'おまえが最も重視するものは？','おまえは世間の連中をどう思っている？',
+    'おまえの人生で一番大事な人物','おまえの一番大事な持ち物',
+    '実家の家庭環境','幼少期の環境','家族を襲った災厄','人生の目標',
+    '親友1','愛の悲劇1','ロール別ライフパス',
+  ];
+  lpInputs.forEach((el, i) => { if (lpMap[i]) setTF(lpMap[i], el.value || ''); });
+
+  // ── 敵 ──
+  const enemyRows = document.querySelectorAll('#enemy-body tr');
+  enemyRows.forEach((tr, i) => {
+    const ins = tr.querySelectorAll('input');
+    const n = i + 1;
+    setTF(`敵 どんな奴？${n}`,        ins[0]?.value || '');
+    setTF(`敵対の理由は？${n}`,        ins[1]?.value || '');
+    setTF(`どんな奴を差し向けて来る？${n}`, ins[2]?.value || '');
+    setTF(`どんな反応をする？${n}`,    ins[3]?.value || '');
+  });
+
+  // ── 装備品 ──
+  const equipRows = document.querySelectorAll('#equip-body tr');
+  equipRows.forEach((tr, i) => {
+    const ins = tr.querySelectorAll('input');
+    const n = i + 1;
+    setTF(`装備品${n}`,     ins[0]?.value || '');
+    setTF(`装備品${n}メモ`, ins[1]?.value || '');
+  });
+
+  // ── 所持金・弾薬 ──
+  const moneyInp = document.querySelector('.money-val-input');
+  const ammoArea = document.querySelector('.equip-money .memo-area');
+  setTF('所持金', moneyInp?.value || '');
+  setTF('弾薬',   ammoArea?.value || '');
+
+  // ── ダウンロード ──
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${document.getElementById('handle').value || 'character'}_sheet.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ── PAGE SWITCH ──
+function showPage(name, btn) {
+  document.querySelectorAll('.skills-page, .weapons-page, .lifepath-page, .cyber-page').forEach(el => {
+    el.classList.remove('active');
+  });
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) target.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ── WEAPON ROWS ──
+function addWeaponRow() {
+  const tbody = document.getElementById('weapons-body');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input placeholder="武器名"></td>
+    <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
+    <td><input placeholder="—"></td>
+    <td><input placeholder="—"></td>
+    <td><input placeholder="メモ"></td>
+    <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+
+function removeRow(btn) {
+  btn.closest('tr').remove();
+}
+
+// ── EQUIP ROWS ──
+function addEquipRow() {
+  const tbody = document.getElementById('equip-body');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>`;
+  tbody.appendChild(tr);
+}
+
+// ── ARMOR NOTE ──
+function updateArmorNote() {
+  const pen = document.getElementById('body-pen').value;
+  if (pen && pen !== '—' && pen !== '') {
+    document.getElementById('armor-note').textContent =
+      `防具ペナルティ ${pen} — 【反応】【敏捷】【移動】に適用される`;
+  } else {
+    document.getElementById('armor-note').textContent =
+      '防具ペナルティは【反応】【敏捷】【移動】に適用される';
+  }
+}
+
+// ── CYBERWARE ──
+function addCyberItem(containerId) {
+  const container = document.getElementById(containerId);
+  const row = document.createElement('div');
+  row.className = 'cyber-item-row';
+  row.innerHTML = `
+    <div class="cyber-check" onclick="this.classList.toggle('on')"></div>
+    <input class="cyber-item-text" placeholder="アイテム名を入力">
+    <button onclick="this.parentElement.remove()" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;flex-shrink:0;">×</button>
+  `;
+  container.appendChild(row);
+}
+
+// init some empty cyber rows (initial DOM setup)
+CYBER_IDS.forEach(id => { addCyberItem(id); });
+
+// ── AUTO-SAVE on any input in the sheet ──
+document.getElementById('screen-sheet').addEventListener('input', scheduleAutoSave);
+document.getElementById('screen-sheet').addEventListener('change', scheduleAutoSave);
+
+// ── INIT ──
+loadCharactersFromStorage();
+showSelectionScreen();
+</script>
+</body>
+</html>
