@@ -141,7 +141,7 @@ html, body {
 
 /* ── SIDEBAR ── */
 .sidebar {
-  width: 200px;
+  width: 270px;
   flex-shrink: 0;
   background: var(--bg2);
   border-right: 1px solid var(--border);
@@ -163,7 +163,7 @@ html, body {
 
 .field-label {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--red);
@@ -234,7 +234,7 @@ html, body {
 
 .stat-abbr {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   color: var(--red);
   letter-spacing: 0.08em;
   display: block;
@@ -249,20 +249,44 @@ html, body {
   color: var(--text);
 }
 
-.stat-input-hidden {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  width: 100%;
-  height: 100%;
+.stat-ctrl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 1px;
+}
+
+.stat-step-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  width: 14px;
+  height: 16px;
+  font-size: 13px;
+  line-height: 1;
   cursor: pointer;
-  font-size: 16px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: var(--mono);
+  flex-shrink: 0;
+  transition: border-color 0.1s, color 0.1s;
+}
+.stat-step-btn:hover { border-color: var(--red); color: var(--red); }
+
+input.stat-num {
+  width: 28px;
   background: transparent;
   border: none;
   outline: none;
-  color: transparent;
+  text-align: center;
+  -moz-appearance: textfield;
+  cursor: text;
 }
+input.stat-num::-webkit-inner-spin-button,
+input.stat-num::-webkit-outer-spin-button { -webkit-appearance: none; }
 
 /* HP */
 .hp-block {
@@ -278,7 +302,7 @@ html, body {
   margin-bottom: 7px;
 }
 
-.hp-label { font-family: var(--mono); font-size: 8px; color: var(--red); letter-spacing: 0.15em; }
+.hp-label { font-family: var(--mono); font-size: 10px; color: var(--red); letter-spacing: 0.15em; }
 
 .hp-counter {
   font-family: var(--cond);
@@ -326,7 +350,7 @@ html, body {
 
 .hp-sub span {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   color: var(--text3);
 }
 
@@ -399,7 +423,7 @@ html, body {
 
 .ability-name {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   color: var(--red);
   letter-spacing: 0.1em;
 }
@@ -454,7 +478,7 @@ html, body {
 
 .page-tab {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text3);
@@ -483,7 +507,7 @@ html, body {
 .skill-section-title {
   font-family: var(--cond);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--red);
@@ -501,6 +525,7 @@ html, body {
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
   margin-bottom: 2px;
+  align-items: start;
 }
 
 .skill-row {
@@ -516,7 +541,29 @@ html, body {
 }
 
 .skill-row:hover { border-color: var(--border2); }
-.skill-row.core { border-left: 2px solid var(--red); }
+.skill-row.has-points { border-left: 2px solid var(--red); }
+
+.subcat-parent {
+  grid-column: 1 / -1;
+  cursor: pointer;
+  background: var(--bg2);
+}
+.subcat-parent:hover { border-color: var(--red); }
+
+.subcat-dropdown {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  padding: 2px 0;
+}
+
+.subcat-arrow {
+  margin-left: auto;
+  color: var(--text3);
+  font-size: 11px;
+  flex-shrink: 0;
+}
 
 .skill-name-text {
   font-size: 11px;
@@ -572,7 +619,7 @@ html, body {
 .section-head {
   font-family: var(--cond);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--red);
@@ -590,7 +637,7 @@ html, body {
 
 .weapons-table th {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--red);
@@ -711,7 +758,7 @@ html, body {
 
 .armor-pen {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   color: var(--text3);
   margin-top: 4px;
   display: flex;
@@ -722,7 +769,7 @@ html, body {
 
 .pen-input {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   color: var(--text2);
   background: transparent;
   border: none;
@@ -736,7 +783,7 @@ html, body {
   border: 1px solid rgba(255,100,0,0.2);
   padding: 6px 10px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   color: rgba(255,150,50,0.8);
   letter-spacing: 0.05em;
 }
@@ -756,7 +803,7 @@ html, body {
 
 .lp-field-label {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   color: var(--red);
   text-transform: uppercase;
@@ -833,7 +880,7 @@ html, body {
 
 .cyber-slot-head {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--red);
   text-transform: uppercase;
@@ -952,7 +999,7 @@ html, body {
 
 .equip-table th {
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--red);
@@ -1308,12 +1355,15 @@ body::after {
           <option value="エグゼク">エグゼク</option>
           <option value="ローマン">ローマン</option>
           <option value="フィクサー">フィクサー</option>
-          <option value="ノマッド">ノマッド</option>
+          <option value="ノーマッド">ノーマッド</option>
         </select>
       </div>
     </div>
 
-    <div class="sb-sep">能力値</div>
+    <div class="sb-sep" style="display:flex;justify-content:space-between;align-items:center;">
+      <span>能力値</span>
+      <span id="stat-point-display" style="font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.05em;">45/62</span>
+    </div>
 
     <!-- Stats -->
     <div class="stats-grid" id="stats-grid">
@@ -1329,7 +1379,7 @@ body::after {
         <div>
           <span class="hp-counter" id="hp-current">40</span>
           <span style="color:var(--text3);font-size:13px;"> / </span>
-          <input class="hp-max-input" id="hp-max" value="40" type="number" min="1" max="80" oninput="rebuildHpPips()">
+          <span class="hp-max-input" id="hp-max" style="display:inline-block;min-width:24px;text-align:center;">40</span>
         </div>
       </div>
       <div class="hp-pips" id="hp-pips"></div>
@@ -1344,9 +1394,10 @@ body::after {
     <!-- Humanity -->
     <div class="humanity-block">
       <div class="humanity-header">
-        <span class="field-label" style="margin-bottom:0;">共感残量</span>
+        <span class="field-label" style="margin-bottom:0;">人間性</span>
         <span style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);">
-          <input id="emp-cur" type="number" style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;width:28px;text-align:right;" value="50" oninput="updateHumanityBar()"> / <input id="emp-max" type="number" style="font-family:var(--cond);font-size:12px;color:var(--text3);background:transparent;border:none;outline:none;width:28px;" value="50" oninput="updateHumanityBar()">
+          <input id="emp-cur" type="number" style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;width:32px;text-align:right;" value="50" oninput="updateHumanityBar()">
+          / <span id="emp-max" style="font-family:var(--cond);font-size:12px;color:var(--text3);">50</span>
         </span>
       </div>
       <div class="bar-track">
@@ -1370,7 +1421,7 @@ body::after {
       <div class="ability-name" id="ability-name">—</div>
       <div class="ability-rank">
         <input class="rank-input" id="rank-input" type="number" min="1" max="10" value="1">
-        <span style="font-family:var(--mono);font-size:8px;color:var(--text3);">ランク</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3);">ランク</span>
       </div>
     </div>
 
@@ -1784,12 +1835,12 @@ function collectSheet() {
     hpMax:  document.getElementById('hp-max').value,
     hpCurrent,
     empCur: document.getElementById('emp-cur').value,
-    empMax: document.getElementById('emp-max').value,
     luckMax, luckOn,
     skillLevels: {...skillLevels},
     weapons, armors, lpFields, enemies, equips, cyberware,
     money:  document.querySelector('.money-val-input')?.value||'',
     ammo:   memoAreas[1]?.value||'',
+    subSkillData: JSON.parse(JSON.stringify(subSkillData)),
   };
 }
 
@@ -1812,23 +1863,30 @@ function restoreSheet(d) {
   if (d.stats) {
     Object.entries(d.stats).forEach(([k,v]) => {
       statVals[k] = v;
-      const nEl = document.getElementById('sv-'+k); if(nEl) nEl.textContent = v;
-      const iEl = document.getElementById('si-'+k); if(iEl) iEl.value = v;
+      const nEl = document.getElementById('sv-'+k); if(nEl) nEl.value = v;
     });
   }
-  // Skills
+  updateStatPointDisplay();
+  // Skills — まずデフォルト値にリセットしてから保存データで上書き
+  SKILL_SECTIONS.forEach(sec => sec.skills.forEach(sk => { if (!sk.subcat) skillLevels[sk.name] = sk.defaultLevel || 0; }));
   if (d.skillLevels) Object.assign(skillLevels, d.skillLevels);
+  // サブカテゴリ復元
+  subSkillData = getDefaultSubSkillData();
+  if (d.subSkillData) {
+    Object.keys(subSkillData).forEach(k => {
+      if (d.subSkillData[k]) subSkillData[k] = d.subSkillData[k];
+    });
+  }
   buildSkills(); rebuildSkillTotals();
-  // HP
-  hpCurrent = d.hpCurrent ?? 40;
-  const hmEl = document.getElementById('hp-max'); if(hmEl) hmEl.value = d.hpMax||'40';
-  rebuildHpPips();
-  // Humanity
-  const ecEl = document.getElementById('emp-cur'); if(ecEl) ecEl.value = d.empCur||'50';
-  const emEl = document.getElementById('emp-max'); if(emEl) emEl.value = d.empMax||'50';
+  // HP — 体格・意志から自動計算
+  hpCurrent = d.hpCurrent ?? calcHpMax();
+  updateHpFromStats();
+  // Humanity — emp-maxは共感×10で自動計算
+  const ecEl = document.getElementById('emp-cur');
+  if(ecEl) ecEl.value = d.empCur || String((statVals.emp||5)*10);
   updateHumanityBar();
-  // Luck
-  luckMax = d.luckMax??6; luckOn = d.luckOn??0; rebuildLuck();
+  // Luck — luckMaxはlck能力値から復元
+  luckMax = statVals.lck ?? d.luckMax ?? 6; luckOn = d.luckOn??0; rebuildLuck();
   // Weapons
   const wb = document.getElementById('weapons-body');
   if (wb && d.weapons) {
@@ -1903,16 +1961,25 @@ function resetSheet() {
   const rkEl=document.getElementById('rank-input'); if(rkEl) rkEl.value='1';
   document.querySelectorAll('.memo-area').forEach(e=>e.value='');
   // Stats
-  STATS.forEach(s=>{statVals[s.key]=5; const n=document.getElementById('sv-'+s.key); if(n)n.textContent=5; const i=document.getElementById('si-'+s.key); if(i)i.value=5;});
+  STATS.forEach(s=>{
+    const def = (s.key==='lck') ? 6 : 5;
+    statVals[s.key]=def;
+    const n=document.getElementById('sv-'+s.key); if(n)n.value=def;
+  });
+  updateStatPointDisplay();
   // Skills
-  Object.keys(skillLevels).forEach(k=>skillLevels[k]=0); buildSkills();
+  SKILL_SECTIONS.forEach(sec => sec.skills.forEach(sk => {
+    if (!sk.subcat) skillLevels[sk.name] = sk.defaultLevel || 0;
+  }));
+  subSkillData = getDefaultSubSkillData();
+  buildSkills();
   // HP
-  hpCurrent=40; const hmEl=document.getElementById('hp-max'); if(hmEl)hmEl.value='40'; rebuildHpPips();
+  hpCurrent=40; updateHpFromStats();
   // Humanity
-  const ecEl=document.getElementById('emp-cur'); if(ecEl)ecEl.value='50';
-  const emEl=document.getElementById('emp-max'); if(emEl)emEl.value='50'; updateHumanityBar();
+  const ecEl=document.getElementById('emp-cur'); if(ecEl)ecEl.value=String((statVals.emp||5)*10);
+  updateHumanityBar();
   // Luck
-  luckMax=6; luckOn=0; rebuildLuck();
+  luckMax=statVals.lck; luckOn=0; rebuildLuck();
   // Weapons
   const wb=document.getElementById('weapons-body'); if(wb){wb.innerHTML='';addWeaponRow();addWeaponRow();}
   // Armor
@@ -1943,10 +2010,11 @@ const STATS = [
   { key:'mov', label:'移動' },
   { key:'bod', label:'体格' },
   { key:'emp', label:'共感' },
+  { key:'lck', label:'運命' },
 ];
 
 const statVals = {};
-STATS.forEach(s => statVals[s.key] = 5);
+STATS.forEach(s => statVals[s.key] = (s.key === 'lck') ? 6 : 5);
 
 const statsGrid = document.getElementById('stats-grid');
 STATS.forEach(s => {
@@ -1954,19 +2022,43 @@ STATS.forEach(s => {
   cell.className = 'stat-cell';
   cell.innerHTML = `
     <span class="stat-abbr">${s.label}</span>
-    <span class="stat-num" id="sv-${s.key}">${statVals[s.key]}</span>
-    <input class="stat-input-hidden" type="number" min="1" max="10" value="${statVals[s.key]}" id="si-${s.key}"
-      oninput="updateStat('${s.key}',this.value)">
+    <div class="stat-ctrl">
+      <button class="stat-step-btn" onclick="stepStat('${s.key}',-1)" tabindex="-1">−</button>
+      <input class="stat-num" id="sv-${s.key}" type="number" min="1" max="10" value="${statVals[s.key]}"
+        oninput="if(this.value!=='')updateStat('${s.key}',this.value)"
+        onblur="updateStat('${s.key}',this.value||statVals['${s.key}'])">
+      <button class="stat-step-btn" onclick="stepStat('${s.key}',1)" tabindex="-1">＋</button>
+    </div>
   `;
   statsGrid.appendChild(cell);
 });
 
+// 初期表示
+setTimeout(updateStatPointDisplay, 0);
+
+function updateStatPointDisplay() {
+  const total = STATS.reduce((sum, s) => sum + (statVals[s.key] || 0), 0);
+  const el = document.getElementById('stat-point-display');
+  if (el) el.textContent = total + '/62';
+}
+
+function stepStat(key, delta) {
+  const v = Math.max(1, Math.min(10, (statVals[key] || 1) + delta));
+  const el = document.getElementById('sv-' + key);
+  if (el) el.value = v;
+  updateStat(key, v);
+}
+
 function updateStat(key, val) {
   const v = Math.max(1, Math.min(10, parseInt(val)||1));
   statVals[key] = v;
-  document.getElementById('sv-'+key).textContent = v;
+  const svEl = document.getElementById('sv-'+key);
+  if (svEl) svEl.value = v;
   if (key === 'emp') updateHumanityBar();
+  if (key === 'lck') { luckMax = v; luckOn = Math.min(luckOn, v); rebuildLuck(); }
+  if (key === 'bod' || key === 'wil') updateHpFromStats();
   rebuildSkillTotals();
+  updateStatPointDisplay();
 }
 
 // ── HP PIPS ──
@@ -1976,8 +2068,23 @@ const hpCurrentEl = document.getElementById('hp-current');
 const hpMaxEl = document.getElementById('hp-max');
 const critThreshEl = document.getElementById('crit-thresh');
 
+// 体格と意志からHPを算出（表の数式: 5 × ceil((体格+意志)/2) + 10）
+function calcHpMax() {
+  const bod = statVals.bod || 1;
+  const wil = statVals.wil || 1;
+  return 5 * Math.ceil((bod + wil) / 2) + 10;
+}
+
+// 体格/意志変更時にHP最大値を自動更新
+function updateHpFromStats() {
+  const max = calcHpMax();
+  if (hpMaxEl) hpMaxEl.textContent = max;
+  if (hpCurrent > max) hpCurrent = max;
+  rebuildHpPips();
+}
+
 function rebuildHpPips() {
-  const max = parseInt(hpMaxEl.value) || 40;
+  const max = parseInt(hpMaxEl.textContent) || calcHpMax();
   const crit = Math.ceil(max / 2);
   critThreshEl.textContent = crit;
   hpPipsEl.innerHTML = '';
@@ -1995,12 +2102,19 @@ function rebuildHpPips() {
   hpCurrentEl.textContent = hpCurrent;
 }
 
-rebuildHpPips();
+updateHpFromStats();
 
 // ── HUMANITY ──
+function updateEmpMax() {
+  const max = (statVals.emp || 1) * 10;
+  const el = document.getElementById('emp-max');
+  if (el) el.textContent = max;
+  return max;
+}
+
 function updateHumanityBar() {
   const cur = parseInt(document.getElementById('emp-cur').value) || 0;
-  const max = parseInt(document.getElementById('emp-max').value) || 50;
+  const max = updateEmpMax();
   const pct = max > 0 ? Math.min(100, Math.max(0, (cur / max) * 100)) : 0;
   const bar = document.getElementById('humanity-bar');
   bar.style.width = pct + '%';
@@ -2008,7 +2122,7 @@ function updateHumanityBar() {
 }
 
 // ── LUCK PIPS ──
-let luckMax = 6; let luckOn = 0;
+let luckMax = statVals.lck; let luckOn = 0;
 const luckPipsEl = document.getElementById('luck-pips');
 
 function rebuildLuck() {
@@ -2036,7 +2150,7 @@ const roleAbilities = {
   'エグゼク':       'チームワーク',
   'ローマン':       'バックアップ',
   'フィクサー':     'オペレーター',
-  'ノマッド':       'モト',
+  'ノーマッド':       'モト',
 };
 
 function updateRoleAbility() {
@@ -2055,23 +2169,23 @@ const SKILL_SECTIONS = [
     { name:'ライフル', attr:'反応', key:'ref', core:true },
   ]},
   { title: '近接戦闘系技能', skills: [
-    { name:'回避', attr:'敏捷', key:'agi', core:true },
-    { name:'格闘', attr:'敏捷', key:'agi', core:true },
+    { name:'回避', attr:'敏捷', key:'agi', core:true, defaultLevel:2 },
+    { name:'格闘', attr:'敏捷', key:'agi', core:true, defaultLevel:2 },
     { name:'近接武器', attr:'敏捷', key:'agi', core:true },
     { name:'武術 ×2', attr:'敏捷', key:'agi', double:true },
   ]},
   { title: '学術系技能', skills: [
     { name:'暗号学', attr:'知力', key:'int' },
-    { name:'科学', attr:'知力', key:'int' },
+    { name:'科学', attr:'知力', key:'int', subcat:true },
     { name:'官僚制度', attr:'知力', key:'int' },
     { name:'ギャンブル', attr:'知力', key:'int' },
-    { name:'教養', attr:'知力', key:'int', core:true },
+    { name:'教養', attr:'知力', key:'int', core:true, defaultLevel:2 },
     { name:'経理', attr:'知力', key:'int' },
-    { name:'言語', attr:'知力', key:'int', core:true },
+    { name:'言語', attr:'知力', key:'int', core:true, subcat:true },
     { name:'推理', attr:'知力', key:'int', core:true },
     { name:'戦術', attr:'知力', key:'int' },
     { name:'動物使い', attr:'知力', key:'int' },
-    { name:'土地鑑', attr:'知力', key:'int', core:true },
+    { name:'土地鑑', attr:'知力', key:'int', core:true, subcat:true },
     { name:'犯罪捜査', attr:'知力', key:'int' },
     { name:'ビジネス', attr:'知力', key:'int' },
     { name:'文筆', attr:'知力', key:'int' },
@@ -2080,24 +2194,24 @@ const SKILL_SECTIONS = [
   ]},
   { title: '感知系技能', skills: [
     { name:'隠蔽／発見', attr:'知力', key:'int', core:true },
-    { name:'精神集中', attr:'意志', key:'wil', core:true },
-    { name:'知覚', attr:'知力', key:'int', core:true },
+    { name:'精神集中', attr:'意志', key:'wil', core:true, defaultLevel:2 },
+    { name:'知覚', attr:'知力', key:'int', core:true, defaultLevel:2 },
     { name:'追跡', attr:'知力', key:'int' },
     { name:'読唇術', attr:'知力', key:'int' },
   ]},
   { title: '社交系技能', skills: [
     { name:'裏社会', attr:'魅力', key:'cha', core:true },
-    { name:'会話術', attr:'共感', key:'emp', core:true },
-    { name:'真意看破', attr:'共感', key:'emp', core:true },
+    { name:'会話術', attr:'共感', key:'emp', core:true, defaultLevel:2 },
+    { name:'真意看破', attr:'共感', key:'emp', core:true, defaultLevel:2 },
     { name:'尋問', attr:'魅力', key:'cha' },
-    { name:'説得', attr:'魅力', key:'cha', core:true },
+    { name:'説得', attr:'魅力', key:'cha', core:true, defaultLevel:2 },
     { name:'売買', attr:'魅力', key:'cha', core:true },
     { name:'ファッション', attr:'魅力', key:'cha' },
     { name:'賄賂', attr:'魅力', key:'cha' },
     { name:'美容', attr:'魅力', key:'cha' },
   ]},
   { title: '技術系技能', skills: [
-    { name:'応急手当', attr:'技術', key:'tec', core:true },
+    { name:'応急手当', attr:'技術', key:'tec', core:true, defaultLevel:2 },
     { name:'絵画／彫刻', attr:'技術', key:'tec' },
     { name:'海洋ヴィークル技術', attr:'技術', key:'tec' },
     { name:'鍵開け', attr:'技術', key:'tec', core:true },
@@ -2120,8 +2234,8 @@ const SKILL_SECTIONS = [
     { name:'陸上ヴィークル運転', attr:'反応', key:'ref', core:true },
   ]},
   { title: '動作系技能', skills: [
-    { name:'運動', attr:'敏捷', key:'agi', core:true },
-    { name:'隠密', attr:'敏捷', key:'agi', core:true },
+    { name:'運動', attr:'敏捷', key:'agi', core:true, defaultLevel:2 },
+    { name:'隠密', attr:'敏捷', key:'agi', core:true, defaultLevel:2 },
     { name:'拷問／薬物抵抗', attr:'意志', key:'wil' },
     { name:'柔軟', attr:'敏捷', key:'agi' },
     { name:'忍耐', attr:'意志', key:'wil', core:true },
@@ -2129,15 +2243,48 @@ const SKILL_SECTIONS = [
   ]},
   { title: '芸能系技能', skills: [
     { name:'演技', attr:'魅力', key:'cha' },
-    { name:'演奏', attr:'技術', key:'tec' },
+    { name:'演奏', attr:'技術', key:'tec', subcat:true },
   ]},
 ];
 
 const skillLevels = {};
 const skillPage = document.getElementById('page-skills');
 
+// ── サブカテゴリスキル（科学・言語・土地鑑・演奏）──
+function getDefaultSubSkillData() {
+  return {
+    '科学':   [{name:'', level:0}, {name:'', level:0}, {name:'', level:0}],
+    '言語':   [{name:'ストリートスラング', level:2}, {name:'', level:0}, {name:'', level:0}],
+    '土地鑑': [{name:'(自分の居住地)', level:2}, {name:'', level:0}, {name:'', level:0}],
+    '演奏':   [{name:'', level:0}, {name:'', level:0}, {name:'', level:0}],
+  };
+}
+let subSkillData = getDefaultSubSkillData();
+
+function calcSkillPointTotal() {
+  let total = 0;
+  Object.entries(skillLevels).forEach(([name, v]) => {
+    const sk = SKILL_SECTIONS.flatMap(s => s.skills).find(s => s.name === name);
+    total += (v || 0) * ((sk && sk.double) ? 2 : 1);
+  });
+  Object.values(subSkillData).forEach(subs => subs.forEach(s => { total += s.level || 0; }));
+  return total;
+}
+
+function updateSkillPointDisplay() {
+  const el = document.getElementById('skill-point-display');
+  if (el) el.textContent = calcSkillPointTotal() + '/86';
+}
+
 function buildSkills() {
   skillPage.innerHTML = '';
+
+  // 技能配分ポイント表示バー
+  const bar = document.createElement('div');
+  bar.style.cssText = 'display:flex;justify-content:flex-end;align-items:center;margin-bottom:8px;font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:0.08em;';
+  bar.innerHTML = '技能配分ポイント: <span id="skill-point-display" style="color:var(--red);margin-left:5px;font-weight:700;font-size:11px;">0/86</span>';
+  skillPage.appendChild(bar);
+
   SKILL_SECTIONS.forEach(sec => {
     const title = document.createElement('div');
     title.className = 'skill-section-title';
@@ -2149,31 +2296,85 @@ function buildSkills() {
 
     sec.skills.forEach(sk => {
       const id = sk.name;
-      if (!skillLevels[id]) skillLevels[id] = 0;
 
-      const row = document.createElement('div');
-      row.className = 'skill-row' + (sk.core ? ' core' : '');
+      if (sk.subcat) {
+        // ── サブカテゴリスキル（ドロップダウン）──
+        const subs = subSkillData[id] || [{name:'',level:0},{name:'',level:0},{name:'',level:0}];
 
-      const lv = skillLevels[id];
-      const attr = statVals[sk.key] || 0;
-      const mult = sk.double ? 2 : 1;
-      const total = attr + lv * mult;
+        // 親行（クリックで開閉）
+        const parentRow = document.createElement('div');
+        parentRow.className = 'skill-row subcat-parent' + (sk.core ? ' core' : '');
+        parentRow.innerHTML = `
+          <span class="skill-name-text">${sk.name}</span>
+          <span class="skill-attr-tag">${sk.attr}</span>
+          <span class="subcat-arrow" id="subcat-arrow-${id}">▶</span>
+        `;
+        parentRow.addEventListener('click', () => toggleSubcat(id));
+        grid.appendChild(parentRow);
 
-      row.innerHTML = `
-        <span class="skill-name-text">${sk.name}</span>
-        <span class="skill-attr-tag">${sk.attr}</span>
-        <div class="skill-stepper">
-          <button class="step-btn" onclick="stepSkill(this,-1)" tabindex="-1">−</button>
-          <input class="skill-lv-input" type="number" min="0" max="10" value="${lv || ''}" placeholder="0" data-id="${id}" data-mult="${mult}" oninput="onSkillInput(this)">
-          <button class="step-btn" onclick="stepSkill(this,1)" tabindex="-1">＋</button>
-        </div>
-        <span class="skill-total" id="st-${id.replace(/ /g,'_')}">${total || attr}</span>
-      `;
+        // ドロップダウン（デフォルト非表示）
+        const drop = document.createElement('div');
+        drop.className = 'subcat-dropdown';
+        drop.id = 'subcat-drop-' + id;
+        drop.style.display = 'none';
 
-      grid.appendChild(row);
+        subs.forEach((sub, idx) => {
+          const attr = statVals[sk.key] || 0;
+          const subTotal = attr + (sub.level || 0);
+          const row = document.createElement('div');
+          row.className = 'skill-row' + (sk.core && idx === 0 ? ' core' : '') + (sub.level > 0 ? ' has-points' : '');
+          row.innerHTML = `
+            <span class="skill-attr-tag" style="color:var(--red);flex-shrink:0;margin-right:2px;font-size:10px;">${sk.name}</span>
+            <input class="subcat-name-input" placeholder="分野名" value="${sub.name.replace(/"/g,'&quot;')}"
+              data-parent="${id}" data-idx="${idx}" oninput="onSubNameInput(this)"
+              style="flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--text2);font-size:12px;font-family:var(--body);">
+            <span class="skill-attr-tag">${sk.attr}</span>
+            <div class="skill-stepper">
+              <button class="step-btn" onclick="stepSubSkill(this,-1)" tabindex="-1">−</button>
+              <input class="skill-lv-input" type="number" min="0" max="10" value="${sub.level || ''}" placeholder="0"
+                data-parent="${id}" data-idx="${idx}" oninput="onSubSkillInput(this)">
+              <button class="step-btn" onclick="stepSubSkill(this,1)" tabindex="-1">＋</button>
+            </div>
+            <span class="skill-total" id="sst-${id}-${idx}">${subTotal || attr}</span>
+          `;
+          drop.appendChild(row);
+        });
+
+        grid.appendChild(drop);
+      } else {
+        // ── 通常スキル ──
+        if (skillLevels[id] === undefined) skillLevels[id] = sk.defaultLevel || 0;
+        const row = document.createElement('div');
+        const lv = skillLevels[id];
+        row.className = 'skill-row' + (sk.core ? ' core' : '') + (lv > 0 ? ' has-points' : '');
+        const attr = statVals[sk.key] || 0;
+        const mult = sk.double ? 2 : 1;
+        const total = attr + lv * mult;
+        row.innerHTML = `
+          <span class="skill-name-text">${sk.name}</span>
+          <span class="skill-attr-tag">${sk.attr}</span>
+          <div class="skill-stepper">
+            <button class="step-btn" onclick="stepSkill(this,-1)" tabindex="-1">−</button>
+            <input class="skill-lv-input" type="number" min="0" max="10" value="${lv || ''}" placeholder="0" data-id="${id}" data-mult="${mult}" oninput="onSkillInput(this)">
+            <button class="step-btn" onclick="stepSkill(this,1)" tabindex="-1">＋</button>
+          </div>
+          <span class="skill-total" id="st-${id.replace(/ /g,'_')}">${total || attr}</span>
+        `;
+        grid.appendChild(row);
+      }
     });
     skillPage.appendChild(grid);
   });
+  updateSkillPointDisplay();
+}
+
+function toggleSubcat(id) {
+  const drop = document.getElementById('subcat-drop-' + id);
+  const arrow = document.getElementById('subcat-arrow-' + id);
+  if (!drop) return;
+  const open = drop.style.display !== 'none';
+  drop.style.display = open ? 'none' : '';
+  if (arrow) arrow.textContent = open ? '▶' : '▼';
 }
 
 function onSkillInput(el) {
@@ -2187,17 +2388,62 @@ function onSkillInput(el) {
   const total = attr + lv * mult;
   const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
   if (totalEl) totalEl.textContent = total;
+
+  const row = el.closest('.skill-row');
+  if (row) row.classList.toggle('has-points', lv > 0);
+
+  updateSkillPointDisplay();
+}
+
+// ── サブカテゴリ入力ハンドラ ──
+function onSubNameInput(el) {
+  const parent = el.dataset.parent;
+  const idx = parseInt(el.dataset.idx);
+  if (subSkillData[parent]) subSkillData[parent][idx].name = el.value;
+}
+
+function onSubSkillInput(el) {
+  const parent = el.dataset.parent;
+  const idx = parseInt(el.dataset.idx);
+  const lv = parseInt(el.value) || 0;
+  if (subSkillData[parent]) subSkillData[parent][idx].level = lv;
+  const sk = SKILL_SECTIONS.flatMap(s => s.skills).find(s => s.name === parent);
+  const attr = sk ? (statVals[sk.key] || 0) : 0;
+  const totalEl = document.getElementById(`sst-${parent}-${idx}`);
+  if (totalEl) totalEl.textContent = attr + lv;
+
+  const row = el.closest('.skill-row');
+  if (row) row.classList.toggle('has-points', lv > 0);
+
+  updateSkillPointDisplay();
+}
+
+function stepSubSkill(btn, delta) {
+  const row = btn.closest('.skill-row');
+  const input = row.querySelector('.skill-lv-input[data-parent]');
+  const cur = parseInt(input.value) || 0;
+  input.value = Math.max(0, Math.min(10, cur + delta));
+  onSubSkillInput(input);
 }
 
 function rebuildSkillTotals() {
   SKILL_SECTIONS.forEach(sec => {
     sec.skills.forEach(sk => {
       const id = sk.name;
-      const mult = sk.double ? 2 : 1;
-      const lv = skillLevels[id] || 0;
-      const attr = statVals[sk.key] || 0;
-      const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
-      if (totalEl) totalEl.textContent = attr + lv * mult;
+      if (sk.subcat) {
+        const subs = subSkillData[id] || [];
+        const attr = statVals[sk.key] || 0;
+        subs.forEach((sub, idx) => {
+          const el = document.getElementById(`sst-${id}-${idx}`);
+          if (el) el.textContent = attr + (sub.level || 0);
+        });
+      } else {
+        const mult = sk.double ? 2 : 1;
+        const lv = skillLevels[id] || 0;
+        const attr = statVals[sk.key] || 0;
+        const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
+        if (totalEl) totalEl.textContent = attr + lv * mult;
+      }
     });
   });
 }
@@ -2527,6 +2773,9 @@ CYBER_IDS.forEach(id => { addCyberItem(id); });
 // ── AUTO-SAVE on any input in the sheet ──
 document.getElementById('screen-sheet').addEventListener('input', scheduleAutoSave);
 document.getElementById('screen-sheet').addEventListener('change', scheduleAutoSave);
+
+// ── ページ離脱・更新前に即時保存（リセット防止）──
+window.addEventListener('beforeunload', saveNow);
 
 // ── INIT ──
 loadCharactersFromStorage();
