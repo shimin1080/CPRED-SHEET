@@ -729,6 +729,14 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .weapons-table tr:hover td { background: var(--bg3); }
 
+/* 特殊武器テキストエリア */
+.weapons-table td textarea {
+  background: transparent; border: none; outline: none;
+  color: var(--text); font-family: var(--body); font-size: 12px;
+  width: 100%; resize: vertical; min-height: 36px; line-height: 1.5;
+}
+.weapons-table td textarea:focus { background: var(--bg3); color: var(--red); }
+
 .btn-add {
   font-family: var(--cond);
   font-weight: 700;
@@ -829,6 +837,61 @@ input.hp-counter::-webkit-outer-spin-button { }
   text-align: center;
 }
 
+/* ── 武器データベース モーダル ── */
+.wdb-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.72); z-index: 2000;
+  align-items: center; justify-content: center;
+}
+.wdb-overlay.open { display: flex; }
+.wdb-modal {
+  background: var(--bg); border: 1px solid var(--red);
+  width: min(700px, 96vw); max-height: 80vh;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.wdb-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-bottom: 1px solid var(--red);
+  background: rgba(204,34,34,0.06); flex-shrink: 0;
+}
+.wdb-title {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  color: var(--red); text-transform: uppercase;
+}
+.wdb-close {
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--text3); font-size: 14px; width: 24px; height: 24px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .12s;
+}
+.wdb-close:hover { border-color: var(--red); color: var(--red); }
+.wdb-hint {
+  font-family: var(--mono); font-size: 9px; color: var(--text3);
+  letter-spacing: .08em; padding: 6px 14px; border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.wdb-body { overflow-y: auto; flex: 1; }
+.wdb-table { width: 100%; border-collapse: collapse; }
+.wdb-table th {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+  color: var(--red); padding: 7px 10px; text-align: left;
+  border-bottom: 1px solid var(--red); background: rgba(204,34,34,0.05);
+  position: sticky; top: 0; white-space: nowrap;
+}
+.wdb-table td {
+  font-size: 12px; color: var(--text2); padding: 9px 10px;
+  border-bottom: 1px solid var(--border); vertical-align: top;
+}
+.wdb-table td:first-child {
+  font-family: var(--mono); font-size: 10px; color: var(--text);
+  font-weight: bold; white-space: nowrap;
+}
+.wdb-examples { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.wdb-damage { font-family: var(--cond); font-weight: 700; font-size: 16px; color: var(--red); }
+.wdb-row { cursor: pointer; transition: background .1s; }
+.wdb-row:hover td { background: rgba(204,34,34,0.08); }
+.wdb-row:hover td:first-child { color: var(--red); }
+
 .armor-note {
   background: rgba(255,100,0,0.08);
   border: 1px solid rgba(255,100,0,0.2);
@@ -916,7 +979,7 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .cyber-layout {
   display: grid;
-  grid-template-columns: 1fr 90px 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   align-items: start;
 }
@@ -958,33 +1021,6 @@ input.hp-counter::-webkit-outer-spin-button { }
   padding: 3px 0;
 }
 
-.cyber-check {
-  width: 12px;
-  height: 12px;
-  border: 1px solid var(--text3);
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: all 0.1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cyber-check.on {
-  background: var(--red);
-  border-color: var(--red);
-}
-
-.cyber-check.on::after {
-  content: '';
-  display: block;
-  width: 5px;
-  height: 3px;
-  border-left: 1.5px solid #fff;
-  border-bottom: 1.5px solid #fff;
-  transform: translateY(-1px) rotate(-45deg);
-}
-
 .cyber-item-text {
   font-size: 11px;
   color: var(--text2);
@@ -996,13 +1032,51 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .cyber-item-text:focus { color: var(--text); }
 
-.cyber-body-svg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  padding: 12px 8px;
+/* ── 基礎サイバーウェア ── */
+.cyber-foundation-area {
+  padding: 4px 0 6px;
+}
+.cyber-foundation-btn {
+  width: 100%; padding: 5px 8px; font-family: var(--mono); font-size: 9px;
+  letter-spacing: .08em; text-transform: uppercase;
+  background: transparent; border: 1px dashed var(--text3); color: var(--text3);
+  cursor: pointer; transition: all .12s; text-align: left;
+}
+.cyber-foundation-btn:hover { border-color: var(--red); color: var(--red); }
+.cyber-foundation-installed {
+  display: flex; align-items: center; gap: 6px; padding: 4px 0;
+}
+.cyber-foundation-name {
+  font-family: var(--mono); font-size: 10px; color: var(--red); flex: 1; letter-spacing: .06em;
+}
+.cyber-foundation-remove {
+  background: transparent; border: 1px solid var(--border2); color: var(--text3);
+  font-size: 10px; width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; transition: all .1s;
+}
+.cyber-foundation-remove:hover { border-color: var(--red); color: var(--red); }
+.cyber-slots-area { margin-top: 4px; }
+.cyber-slot-count {
+  font-family: var(--mono); font-size: 8px; color: var(--text3);
+  letter-spacing: .08em; margin-bottom: 4px;
+}
+.cyber-slot-locked {
+  font-family: var(--mono); font-size: 9px; color: var(--text3);
+  padding: 6px 0; letter-spacing: .06em; opacity: 0.5;
+}
+
+.cyber-opt-desc {
+  font-size: 9px;
+  color: var(--text3);
+  line-height: 1.3;
+  margin-top: 1px;
+  padding-left: 2px;
+}
+.cyber-foundation-desc {
+  font-size: 9px;
+  color: var(--text3);
+  line-height: 1.3;
+  padding: 2px 0 4px 18px;
 }
 
 .cyber-extra-grid {
@@ -2545,61 +2619,91 @@ body::after {
 
     <!-- ── PAGE: WEAPONS ── -->
     <div class="weapons-page" id="page-weapons">
-      <div class="section-head">武器</div>
-      <table class="weapons-table" id="weapons-table">
-        <thead>
+
+      <!-- ── 近接武器 ── -->
+      <div class="section-head">近接武器</div>
+      <table class="weapons-table" id="melee-table">
+        <thead><tr>
+          <th style="width:20%">武器名</th>
+          <th style="width:14%">ダメージ</th>
+          <th style="width:12%">攻撃回数</th>
+          <th style="width:9%">隠匿</th>
+          <th>備考</th>
+          <th style="width:22px;"></th>
+        </tr></thead>
+        <tbody id="melee-body"></tbody>
+      </table>
+      <button class="btn-add" onclick="wdbOpen('melee')">＋ 近接武器を追加</button>
+
+      <!-- ── 遠隔武器 ── -->
+      <div class="section-head">遠隔武器</div>
+      <table class="weapons-table" id="ranged-table">
+        <thead><tr>
+          <th style="width:16%">武器名</th>
+          <th style="width:11%">武器技能</th>
+          <th style="width:11%">ダメージ</th>
+          <th style="width:9%">装弾数</th>
+          <th style="width:10%">攻撃回数</th>
+          <th style="width:8%">隠匿</th>
+          <th>備考</th>
+          <th style="width:22px;"></th>
+        </tr></thead>
+        <tbody id="ranged-body"></tbody>
+      </table>
+      <button class="btn-add" onclick="wdbOpen('ranged')">＋ 遠隔武器を追加</button>
+
+      <!-- ── 特殊武器 ── -->
+      <div class="section-head">特殊武器</div>
+      <table class="weapons-table" id="special-table">
+        <thead><tr>
+          <th style="width:22%">武器名</th>
+          <th>解説・データ</th>
+          <th style="width:22px;"></th>
+        </tr></thead>
+        <tbody id="special-body"></tbody>
+      </table>
+      <button class="btn-add" onclick="wdbOpen('special')">＋ 特殊武器を追加</button>
+
+      <!-- ── 防具 ── -->
+      <div class="section-head">防具</div>
+      <table class="weapons-table" id="armor-table">
+        <thead><tr>
+          <th style="width:6%">部位</th>
+          <th style="width:14%">防具名</th>
+          <th>解説</th>
+          <th style="width:6%">SP</th>
+          <th style="width:9%">ペナルティ</th>
+          <th style="width:12%">備考</th>
+        </tr></thead>
+        <tbody>
           <tr>
-            <th style="width:24%">武器名</th>
-            <th style="width:14%">ダメージ</th>
-            <th style="width:12%">装弾数</th>
-            <th style="width:12%">攻撃回数</th>
-            <th>メモ</th>
-            <th style="width:28px;"></th>
+            <td style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.1em;white-space:nowrap;">HEAD</td>
+            <td><input class="a-name" placeholder="防具名"></td>
+            <td><input class="a-desc" placeholder="—"></td>
+            <td><input class="a-sp" id="head-sp" type="number" min="0" placeholder="0" style="width:100%;text-align:center;font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;"></td>
+            <td><input class="a-pen" placeholder="—"></td>
+            <td><input class="a-note" placeholder="備考"></td>
           </tr>
-        </thead>
-        <tbody id="weapons-body">
           <tr>
-            <td><input placeholder="武器名"></td>
-            <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
-            <td><input placeholder="—"></td>
-            <td><input placeholder="—"></td>
-            <td><input placeholder="メモ"></td>
-            <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
+            <td style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.1em;white-space:nowrap;">BODY</td>
+            <td><input class="a-name" placeholder="防具名"></td>
+            <td><input class="a-desc" placeholder="—"></td>
+            <td><input class="a-sp" id="body-sp" type="number" min="0" placeholder="0" oninput="updateArmorNote()" style="width:100%;text-align:center;font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;"></td>
+            <td><input class="a-pen" id="body-pen" placeholder="—" oninput="updateArmorNote()"></td>
+            <td><input class="a-note" placeholder="備考"></td>
           </tr>
           <tr>
-            <td><input placeholder="武器名"></td>
-            <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
-            <td><input placeholder="—"></td>
-            <td><input placeholder="—"></td>
-            <td><input placeholder="メモ"></td>
-            <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
+            <td style="font-family:var(--mono);font-size:9px;color:var(--red);letter-spacing:.1em;white-space:nowrap;">SHIELD</td>
+            <td><input class="a-name" placeholder="防具名"></td>
+            <td><input class="a-desc" placeholder="—"></td>
+            <td><input class="a-sp" type="number" min="0" placeholder="0" style="width:100%;text-align:center;font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text);background:transparent;border:none;outline:none;"></td>
+            <td><input class="a-pen" placeholder="—"></td>
+            <td><input class="a-note" placeholder="備考"></td>
           </tr>
         </tbody>
       </table>
-      <button class="btn-add" onclick="addWeaponRow()">＋ 武器を追加</button>
-
-      <div class="section-head">防具</div>
-      <div class="armor-row">
-        <div class="armor-slot">
-          <span class="armor-slot-name">頭部</span>
-          <input class="armor-item-input" placeholder="防具名">
-          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0"></div>
-          <div class="armor-pen">PEN <input class="pen-input" placeholder="—"></div>
-        </div>
-        <div class="armor-slot">
-          <span class="armor-slot-name">身体</span>
-          <input class="armor-item-input" placeholder="防具名">
-          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0" id="body-sp" oninput="updateArmorNote()"></div>
-          <div class="armor-pen">PEN <input class="pen-input" placeholder="—" id="body-pen" oninput="updateArmorNote()"></div>
-        </div>
-        <div class="armor-slot" style="border-style:dashed;">
-          <span class="armor-slot-name">盾</span>
-          <input class="armor-item-input" placeholder="防具名">
-          <div class="armor-sp">SP <input class="sp-input" type="number" value="0" min="0"></div>
-          <div class="armor-pen">PEN <input class="pen-input" placeholder="—"></div>
-        </div>
-      </div>
       <div class="armor-note" id="armor-note">防具ペナルティは【反応】【敏捷】【移動】に適用される</div>
+
     </div>
 
     <!-- ── PAGE: LIFEPATH ── -->
@@ -2804,76 +2908,49 @@ body::after {
       <div class="cyber-layout">
         <!-- LEFT COL -->
         <div class="cyber-col">
+          <!-- サイバー視覚右 -->
           <div class="cyber-slot-block">
-            <div class="cyber-slot-head"><div class="cyber-installed-dot"></div> サイバーアイ（右目）</div>
-            <div id="ceye-r"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('ceye-r')">＋</button>
+            <div class="cyber-slot-head">サイバー視覚（右目）</div>
+            <div id="ceye-r-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- サイバーアーム右 -->
           <div class="cyber-slot-block">
-            <div class="cyber-slot-head"><div class="cyber-installed-dot"></div> サイバーアーム（右腕）</div>
-            <div id="carm-r"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('carm-r')">＋</button>
+            <div class="cyber-slot-head">サイバーアーム（右腕）</div>
+            <div id="carm-r-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- サイバーレッグ右 -->
           <div class="cyber-slot-block">
             <div class="cyber-slot-head">サイバーレッグ（右脚）</div>
-            <div id="cleg-r"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('cleg-r')">＋</button>
+            <div id="cleg-r-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- サイバー聴覚 -->
           <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバー聴覚基本システム</div>
-            <div id="c-audio"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-audio')">＋</button>
+            <div class="cyber-slot-head">サイバー聴覚</div>
+            <div id="c-audio-area" class="cyber-foundation-area"></div>
           </div>
-        </div>
-
-        <!-- CENTER: body diagram -->
-        <div class="cyber-body-svg">
-          <svg width="78" height="230" viewBox="0 0 78 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- head -->
-            <ellipse cx="39" cy="22" rx="16" ry="18" stroke="#CC2222" stroke-width="1.5"/>
-            <!-- neck -->
-            <rect x="33" y="38" width="12" height="10" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- torso -->
-            <rect x="18" y="48" width="42" height="68" rx="3" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-            <!-- neural spine -->
-            <line x1="39" y1="48" x2="39" y2="116" stroke="#CC2222" stroke-width="0.8" stroke-dasharray="4,3"/>
-            <!-- L arm -->
-            <rect x="4" y="52" width="14" height="56" rx="4" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- R arm -->
-            <rect x="60" y="52" width="14" height="56" rx="4" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-            <!-- L leg -->
-            <rect x="19" y="116" width="16" height="72" rx="3" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- R leg -->
-            <rect x="43" y="116" width="16" height="72" rx="3" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- eyes -->
-            <circle cx="32" cy="20" r="3.5" stroke="#CC2222" stroke-width="1"/>
-            <circle cx="46" cy="20" r="3.5" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-            <!-- crosshair on right eye -->
-            <line x1="60" y1="14" x2="32" y2="20" stroke="#CC2222" stroke-width="0.5" stroke-dasharray="2,2"/>
-          </svg>
         </div>
 
         <!-- RIGHT COL -->
         <div class="cyber-col">
+          <!-- サイバー視覚左 -->
           <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバーアイ（左目）</div>
-            <div id="ceye-l"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('ceye-l')">＋</button>
+            <div class="cyber-slot-head">サイバー視覚（左目）</div>
+            <div id="ceye-l-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- サイバーアーム左 -->
           <div class="cyber-slot-block">
             <div class="cyber-slot-head">サイバーアーム（左腕）</div>
-            <div id="carm-l"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('carm-l')">＋</button>
+            <div id="carm-l-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- サイバーレッグ左 -->
           <div class="cyber-slot-block">
             <div class="cyber-slot-head">サイバーレッグ（左脚）</div>
-            <div id="cleg-l"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('cleg-l')">＋</button>
+            <div id="cleg-l-area" class="cyber-foundation-area"></div>
           </div>
+          <!-- ニューラルウェア -->
           <div class="cyber-slot-block">
-            <div class="cyber-slot-head">ニューラル・リンク</div>
-            <div id="c-neural"></div>
-            <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-neural')">＋</button>
+            <div class="cyber-slot-head">ニューラルウェア</div>
+            <div id="c-neural-area" class="cyber-foundation-area"></div>
           </div>
         </div>
       </div>
@@ -2882,57 +2959,48 @@ body::after {
       <div class="cyber-extra-grid">
         <div class="cyber-slot-block">
           <div class="cyber-slot-head">体内用サイバーウェア</div>
-          <div id="c-internal"></div>
-          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-internal')">＋</button>
+          <div id="c-internal-area" class="cyber-foundation-area"></div>
         </div>
         <div class="cyber-slot-block">
           <div class="cyber-slot-head">体表用サイバーウェア</div>
-          <div id="c-external"></div>
-          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-external')">＋</button>
+          <div id="c-external-area" class="cyber-foundation-area"></div>
         </div>
         <div class="cyber-slot-block">
           <div class="cyber-slot-head">ファッションウェア</div>
-          <div id="c-fashion"></div>
-          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-fashion')">＋</button>
+          <div id="c-fashion-area" class="cyber-foundation-area"></div>
         </div>
         <div class="cyber-slot-block">
           <div class="cyber-slot-head">ボーグウェア</div>
-          <div id="c-borg"></div>
-          <button class="btn-add" style="margin-top:4px;padding:2px 8px;font-size:9px;" onclick="addCyberItem('c-borg')">＋</button>
+          <div id="c-borg-area" class="cyber-foundation-area"></div>
         </div>
       </div>
     </div>
 
     <!-- ── PAGE: EQUIP ── -->
     <div class="skills-page" id="page-equip">
-      <div class="section-head">所持金・弾薬</div>
+      <div class="section-head">弾薬</div>
       <div class="equip-money">
-        <div class="money-box">
-          <label class="field-label">所持金（eb）</label>
-          <input class="money-val-input" type="number" placeholder="0" min="0">
-        </div>
-        <div class="money-box">
+        <div class="money-box" style="flex:1;">
           <label class="field-label">弾薬メモ</label>
           <textarea class="memo-area" style="margin-top:4px;min-height:50px;" placeholder="ハンドガン 30発&#10;ライフル 60発…"></textarea>
         </div>
       </div>
 
-      <div class="section-head" style="margin-top:4px;">装備品</div>
-      <table class="equip-table" id="equip-table">
+
+      <!-- ── 装備品 ── -->
+      <div class="section-head" style="margin-top:14px;">装備品</div>
+      <table class="weapons-table" id="equip-table">
         <thead>
           <tr>
-            <th style="width:35%">アイテム名</th>
-            <th>メモ</th>
+            <th style="width:28%">アイテム名</th>
+            <th>解説とデータ</th>
             <th style="width:24px;"></th>
           </tr>
         </thead>
         <tbody id="equip-body">
-          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
-          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
-          <tr><td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td></tr>
         </tbody>
       </table>
-      <button class="btn-add" onclick="addEquipRow()" style="margin-top:6px;">＋ アイテムを追加</button>
+      <button class="btn-add" onclick="wdbOpen('equip')" style="margin-top:6px;">＋ アイテムを追加</button>
 
       <div class="section-head" style="margin-top:20px;">住居・ライフスタイル</div>
       <div class="lp-two-col">
@@ -3123,6 +3191,20 @@ body::after {
 </div>
 </div><!-- /screen-session -->
 
+<!-- 武器データベース モーダル -->
+<div class="wdb-overlay" id="wdb-overlay" onclick="wdbClose(event)">
+  <div class="wdb-modal">
+    <div class="wdb-header">
+      <span class="wdb-title" id="wdb-modal-title">近接武器データベース</span>
+      <button class="wdb-close" onclick="wdbCloseModal()">×</button>
+    </div>
+    <div class="wdb-hint">クリックで武器欄に反映（武器名は武器種別が入力されます・編集可能）</div>
+    <div class="wdb-body">
+      <table class="wdb-table" id="wdb-table-content"></table>
+    </div>
+  </div>
+</div>
+
 <!-- グローバルフローティングツールチップ（scriptより前に配置必須） -->
 <div id="g-tooltip"></div>
 
@@ -3310,28 +3392,41 @@ function saveNow() {
 
 // ── COLLECT ALL DATA FROM SHEET ──
 function collectSheet() {
-  const weapons = Array.from(document.querySelectorAll('#weapons-body tr')).map(tr => {
-    const ins = tr.querySelectorAll('input');
-    return { name: ins[0]?.value||'', damage: ins[1]?.value||'', ammo: ins[2]?.value||'', attacks: ins[3]?.value||'', note: ins[4]?.value||'' };
-  });
-  const armors = Array.from(document.querySelectorAll('.armor-slot')).map(sl => ({
-    name: sl.querySelector('.armor-item-input')?.value||'',
-    sp:   sl.querySelector('.sp-input')?.value||'',
-    pen:  sl.querySelector('.pen-input')?.value||'',
+  const melee = Array.from(document.querySelectorAll('#melee-body tr')).map(tr => ({
+    name:    tr.querySelector('.w-name')?.value||'',
+    damage:  tr.querySelector('.w-damage')?.value||'',
+    attacks: tr.querySelector('.w-attacks')?.value||'',
+    conceal: tr.querySelector('.w-conceal')?.value||'',
+    note:    tr.querySelector('.w-note')?.value||'',
+  }));
+  const ranged = Array.from(document.querySelectorAll('#ranged-body tr')).map(tr => ({
+    name:    tr.querySelector('.w-name')?.value||'',
+    skill:   tr.querySelector('.w-skill')?.value||'',
+    damage:  tr.querySelector('.w-damage')?.value||'',
+    ammo:    tr.querySelector('.w-ammo')?.value||'',
+    attacks: tr.querySelector('.w-attacks')?.value||'',
+    conceal: tr.querySelector('.w-conceal')?.value||'',
+    note:    tr.querySelector('.w-note')?.value||'',
+  }));
+  const special = Array.from(document.querySelectorAll('#special-body tr')).map(tr => ({
+    name:  tr.querySelector('.w-name')?.value||'',
+    desc:  tr.querySelector('.w-desc')?.value||'',
+  }));
+  const armors = Array.from(document.querySelectorAll('#armor-table tbody tr')).map(tr => ({
+    name:  tr.querySelector('.a-name')?.value||'',
+    desc:  tr.querySelector('.a-desc')?.value||'',
+    sp:    tr.querySelector('.a-sp')?.value||'',
+    pen:   tr.querySelector('.a-pen')?.value||'',
+    note:  tr.querySelector('.a-note')?.value||'',
   }));
   const lpFields = Array.from(document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea')).map(e => e.value);
   const enemies   = Array.from(document.querySelectorAll('#enemy-body tr')).map(tr => Array.from(tr.querySelectorAll('input')).map(i => i.value));
-  const equips    = Array.from(document.querySelectorAll('#equip-body tr')).map(tr => Array.from(tr.querySelectorAll('input')).map(i => i.value));
-  const CYBER_IDS = ['ceye-r','ceye-l','carm-r','carm-l','cleg-r','cleg-l','c-audio','c-neural','c-internal','c-external','c-fashion','c-borg'];
-  const cyberware = {};
-  CYBER_IDS.forEach(cid => {
-    const el = document.getElementById(cid);
-    if (!el) return;
-    cyberware[cid] = Array.from(el.querySelectorAll('.cyber-item-row')).map(row => ({
-      name: row.querySelector('.cyber-item-text')?.value||'',
-      on:   row.querySelector('.cyber-check')?.classList.contains('on')||false,
-    }));
-  });
+  const equips = Array.from(document.querySelectorAll('#equip-body tr')).map(tr => ({
+    name: tr.querySelector('.eq-name')?.value||'',
+    desc: tr.querySelector('.eq-desc')?.value||'',
+  }));
+  // 全サイバーウェア状態はcyberFoundationStateに統合
+  const cyberware = { foundation: JSON.parse(JSON.stringify(cyberFoundationState)) };
   const memoAreas = document.querySelectorAll('.memo-area');
   return {
     handle: document.getElementById('handle').value,
@@ -3344,7 +3439,7 @@ function collectSheet() {
     empCur: document.getElementById('emp-cur').value,
     luckMax, luckOn,
     skillLevels: {...skillLevels},
-    weapons, armors, lpFields, equips, cyberware,
+    melee, ranged, special, armors, lpFields, equips, cyberware,
     money:  document.querySelector('.money-val-input')?.value||'',
     ammo:   memoAreas[1]?.value||'',
     subSkillData: JSON.parse(JSON.stringify(subSkillData)),
@@ -3397,26 +3492,29 @@ function restoreSheet(d) {
   // Luck — luckMaxはlck能力値から復元
   luckMax = statVals.lck ?? d.luckMax ?? 6; luckOn = d.luckOn??0; rebuildLuck();
   // Weapons
-  const wb = document.getElementById('weapons-body');
-  if (wb && d.weapons) {
-    wb.innerHTML = '';
-    d.weapons.forEach(w => {
-      addWeaponRow();
-      const ins = wb.rows[wb.rows.length-1].querySelectorAll('input');
-      if(ins[0]) ins[0].value=w.name||''; if(ins[1]) ins[1].value=w.damage||'';
-      if(ins[2]) ins[2].value=w.ammo||'';  if(ins[3]) ins[3].value=w.attacks||'';
-      if(ins[4]) ins[4].value=w.note||'';
-    });
-    if (!wb.rows.length) { addWeaponRow(); addWeaponRow(); }
+  document.getElementById('melee-body').innerHTML = '';
+  document.getElementById('ranged-body').innerHTML = '';
+  document.getElementById('special-body').innerHTML = '';
+  if (d.melee)   d.melee.forEach(w => addMeleeRow(w));
+  if (d.ranged)  d.ranged.forEach(w => addRangedRow(w));
+  if (d.special) d.special.forEach(w => addSpecialRow(w));
+  // 旧フォーマット（weapons配列）との互換性
+  if (!d.melee && !d.ranged && d.weapons) {
+    d.weapons.forEach(w => addRangedRow({ name:w.name, damage:w.damage, ammo:w.ammo, attacks:w.attacks, note:w.note }));
   }
   // Armor
   if (d.armors) {
-    document.querySelectorAll('.armor-slot').forEach((sl, i) => {
+    const rows = document.querySelectorAll('#armor-table tbody tr');
+    rows.forEach((tr, i) => {
       if (!d.armors[i]) return;
-      const ni=sl.querySelector('.armor-item-input'); if(ni) ni.value=d.armors[i].name||'';
-      const si=sl.querySelector('.sp-input');         if(si) si.value=d.armors[i].sp||'0';
-      const pi=sl.querySelector('.pen-input');        if(pi) pi.value=d.armors[i].pen||'';
+      const a = d.armors[i];
+      const n = tr.querySelector('.a-name');  if(n) n.value = a.name||'';
+      const ds= tr.querySelector('.a-desc');  if(ds) ds.value = a.desc||'';
+      const s = tr.querySelector('.a-sp');    if(s) s.value = a.sp||'';
+      const p = tr.querySelector('.a-pen');   if(p) p.value = a.pen||'';
+      const nt= tr.querySelector('.a-note');  if(nt) nt.value = a.note||'';
     });
+    // 旧フォーマット互換（sp/penのみ）
   }
   // Lifepath — 固定フィールド
   if (d.lpFields) {
@@ -3430,28 +3528,35 @@ function restoreSheet(d) {
   const eqb = document.getElementById('equip-body');
   if (eqb && d.equips) {
     eqb.innerHTML = '';
-    d.equips.forEach(eq => { addEquipRow(); const ins=eqb.rows[eqb.rows.length-1].querySelectorAll('input'); eq.forEach((v,j)=>{if(ins[j])ins[j].value=v;}); });
-    if (!eqb.rows.length) { addEquipRow(); addEquipRow(); addEquipRow(); }
+    d.equips.forEach(eq => addEquipRow(eq));
   }
   // Money
   const mEl = document.querySelector('.money-val-input'); if(mEl) mEl.value=d.money||'';
-  // Cyberware
+  // Cyberware（新フォーマット）
   if (d.cyberware) {
-    CYBER_IDS.forEach(cid => {
-      const el = document.getElementById(cid); if(!el) return;
-      el.innerHTML = '';
-      const items = d.cyberware[cid] || [];
-      items.forEach(item => {
-        addCyberItem(cid);
-        const rows = el.querySelectorAll('.cyber-item-row');
-        const last = rows[rows.length-1];
-        if (last) {
-          const ti=last.querySelector('.cyber-item-text'); if(ti) ti.value=item.name||'';
-          const ch=last.querySelector('.cyber-check'); if(ch&&item.on) ch.classList.add('on');
+    const cw = d.cyberware;
+    // 基礎サイバーウェア復元
+    if (cw.foundation) {
+      cyberFoundationState = JSON.parse(JSON.stringify(cw.foundation));
+    } else {
+      cyberFoundationState = {};
+    }
+    // 旧フォーマット互換：フリースロットをfoundationに変換
+    if (cw.free) {
+      const FREE_CYBER_IDS = ['c-internal','c-external','c-fashion','c-borg'];
+      FREE_CYBER_IDS.forEach(cid => {
+        const items = cw.free[cid] || [];
+        if (items.length > 0 && (!cyberFoundationState[cid] || !cyberFoundationState[cid].options || cyberFoundationState[cid].options.length === 0)) {
+          if (!cyberFoundationState[cid]) cyberFoundationState[cid] = {};
+          cyberFoundationState[cid].installed = true;
+          cyberFoundationState[cid].name = CYBER_FOUNDATION_DEF[cid].label;
+          cyberFoundationState[cid].options = items.map(function(item) {
+            return { name: item.name || '', desc: '', slotCost: 1 };
+          });
         }
       });
-      if (!items.length) addCyberItem(cid);
-    });
+    }
+    cyberInitAll();
   }
 }
 
@@ -3482,23 +3587,223 @@ function resetSheet() {
   // Luck
   luckMax=statVals.lck; luckOn=0; rebuildLuck();
   // Weapons
-  const wb=document.getElementById('weapons-body'); if(wb){wb.innerHTML='';addWeaponRow();addWeaponRow();}
+  document.getElementById('melee-body').innerHTML='';
+  document.getElementById('ranged-body').innerHTML='';
+  document.getElementById('special-body').innerHTML='';
   // Armor
-  document.querySelectorAll('.armor-slot .armor-item-input').forEach(e=>e.value='');
-  document.querySelectorAll('.armor-slot .sp-input').forEach(e=>e.value='0');
-  document.querySelectorAll('.armor-slot .pen-input').forEach(e=>e.value='');
+  document.querySelectorAll('#armor-table .a-name, #armor-table .a-desc, #armor-table .a-pen, #armor-table .a-note').forEach(e => e.value='');
+  document.querySelectorAll('#armor-table .a-sp').forEach(e => e.value='');
   // Lifepath — 固定フィールド
   document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea').forEach(e=>e.value='');
   // Lifepath — 動的コンテンツ（lpResetAll は内部でlpDoneKeys.clear()も行う）
   if (typeof lpResetAll === 'function') lpResetAll();
   // Equipment
-  const eqb=document.getElementById('equip-body'); if(eqb){eqb.innerHTML='';addEquipRow();addEquipRow();addEquipRow();}
+  const eqb=document.getElementById('equip-body'); if(eqb){eqb.innerHTML='';}
   // Money
   const mEl=document.querySelector('.money-val-input'); if(mEl)mEl.value='';
   // Cyberware
-  CYBER_IDS.forEach(cid=>{const el=document.getElementById(cid);if(el){el.innerHTML='';addCyberItem(cid);}});
+  cyberFoundationState = {};
+  cyberInitAll();
+  // noFoundation部位はcyberInitAllで再初期化される
   rebuildSkillTotals();
 }
+
+// ── 武器データベース ──────────────────────────────
+
+const WEAPON_DB = {
+
+  melee: {
+    title: '近接武器データベース',
+    headers: ['武器種別', '武器の例', '必要な手の数', 'ダメージ', '攻撃回数', '隠匿の可否', '価格'],
+    colKeys: ['type','examples','hands','damage','attacks','conceal','price'],
+    damageCols: [3],
+    rows: [
+      { type:'小型近接武器',  examples:'コンバット・ナイフ、トマホーク',                              hands:'武器ごとに異なる', damage:'1d6', attacks:'2', conceal:'可',  price:'50eb（程々）',  note:'' },
+      { type:'中型近接武器',  examples:'野球用バット、バール、マチェーテ',                            hands:'武器ごとに異なる', damage:'2d6', attacks:'2', conceal:'不可', price:'50eb（程々）',  note:'' },
+      { type:'大型近接武器',  examples:'金属パイプ、剣、釘バット',                                    hands:'武器ごとに異なる', damage:'3d6', attacks:'2', conceal:'不可', price:'100eb（上等）', note:'' },
+      { type:'超大型近接武器',examples:'チェーンソー、スレッジハンマー、ヘリコプターの回転翼、ナギナタ', hands:'武器ごとに異なる', damage:'4d6', attacks:'1', conceal:'不可', price:'500eb（高級）', note:'' },
+    ],
+    mapToRow: function(row) {
+      return { name: row.type, damage: row.damage, attacks: row.attacks, conceal: row.conceal, note: row.note };
+    },
+    addRow: function(mapped) { addMeleeRow(mapped); },
+  },
+
+  ranged: {
+    title: '遠隔武器データベース',
+    headers: ['武器種別', '武器技能', '単発射撃ダメージ', '標準装弾数', '攻撃回数', '必要な手の数', '隠匿の可否', '価格', '射撃モード・特殊機能'],
+    colKeys: ['type','skill','damage','ammo','attacks','hands','conceal','price','modes'],
+    damageCols: [2],
+    rows: [
+      { type:'中型拳銃',                  skill:'ハンドガン', damage:'2d6', ammo:'12（中型拳銃弾）',    attacks:'2', hands:'1', conceal:'可',  price:'50eb（程々）',    modes:'' },
+      { type:'大型拳銃',                  skill:'ハンドガン', damage:'3d6', ammo:'8（大型拳銃弾）',     attacks:'2', hands:'1', conceal:'可',  price:'100eb（上等）',   modes:'' },
+      { type:'超大型拳銃',                skill:'ハンドガン', damage:'4d6', ammo:'8（超大型拳銃弾）',   attacks:'1', hands:'1', conceal:'不可', price:'100eb（上等）',   modes:'' },
+      { type:'SMG',                       skill:'ハンドガン', damage:'2d6', ammo:'30（中型拳銃弾）',   attacks:'1', hands:'1', conceal:'可',  price:'100eb（上等）',   modes:'フルオート射撃(3)、制圧射撃' },
+      { type:'大型SMG',                   skill:'ハンドガン', damage:'3d6', ammo:'40（大型拳銃弾）',   attacks:'1', hands:'1', conceal:'不可', price:'100eb（上等）',   modes:'フルオート射撃(3)、制圧射撃' },
+      { type:'ショットガン',              skill:'ライフル',   damage:'5d6', ammo:'4（スラッグ弾）',     attacks:'1', hands:'2', conceal:'不可', price:'500eb（高級）',   modes:'散弾' },
+      { type:'アサルト・ライフル',        skill:'ライフル',   damage:'5d6', ammo:'25（ライフル弾）',    attacks:'1', hands:'2', conceal:'不可', price:'500eb（高級）',   modes:'フルオート射撃(4)、制圧射撃' },
+      { type:'スナイパー・ライフル',      skill:'ライフル',   damage:'5d6', ammo:'4（ライフル弾）',     attacks:'1', hands:'2', conceal:'不可', price:'500eb（高級）',   modes:'' },
+      { type:'弓とクロスボウ',            skill:'弓術',       damage:'4d6', ammo:'なし（矢）',          attacks:'1', hands:'2', conceal:'不可', price:'100eb（上等）',   modes:'矢' },
+      { type:'グレネード・ランチャー',    skill:'重火器',     damage:'6d6', ammo:'2（グレネード弾）',   attacks:'1', hands:'2', conceal:'不可', price:'500eb（高級）',   modes:'爆発物' },
+      { type:'ロケット・ランチャー',      skill:'重火器',     damage:'8d6', ammo:'1（ロケット弾）',     attacks:'1', hands:'2', conceal:'不可', price:'500eb（高級）',   modes:'爆発物' },
+    ],
+    mapToRow: function(row) {
+      return { name: row.type, skill: row.skill, damage: row.damage, ammo: row.ammo, attacks: row.attacks, conceal: row.conceal, note: row.modes };
+    },
+    addRow: function(mapped) { addRangedRow(mapped); },
+  },
+
+  special: {
+    title: '特殊武器データベース',
+    headers: ['武器名', '解説とデータ', '価格'],
+    colKeys: ['name','desc','price'],
+    damageCols: [],
+    rows: [
+      { name:'エア・ピストル',                                                  desc:'塗料（や酸！）の入ったボールを撃つ中型拳銃。',                                                                                                                                             price:'100eb（上等）'    },
+      { name:'ケンダチ・モノスリー',                                            desc:'両手に持つ超大型近接武器。SP10以下の防具を無視する。',                                                                                                                                      price:'5,000eb（極上）'  },
+      { name:'コンスティテューション・アームズ・ハリケーン・アサルト・ウェポン', desc:'攻撃回数2のショットガン。射撃するには【体格】が11以上必要。',                                                                                                                              price:'5,000eb（極上）'  },
+      { name:'シュリーカー',                                                    desc:'致命的損傷の"片耳損傷"を与える超大型拳銃。',                                                                                                                                               price:'500eb（高級）'    },
+      { name:'スタン・ガン',                                                    desc:'"低致死性"の大型拳銃。',                                                                                                                                                                   price:'100eb（上等）'    },
+      { name:'スタン・バトン',                                                  desc:'"低致死性"の中型近接武器。',                                                                                                                                                               price:'100eb（上等）'    },
+      { name:'ダーツガン',                                                      desc:'特殊な矢を発射する超大型拳銃。',                                                                                                                                                           price:'100eb（上等）'    },
+      { name:'ツナミ・アームズ・ヘリックス',                                    desc:'フルオート射撃モードでしか撃てないアサルト・ライフル（フルオート射撃ダメージの最大倍率が標準的なアサルト・ライフルより高い）。射撃するには【体格】が11以上必要。',                          price:'500eb（高級）'    },
+      { name:'バトルグローブ',                                                  desc:'重厚な籠手。サイバーアーム／サイバー四肢用オプション・スロットを3つ搭載している。',                                                                                                       price:'1,000eb（超高級）'},
+      { name:'フレイムスロワー',                                                desc:'焼夷弾を発射するショットガン。射撃には〈重火器〉技能を用いる。',                                                                                                                           price:'500eb（高級）'    },
+      { name:'マイクロウェーヴァー',                                            desc:'サイバーウェアや携帯している電子機器をシャットダウンさせる超大型拳銃。',                                                                                                                  price:'500eb（高級）'    },
+      { name:'マロリアン・アームズ3516',                                        desc:'ジョニー・シルヴァーハンドの愛銃だったことで有名な、"高品質"な超大型拳銃。5d6ダメージを与える。',                                                                                        price:'10,000eb（超極上）'},
+      { name:'ミリテク"カウボーイ"U-56グレネード・ランチャー',                  desc:'攻撃回数2のグレネード・ランチャー。射撃するには【体格】が11以上必要。',                                                                                                                  price:'5,000eb（極上）'  },
+      { name:'ラインメタルEMG-86レールガン',                                    desc:'SP10以下のアーマーを無視するアサルト・ライフル。射撃には〈重火器〉技能を用いる。射撃するには【体格】が11以上必要。',                                                                    price:'5,000eb（極上）'  },
+    ],
+    mapToRow: function(row) {
+      return { name: row.name, desc: row.desc };
+    },
+    addRow: function(mapped) { addSpecialRow(mapped); },
+  },
+
+  equip: {
+    title: '装備品データベース',
+    headers: ['アイテム名', '解説とデータ', '価格'],
+    colKeys: ['name','desc','price'],
+    damageCols: [],
+    rows: [
+      { name:'ヴァーチャリティ・ゴーグル',       desc:'現実世界の視界にサイバースペースのイメージを重ね合わせて表示する。',                                                            price:'100eb（上等）'    },
+      { name:'エアハイポ',                       desc:'取り扱いの簡単な薬物注射器。',                                                                                              price:'50eb（程々）'     },
+      { name:'エージェント',                     desc:'自己適応型AIを搭載したスマートフォン。〈ライブラリ検索〉に＋2。ある種の状況では〈ファッション〉にも＋2できる。詳しくはP.352参照。', price:'100eb（上等）'    },
+      { name:'MRE',                             desc:'自己発熱プラスチックとホイルバッグで包装された戦闘糧食。',                                                                   price:'10eb（安物）'     },
+      { name:'エレキギター／その他の楽器',        desc:'音楽を奏でるためのもの。電気楽器は要アンプ。',                                                                              price:'500eb（高級）'    },
+      { name:'オーディオ・レコーダー',           desc:'メモリ・チップ1枚に、音声を24時間まで録音できる。',                                                                          price:'100eb（上等）'    },
+      { name:'懐中電灯',                        desc:'100m先まで照射可能。1回の充電で10時間の連続使用ができる。',                                                                  price:'20eb（日用）'     },
+      { name:'化学物質分析器',                   desc:'サンプルのデータベースと照合して、物質の化学組成を調べることができる。',                                                        price:'1,000eb（超高級）'},
+      { name:'鍵開けセット',                    desc:'機械的な鍵を破るための道具。',                                                                                              price:'20eb（日用）'     },
+      { name:'キブル・パック',                   desc:'1食分相当のキブル。',                                                                                                      price:'10eb（安物）'     },
+      { name:'グラップル・ガン',                 desc:'登攀固定具のついたワイヤーを30mまでの距離に発射する。武器として使うことはできない。',                                          price:'100eb（上等）'    },
+      { name:'グロー・スティック',               desc:'最大4mまでの範囲を照らす、棒状の使い捨て照明具。10時間持続する。',                                                            price:'10eb（安物）'     },
+      { name:'携帯用ベッド&寝袋',               desc:'寝袋付きの自動膨張式マットレス。',                                                                                          price:'20eb（日用）'     },
+      { name:'コンピュータ',                    desc:'ラップトップまたはデスクトップ型のコンピュータ。',                                                                            price:'50eb（程々）'     },
+      { name:'サイバーデッキ',                  desc:'ネットラン用の基本的なデッキ。スロット数7。詳しくはP.353を参照。',                                                             price:'500eb（高級）'    },
+      { name:'自動制音イヤー・プロテクター',     desc:'コンパクトな耳用保護具。着用者は危険な轟音により生じる各種の効果に対して完全耐性を得る。',                                    price:'1,000eb（超高級）'},
+      { name:'スクランブラー/ディスクランブラー', desc:'通信の暗号化と復号を行なう装置。',                                                                                          price:'500eb（高級）'    },
+      { name:'スマート・グラス',                desc:'科学技術によって視覚を強化する眼鏡。サイバーアイ用オプションをインストールできるオプション・スロットが2個ついている。',        price:'500eb（高級）'    },
+      { name:'双眼鏡',                          desc:'遠くを見るのに便利。倍率は2倍か3倍。',                                                                                       price:'50eb（程々）'     },
+      { name:'対スモッグ呼吸マスク',            desc:'空気中の有害物質を濾過するマスク。',                                                                                         price:'20eb（日用）'     },
+      { name:'ダクト・テープ',                  desc:'さまざまな色のものが売っている。暗闇で光るものもある。',                                                                     price:'20eb（日用）'     },
+      { name:'追跡装置',                        desc:'1.6km以内にある、リンクした追跡子の移動経路をたどることができる。',                                                           price:'50eb（程々）'     },
+      { name:'通信スキャナー/音楽プレイヤー',   desc:'人気の楽曲を再生したり、1.6km以内で発信されている通信電波に周波数を合わせ傍受できる。',                                        price:'50eb（程々）'     },
+      { name:'使い捨て携帯電話',               desc:'電話をかけることができる。いらなくなったら簡単に処分できる。',                                                               price:'50eb（程々）'     },
+      { name:'テクスキャナー',                  desc:'故障した機器の診断を補助する。〔技術〕に基づくいくつかの技能に＋2。',                                                         price:'1,000eb（超高級）'},
+      { name:'テクツール',                      desc:'汎用工具セット。',                                                                                                          price:'100eb（上等）'    },
+      { name:'テク・バッグ',                    desc:'各種の修理道具が入った小さな鞄。',                                                                                          price:'500eb（高級）'    },
+      { name:'手錠',                            desc:'拘束具。破壊するには【体格】が11以上必要。',                                                                                 price:'50eb（程々）'     },
+      { name:'テント&キャンプ用品',             desc:'1人用のキャンプ用品一式。',                                                                                                  price:'50eb（程々）'     },
+      { name:'盗聴器検出器',                    desc:'2m以内に盗聴器があると警告音が鳴る。',                                                                                       price:'500eb（高級）'    },
+      { name:'毒の小瓶',                        desc:'ダメージ2d6。〈拷問/薬物抵抗〉で抵抗。防具では軽減不可。',                                                                   price:'100eb（上等）'    },
+      { name:'ドラム・シンセサイザー',          desc:'ほぼどんな打楽器の音でも再現できる。要アンプ。',                                                                             price:'500eb（高級）'    },
+      { name:'パーソナル・ケアパック',           desc:'身だしなみを整える道具類一式。',                                                                                             price:'20eb（日用）'     },
+      { name:'発炎筒',                          desc:'100m×100m（または半径50m）を1時間照らす。',                                                                                  price:'10eb（安物）'     },
+      { name:'バイオトキシンの小瓶',            desc:'ダメージ3d6。〈拷問/薬物抵抗〉で抵抗。防具では軽減不可。',                                                                   price:'500eb（高級）'    },
+      { name:'ビデオ・カメラ',                  desc:'メモリ・チップ1枚に、音声と映像を12時間まで記録できる。',                                                                    price:'100eb（上等）'    },
+      { name:'フード・スティック',              desc:'棒状の形をした、不味い食料1食分。',                                                                                           price:'10eb（安物）'     },
+      { name:'ブレインダンス・ビューア',        desc:'ブレインダンスを体験するための視聴装置。',                                                                                   price:'1,000eb（超高級）'},
+      { name:'放射線防護服',                    desc:'着用者を放射線から守る。',                                                                                                   price:'1,000eb（超高級）'},
+      { name:'ポケット・アンプ',               desc:'楽器を2つまで接続できる。充電1回で6時間連続使用可能。',                                                                      price:'50eb（程々）'     },
+      { name:'無線通信機',                      desc:'耳に装着するタイプ。通信範囲1.6km。',                                                                                        price:'100eb（上等）'    },
+      { name:'メドスキャナー',                  desc:'病気や負傷の診断を補助する。〈応急手当〉と〈救急医療〉に＋2。',                                                              price:'1,000eb（超高級）'},
+      { name:'メドテク・バッグ',               desc:'医療用品一式が入ったバッグ。',                                                                                               price:'100eb（上等）'    },
+      { name:'メモリ・チップ',                  desc:'標準的なデータ保存装置。',                                                                                                   price:'10eb（安物）'     },
+      { name:'夜光塗料',                        desc:'暗闇で光るスプレー塗料。',                                                                                                   price:'20eb（日用）'     },
+      { name:'旅行バッグ',                      desc:'いろいろなものを詰め込んで持ち歩くためのバッグ。',                                                                           price:'20eb（日用）'     },
+      { name:'レーダー探知器',                  desc:'100m以内に能動的なレーダー・ビーム照射があった場合に警告音が鳴る。',                                                         price:'500eb（高級）'    },
+      { name:'ロープ（60m）',                  desc:'ナイロン製のロープ。',                                                                                                       price:'20eb（日用）'     },
+    ],
+    mapToRow: function(row) {
+      return { name: row.name, desc: row.desc };
+    },
+    addRow: function(mapped) { addEquipRow(mapped); },
+  },
+
+};
+
+let wdbCurrentCategory = 'melee';
+
+function wdbOpen(category) {
+  wdbCurrentCategory = category;
+  const db = WEAPON_DB[category];
+  if (!db) return;
+
+  document.getElementById('wdb-modal-title').textContent = db.title;
+
+  const table = document.getElementById('wdb-table-content');
+  let html = '<thead><tr>';
+  db.headers.forEach(h => { html += '<th>' + h + '</th>'; });
+  html += '</tr></thead><tbody>';
+
+  db.rows.forEach((row, i) => {
+    html += '<tr class="wdb-row" onclick="wdbSelect(' + i + ')">';
+    db.colKeys.forEach((key, ci) => {
+      const val = row[key] || '';
+      const isDmg = db.damageCols.includes(ci);
+      html += '<td>' + (isDmg ? '<span class="wdb-damage">' + val + '</span>' : val) + '</td>';
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody>';
+  table.innerHTML = html;
+  document.getElementById('wdb-overlay').classList.add('open');
+}
+
+function wdbSelect(idx) {
+  const db = WEAPON_DB[wdbCurrentCategory];
+  if (!db) return;
+  const row = db.rows[idx];
+  if (!row) return;
+  db.addRow(db.mapToRow(row));
+  // 価格を所持金から差し引く
+  if (row.price) {
+    const priceNum = parseInt(row.price.replace(/,/g, '').replace(/eb.*/, '')) || 0;
+    if (priceNum > 0) {
+      const moneyEl = document.querySelector('.money-val-input');
+      if (moneyEl) {
+        const current = parseInt(moneyEl.value) || 0;
+        moneyEl.value = Math.max(0, current - priceNum);
+        scheduleAutoSave();
+      }
+    }
+  }
+  wdbCloseModal();
+}
+
+function wdbCloseModal() {
+  document.getElementById('wdb-overlay').classList.remove('open');
+}
+
+function wdbClose(e) {
+  if (e.target === document.getElementById('wdb-overlay')) wdbCloseModal();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') wdbCloseModal();
+});
 
 // ── グローバルフローティングツールチップ ──────────────
 const gTooltip = document.getElementById('g-tooltip');
@@ -3701,6 +4006,24 @@ STATS.forEach(s => {
 
 // 初期表示
 setTimeout(updateStatPointDisplay, 0);
+
+// 所持金セルを stats-grid に追加（運命の右隣）
+(function() {
+  const moneyCell = document.createElement('div');
+  moneyCell.className = 'stat-cell';
+  moneyCell.style.cursor = 'default';
+  moneyCell.style.gridColumn = 'span 2';
+  moneyCell.innerHTML = `
+    <span class="stat-abbr" style="color:var(--text3);">所持金</span>
+    <div style="display:flex;align-items:center;justify-content:center;gap:2px;margin-top:2px;width:100%;">
+      <input class="money-val-input" id="money-sidebar" type="number" placeholder="0" min="0"
+        style="font-family:var(--cond);font-weight:700;font-size:20px;color:var(--text);background:transparent;border:none;outline:none;width:0;flex:1;text-align:right;min-width:0;"
+        oninput="scheduleAutoSave()">
+      <span style="font-family:var(--mono);font-size:9px;color:var(--text3);flex-shrink:0;">eb</span>
+    </div>
+  `;
+  statsGrid.appendChild(moneyCell);
+})();
 
 function updateStatPointDisplay() {
   const total = STATS.reduce((sum, s) => sum + (statVals[s.key] || 0), 0);
@@ -4428,7 +4751,7 @@ function buildSkills() {
         row.className = 'skill-row' + (sk.core ? ' core' : '') + (lv > 0 ? ' has-points' : '');
         const attr = statVals[sk.key] || 0;
         const mult = sk.double ? 2 : 1;
-        const total = attr + lv * mult;
+        const total = attr + lv;  // 技能合計値はlv×1（コストは×2でも基本値は1ずつ上がる）
         const skTip = SKILL_TIPS[sk.name] || {};
         const skTipHTML = buildTipHTML(sk.name, `基礎能力値: ${sk.attr}${sk.double ? ' / コスト×2' : ''}`, skTip.desc || '', skTip.sub || '');
         row.innerHTML = `
@@ -4465,13 +4788,12 @@ function toggleSubcat(id) {
 
 function onSkillInput(el) {
   const id = el.dataset.id;
-  const mult = parseInt(el.dataset.mult) || 1;
   const lv = parseInt(el.value) || 0;
   skillLevels[id] = lv;
 
   const sk = SKILL_SECTIONS.flatMap(s => s.skills).find(s => s.name === id);
   const attr = statVals[sk.key] || 0;
-  const total = attr + lv * mult;
+  const total = attr + lv;  // 基本値はlv×1（コスト×2でも表示値は変わらない）
   const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
   if (totalEl) totalEl.textContent = total;
 
@@ -4528,7 +4850,7 @@ function rebuildSkillTotals() {
         const lv = skillLevels[id] || 0;
         const attr = statVals[sk.key] || 0;
         const totalEl = document.getElementById('st-' + id.replace(/ /g,'_'));
-        if (totalEl) totalEl.textContent = attr + lv * mult;
+        if (totalEl) totalEl.textContent = attr + lv;  // 基本値はlv×1
       }
     });
   });
@@ -4792,28 +5114,25 @@ async function fillAndDownloadPDF(templateBytes) {
     setTF(map[2], String(total));
   });
 
-  // ── 武器（重複フィールド名をインデックスで処理）──
-  const wRows = document.querySelectorAll('#weapons-body tr');
-  wRows.forEach((tr, i) => {
+  // ── 武器（近接・遠隔）──
+  const meleeRows  = document.querySelectorAll('#melee-body tr');
+  const rangedRows = document.querySelectorAll('#ranged-body tr');
+  [...meleeRows, ...rangedRows].forEach((tr, i) => {
     if (i >= 6) return;
-    const ins = tr.querySelectorAll('input');
-    setTF('武器',   ins[0]?.value || '', i);
-    setTF('ダメージ', ins[1]?.value || '', i);
-    setTF('装弾数',  ins[2]?.value || '', i);
-    setTF('攻撃回数', ins[3]?.value || '', i);
-    setTF('武器詳細', ins[4]?.value || '', i);
+    setTF('武器',    tr.querySelector('.w-name')?.value || '', i);
+    setTF('ダメージ', tr.querySelector('.w-damage')?.value || '', i);
+    setTF('装弾数',  tr.querySelector('.w-ammo')?.value || '', i);
+    setTF('攻撃回数', tr.querySelector('.w-attacks')?.value || '', i);
+    setTF('武器詳細', tr.querySelector('.w-note')?.value || '', i);
   });
 
   // ── 防具 ──
-  const armorSlots = document.querySelectorAll('.armor-slot');
-  armorSlots.forEach((slot, i) => {
-    const nameInp = slot.querySelector('.armor-item-input');
-    const spInp   = slot.querySelector('.sp-input');
-    const penInp  = slot.querySelector('.pen-input');
+  const armorRows = document.querySelectorAll('#armor-table tbody tr');
+  armorRows.forEach((tr, i) => {
     const nameField = ['防具頭部','防具身体','防具盾'][i];
-    if (nameField) setTF(nameField, nameInp?.value || '');
-    setTF('SP',      spInp?.value || '', i);
-    setTF('ペナルティ', penInp?.value || '', i);
+    if (nameField) setTF(nameField, tr.querySelector('.a-name')?.value || '');
+    setTF('SP',        tr.querySelector('.a-sp')?.value  || '', i);
+    setTF('ペナルティ', tr.querySelector('.a-pen')?.value || '', i);
   });
 
   // ── ライフパス ──
@@ -4878,30 +5197,69 @@ function showPage(name, btn) {
 }
 
 // ── WEAPON ROWS ──
-function addWeaponRow() {
-  const tbody = document.getElementById('weapons-body');
+// ── 武器行追加 ──
+const DEL_BTN = `<button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:0 2px;">×</button>`;
+
+function addMeleeRow(d) {
+  d = d || {};
   const tr = document.createElement('tr');
   tr.innerHTML = `
-    <td><input placeholder="武器名"></td>
-    <td class="damage-cell"><input placeholder="—" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
-    <td><input placeholder="—"></td>
-    <td><input placeholder="—"></td>
-    <td><input placeholder="メモ"></td>
-    <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>
-  `;
-  tbody.appendChild(tr);
+    <td><input class="w-name" placeholder="武器名" value="${d.name||''}"></td>
+    <td class="damage-cell"><input class="w-damage" placeholder="—" value="${d.damage||''}" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
+    <td><input class="w-attacks" placeholder="—" value="${d.attacks||''}"></td>
+    <td><input class="w-conceal" placeholder="可/不可" value="${d.conceal||''}"></td>
+    <td><input class="w-note" placeholder="備考" value="${d.note||''}"></td>
+    <td>${DEL_BTN}</td>`;
+  document.getElementById('melee-body').appendChild(tr);
+  scheduleAutoSave();
 }
+
+function addRangedRow(d) {
+  d = d || {};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input class="w-name" placeholder="武器名" value="${d.name||''}"></td>
+    <td><input class="w-skill" placeholder="技能名" value="${d.skill||''}"></td>
+    <td class="damage-cell"><input class="w-damage" placeholder="—" value="${d.damage||''}" style="color:var(--red);font-family:var(--cond);font-weight:700;font-size:14px;"></td>
+    <td><input class="w-ammo" placeholder="—" value="${d.ammo||''}"></td>
+    <td><input class="w-attacks" placeholder="—" value="${d.attacks||''}"></td>
+    <td><input class="w-conceal" placeholder="可/不可" value="${d.conceal||''}"></td>
+    <td><input class="w-note" placeholder="備考" value="${d.note||''}"></td>
+    <td>${DEL_BTN}</td>`;
+  document.getElementById('ranged-body').appendChild(tr);
+  scheduleAutoSave();
+}
+
+function addSpecialRow(d) {
+  d = d || {};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input class="w-name" placeholder="武器名" value="${d.name||''}"></td>
+    <td><textarea class="w-desc" placeholder="解説・データを入力">${d.desc||''}</textarea></td>
+    <td>${DEL_BTN}</td>`;
+  document.getElementById('special-body').appendChild(tr);
+  scheduleAutoSave();
+}
+
+// 旧関数（互換性維持）
+function addWeaponRow() { addRangedRow(); }
 
 function removeRow(btn) {
   btn.closest('tr').remove();
+  scheduleAutoSave();
 }
 
 // ── EQUIP ROWS ──
-function addEquipRow() {
+function addEquipRow(d) {
+  d = d || {};
   const tbody = document.getElementById('equip-body');
   const tr = document.createElement('tr');
-  tr.innerHTML = `<td><input placeholder="アイテム名"></td><td><input placeholder="メモ"></td><td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;">×</button></td>`;
+  tr.innerHTML = `
+    <td><input class="eq-name" placeholder="アイテム名" value="${(d[0]||d.name||'')}"></td>
+    <td><textarea class="eq-desc" placeholder="解説・データを入力" style="width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--body);font-size:12px;resize:vertical;min-height:36px;line-height:1.5;">${(d[1]||d.desc||'')}</textarea></td>
+    <td><button onclick="removeRow(this)" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:0 2px;">×</button></td>`;
   tbody.appendChild(tr);
+  scheduleAutoSave();
 }
 
 // ── ARMOR NOTE ──
@@ -4917,20 +5275,700 @@ function updateArmorNote() {
 }
 
 // ── CYBERWARE ──
-function addCyberItem(containerId) {
-  const container = document.getElementById(containerId);
-  const row = document.createElement('div');
-  row.className = 'cyber-item-row';
-  row.innerHTML = `
-    <div class="cyber-check" onclick="this.classList.toggle('on')"></div>
-    <input class="cyber-item-text" placeholder="アイテム名を入力">
-    <button onclick="this.parentElement.remove()" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;flex-shrink:0;">×</button>
-  `;
-  container.appendChild(row);
+// サイバーウェア初期化は cyberInitAll() で行う（後述）
+
+
+// ══════════════════════════════════════════════════
+// ── サイバーウェアシステム ─────────────────────────
+// ══════════════════════════════════════════════════
+
+// 基礎サイバーウェアが必要な部位の定義
+const CYBER_FOUNDATION_DEF = {
+  'ceye-r':    { foundationType: 'cyberEye',      slots: 3,  label: 'サイバー視覚（右目）' },
+  'ceye-l':    { foundationType: 'cyberEye',      slots: 3,  label: 'サイバー視覚（左目）' },
+  'carm-r':    { foundationType: 'cyberArm',      slots: 4,  label: 'サイバーアーム（右腕）' },
+  'carm-l':    { foundationType: 'cyberArm',      slots: 4,  label: 'サイバーアーム（左腕）' },
+  'cleg-r':    { foundationType: 'cyberLeg',      slots: 3,  label: 'サイバーレッグ（右脚）' },
+  'cleg-l':    { foundationType: 'cyberLeg',      slots: 3,  label: 'サイバーレッグ（左脚）' },
+  'c-audio':   { foundationType: 'cyberAudio',    slots: 3,  label: 'サイバー聴覚' },
+  'c-neural':  { foundationType: 'cyberNeural',   slots: 5,  label: 'ニューラルウェア' },
+  'c-internal':{ foundationType: 'cyberInternal', slots: 7,  label: '体内用サイバーウェア', noFoundation: true },
+  'c-external':{ foundationType: 'cyberExternal', slots: 7,  label: '体表用サイバーウェア', noFoundation: true },
+  'c-fashion': { foundationType: 'cyberFashion',  slots: 7,  label: 'ファッションウェア', noFoundation: true },
+  'c-borg':    { foundationType: 'cyberBorg',     slots: 7,  label: 'ボーグウェア', noFoundation: true },
+};
+
+// 基礎サイバーウェアDBデータ
+const CYBER_FOUNDATION_DB = {
+  cyberEye: {
+    name: 'サイバーアイ', install: 'クリニック', price: '100eb（上等）', humanity: '7（2d6）',
+    desc: '人工眼球。サイバーアイ1つごとにオプション・スロット3個。一部のオプションは"ペア"で使う必要がある。',
+  },
+  cyberArm: {
+    name: 'サイバーアーム', install: '病院', price: '500eb（高級）', humanity: '7（2d6）',
+    desc: '腕の代替品。オプション・スロットが4個ある。最初からスタンダード・ハンドがインストールされている。',
+  },
+  cyberLeg: {
+    name: 'サイバーレッグ', install: '病院', price: '100eb（上等）', humanity: '3（1d6）',
+    desc: '脚の代替品。オプション・スロットが3個ある。最初からスタンダード・フットがインストールされている。',
+  },
+  cyberAudio: {
+    name: 'サイバー聴覚基本システム', install: 'クリニック', price: '500eb（高級）', humanity: '7（2d6）',
+    desc: 'オプション・スロットが3個ある。1人に2個以上インストールできない。',
+  },
+  cyberNeural: {
+    name: 'ニューラル・リンク', install: 'クリニック', price: '500eb（高級）', humanity: '7（2d6）',
+    desc: 'ネットワーク接続型人工神経システム。ニューラルウェアおよび皮下グリップを使うために必要。オプション・スロット5個。',
+  },
+};
+
+// オプションスロットDBデータ（部位タイプ別）
+const CYBER_OPTION_DB = {
+  cyberEye: {
+    title: 'サイバーアイ オプション',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'対閃光',             install:'モール',   desc:'閃光の効果を受けない。2個のサイバーアイにペアでインストール必要。',                                     price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'画像強調',           install:'モール',   desc:'〈知覚〉と〈読唇術〉と〈隠蔽/発見〉に＋2。2個のサイバーアイにペアでインストール必要。',                  price:'500eb（高級）',  humanity:'3（1d6）' },
+      { name:'ヴァーチャリティ',   install:'モール',   desc:'使用者の視界に重ねてサイバースペースを投影する。2個のサイバーアイにペアでインストール必要。',              price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'カイロン',           install:'モール',   desc:'使用者の視野の中に小さなサブスクリーンを投影する。サイバーアイが必要。',                                 price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'光彩変色',           install:'モール',   desc:'目の色や模様を自由自在に変化させる。サイバーアイが必要。',                                              price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'ターゲッティング・スコープ', install:'クリニック', desc:'"狙い撃ち"を行なう際の判定に＋1。サイバーアイが必要。',                                 price:'500eb（高級）',  humanity:'3（1d6）' },
+      { name:'ダーツガン',         install:'クリニック', desc:'サイバーアイに隠蔽する、1発しか撃てない特殊武器のダーツガン。オプション・スロットを3個占める。', price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'望遠',               install:'クリニック', desc:'最大で800m離れたものを、詳しく見ることができる。サイバーアイが必要。',                              price:'500eb（高級）',  humanity:'3（1d6）' },
+      { name:'放射線感知器',       install:'クリニック', desc:'100m以内の放射線を感知し、青い光で表示する。サイバーアイが必要。',                                  price:'1,000eb（超高級）', humanity:'3（1d6）' },
+      { name:'顕微',               install:'クリニック', desc:'最大で400倍の拡大が可能。サイバーアイが必要。',                                                    price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'マイクロ・ビデオ',   install:'クリニック', desc:'眼球に仕込んだカメラ。オプション・スロットを2個占める。サイバーアイが必要。',                          price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'低光線/赤外線/紫外線', install:'モール', desc:'暗闇、煙、霧などによるペナルティを無視する。2個のサイバーアイにペアでインストール必要。スロット2個占める。', price:'500eb（高級）', humanity:'3（1d6）' },
+    ],
+  },
+  cyberArm: {
+    title: 'サイバーアーム オプション',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'スタンダード・ハンド',        install:'クリニック', desc:'標準的なサイバネティック・ハンド。生身の腕にもインストール可能。',                        price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'ウルヴァー',                  install:'クリニック', desc:'拳の甲から長く伸びる爪。大型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'クイック・チェンジ・マウント', install:'クリニック', desc:'1回のアクションでサイバーアームをインストールまたはアンインストールできる。',               price:'100eb（上等）',  humanity:'7（2d6）' },
+      { name:'グラップル・ハンド',          install:'クリニック', desc:'手首を先を、30mのワイヤーがついたフックとして射出できる。武器としては使えない。サイバーアームが必要。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'サイバーデッキ',              install:'クリニック', desc:'サイバーアームにインストールしたサイバーデッキ。スロット3個占める。サイバーアームが必要。', price:'500eb（高級）',  humanity:'3（1d6）' },
+      { name:'皮下グリップ',               install:'クリニック', desc:'インターフェイス・プラグなしでスマートガンを使用できる。ニューラル・リンクが必要。',          price:'100eb（上等）',  humanity:'3（1d6）' },
+      { name:'ショルダー・カム',            install:'クリニック', desc:'肩にマウントしたカメラ。隠匿可。スロット2個占める。サイバーアームが必要。',                 price:'500eb（高級）',  humanity:'7（2d6）' },
+      { name:'スクラッチャー',              install:'モール',    desc:'カーボングラス製の爪。小型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'スライスン・ダイス',          install:'クリニック', desc:'親指に内蔵された単分子繊維鋸。中型近接武器。隠匿可。サイバーアームが必要。同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ツール・ハンド',              install:'クリニック', desc:'指の中にねじ回し、レンチ、小型ドリルなどを仕込む。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'テクスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈基礎技術〉〈サイバー技術〉〈陸上ヴィークル技術〉〈海洋ヴィークル技術〉〈電子/保安技術〉〈武器技術〉に＋2。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ビッグ・ナック',              install:'クリニック', desc:'装甲を施した拳。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'ポップアップ遠隔武器',        install:'クリニック', desc:'サイバーアームにインストールした任意の片手用遠隔武器。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ近接武器',        install:'クリニック', desc:'サイバーアームにインストールした任意の小/中/大型近接武器。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ・グレネード・ランチャー', install:'クリニック', desc:'サイバーアームにインストールした単発のグレネード・ランチャー。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ・シールド',      install:'クリニック', desc:'サイバーアームにインストールした防弾シールド。スロット3個占める。サイバーアームが必要。',   price:'500eb（高級）',  humanity:'7（2d6）' },
+      { name:'メドスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈応急手当〉と〈救急医療〉に＋2。',               price:'500eb（高級）',  humanity:'7（2d6）' },
+      { name:'リバー',                      install:'クリニック', desc:'カーボングラス製の鈎爪。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ハードンド・シールド',        install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+    ],
+  },
+  cyberLeg: {
+    title: 'サイバーレッグ オプション',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'スタンダード・フット',   install:'クリニック', desc:'標準的なサイバネティック・フット。生身の脚にもインストール可能。',                               price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'ウェブ・フット',         install:'クリニック', desc:'足指の間の薄い水かき。水泳の移動ペナルティを無視する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'グリップ・フット',       install:'クリニック', desc:'静止摩擦増加。登攀の移動ペナルティを無視する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ジャンプ・ブースター',   install:'クリニック', desc:'両脚に仕込んだ液圧式跳躍機構。跳躍の移動ペナルティを無視する。スロット2個占める。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'スケート・フット',       install:'クリニック', desc:'インラインスケートを両足に組み込む。隠匿可。速足アクションを行なう際、移動距離が6m増加する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'タロン・フット',         install:'クリニック', desc:'足に取り付けた刃。小型近接武器。隠匿可。生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ハードンド・シールド',   install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+    ],
+  },
+  cyberAudio: {
+    title: 'サイバー聴覚 オプション',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'オーディオ・レコーダー',          install:'クリニック', desc:'音声を録音し、メモリ・チップまたはリンクしたエージェントに保存する。サイバー聴覚基本システムが必要。',                price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'スクランブラー/ディスクランブラー', install:'モール',    desc:'使用者の通信を暗号化して送信し、受信した暗号化通信を復号する。サイバー聴覚基本システムが必要。',             price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'聴覚強化',                        install:'モール',    desc:'聴覚を含む〈知覚〉判定に＋2。サイバー聴覚基本システムが必要。',                                             price:'100eb（上等）',  humanity:'3（1d6）' },
+      { name:'追跡装置',                        install:'クリニック', desc:'リンクした発信機を追跡する装置。有効距離1.6km。サイバー聴覚基本システムが必要。',                           price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'通信スキャナー/音楽プレイヤー',   install:'クリニック', desc:'データ・プールやメモリ・チップから音楽を再生したり、1.6km以内の無線電波を傍受できる。サイバー聴覚基本システムが必要。', price:'50eb（高品）',   humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'盗聴器検出器',                    install:'モール',    desc:'2m以内に聴装置があると、ビープ音が鳴る。サイバー聴覚基本システムが必要。',                                   price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'内蔵型エージェント',              install:'モール',    desc:'通常版と同一の機能を備えた携帯通信端末を埋め込む。サイバー聴覚基本システムが必要。',                         price:'100eb（上等）',  humanity:'3（1d6）' },
+      { name:'ボイス・ストレス・アナライザ',    install:'モール',    desc:'〈真意看破〉と〈尋問〉の判定に＋2。サイバー聴覚基本システムが必要。',                                         price:'100eb（上等）',  humanity:'3（1d6）' },
+      { name:'無線通信機',                      install:'モール',    desc:'最大1.6kmの無線通信を行なえる。サイバー聴覚基本システムが必要。',                                            price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'レーダー探知器',                  install:'クリニック', desc:'100m以内にレーダー・ビームが照射されるとビープ音が鳴る。サイバー聴覚基本システムが必要。',                   price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'レベル・ダンプナー',              install:'モール',    desc:'大きな音による効果を無効化。サイバー聴覚基本システムが必要。',                                               price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+    ],
+  },
+  cyberNeural: {
+    title: 'ニューラルウェア オプション',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'インターフェイス・プラグ', install:'クリニック', desc:'手首または頭部にインストールすることによって、さまざまな機器にジャックイン（接続）できるようになるプラグ。ニューラル・リンクが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'嗅覚増強',               install:'—',         desc:'チップウェア。匂いによって〈追跡〉技能を使える。チップウェア・ソケットが必要。',                                  price:'100eb（上等）',  humanity:'7（2d6）', needsChipware:true },
+      { name:'技能チップ',             install:'—',         desc:'チップウェア。技能1つを3レベルで使用できる。コストが（×2）の技能のものは値段が高い。チップウェア・ソケットが必要。', price:'500eb（高級）または1,000eb（超高級）', humanity:'7（2d6）', needsChipware:true },
+      { name:'化学物質分析器',         install:'—',         desc:'チップウェア。物質を鑑定して正確な化学組成を突き止め、データベースと照合する。チップウェア・ソケットが必要。',        price:'500eb（高級）',  humanity:'3（1d6）', needsChipware:true },
+      { name:'ケレンジコフ',           install:'クリニック', desc:'スピードウェア。使用者のイニシアチブ＋2。複数個のスピードウェアのインストールは不可。ニューラル・リンクが必要。',     price:'500eb（高級）',  humanity:'14（4d6）' },
+      { name:'サンデヴィスタン',       install:'クリニック', desc:'スピードウェア。1回のアクションで起動すると、以後1分間イニシアチブ＋3。再使用まで1時間かかる。複数個のスピードウェアのインストールは不可。ニューラル・リンクが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'触覚増強',               install:'—',         desc:'チップウェア。床や壁に手で触れている間、自分から20m以内で動くものすべてを感知できる。チップウェア・ソケットが必要。',  price:'100eb（上等）',  humanity:'7（2d6）', needsChipware:true },
+      { name:'チップウェア・ソケット', install:'クリニック', desc:'首の後ろにインストールする空きソケット。チップウェアを使うために必要。ニューラル・リンクが必要。',                   price:'500eb（高級）',  humanity:'7（2d6）', isSocket:true },
+      { name:'ブレインダンス・レコーダー', install:'クリニック', desc:'おまえの体験をメモリ・チップまたは外部デバイスに記録する。ニューラル・リンクが必要。',                           price:'500eb（高級）',  humanity:'7（2d6）' },
+      { name:'痛覚操作',               install:'—',         desc:'チップウェア。重傷状態のペナルティを無視する。チップウェア・ソケットが必要。',                                      price:'1,000eb（超高級）', humanity:'14（4d6）', needsChipware:true },
+      { name:'メモリ・チップ',         install:'—',         desc:'データ記録装置。使用者のサイバーウェアがこれのデータにアクセスしたり記録できる。チップウェア・ソケットが必要。',       price:'10eb（安物）',   humanity:'0（なし）', needsChipware:true },
+    ],
+  },
+  cyberInternal: {
+    title: '体内用サイバーウェア',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'体内ポケット',         install:'クリニック', desc:'腹部の中の隠し収納スペース。',                                                    price:'50eb（安物）',      humanity:'2（1d6/2）' },
+      { name:'ヴァンパイア',         install:'クリニック', desc:'牙を生やす。小型近接武器。隠匿可。',                                                price:'100eb（上等）',     humanity:'7（2d6）' },
+      { name:'サイバー・カーディオ', install:'病院',       desc:'心臓を機械化。+2 DEATHセーブ。',                                                    price:'500eb（高級）',     humanity:'7（2d6）' },
+      { name:'サイバースネーク',     install:'病院',       desc:'食道にインストールされた蛇型のウエポン。中型近接武器。スロット2個占める。',            price:'500eb（高級）',     humanity:'7（2d6）' },
+      { name:'ナノマシン',           install:'病院',       desc:'体内のナノマシンが負傷した細胞の修復を促進する。',                                    price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'毒牙',                 install:'クリニック', desc:'ヴァンパイアの牙に致死性の毒を加える。ヴァンパイアが必要。',                            price:'500eb（高級）',     humanity:'3（1d6）' },
+      { name:'独立型酸素供給器',     install:'病院',       desc:'酸素を貯蔵。30分間呼吸不要。',                                                      price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'筋肉・骨格強化',       install:'病院',       desc:'体格+2。スロット2個占める。',                                                       price:'1,000eb（超高級）', humanity:'14（4d6）' },
+      { name:'グラフト・マッスル',   install:'クリニック', desc:'ヴァンパイアとスクラッチャーのダメージが＋2。',                                        price:'500eb（高級）',     humanity:'7（2d6）' },
+      { name:'グレーティ・インプラント', install:'モール', desc:'皮下に移植した自在に光る模様。',                                                    price:'100eb（上等）',     humanity:'0（なし）' },
+    ],
+  },
+  cyberExternal: {
+    title: '体表用サイバーウェア',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'テクヘア',     install:'モール',     desc:'色や長さ、テクスチャを自由に変更できる髪。',                          price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'隠しホルスター', install:'クリニック', desc:'体表に隠した隠しホルスター。',                                    price:'500eb（高級）',     humanity:'3（1d6）' },
+      { name:'皮下ポケット', install:'モール',     desc:'皮膚の下の小型収納スペース。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'皮下装甲',     install:'病院',       desc:'皮膚の下にアーマー。身体SP11のアーマー。スロット2個占める。',        price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'ナソフィルタ', install:'モール',     desc:'鼻腔フィルター。毒ガス等無効。',                                    price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'ラジエーター', install:'病院',       desc:'放熱器。火炎攻撃からのダメージを半減。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'シフトタクト', install:'病院',       desc:'顔を5パターンまで変更。スロット2個占める。',                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
+    ],
+  },
+  cyberFashion: {
+    title: 'ファッションウェア',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'バイオリアル・ヘア',     install:'モール', desc:'動物毛のような質感の生体髪。',                          price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'チーク・ポーチ',         install:'モール', desc:'頬の内側に小型収納。',                                  price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'カラーシフト',           install:'モール', desc:'肌の色を自在に変化。',                                  price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'エレクトロクロミック衣服', install:'モール', desc:'色が変化する衣服。',                                  price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'フィンガーチップ・ブレード', install:'モール', desc:'指先から伸びる小型刃。',                            price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'ライト・タトゥー',       install:'モール', desc:'発光するタトゥー。',                                    price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'テクヘア',               install:'モール', desc:'色・長さを自由に変えられる髪。',                        price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'シフトタクト目',         install:'モール', desc:'虹彩の色を自在に変化。',                                price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'シフトタクト肌',         install:'モール', desc:'肌の色を自在に変化。',                                  price:'100eb（上等）', humanity:'0（なし）' },
+    ],
+  },
+  cyberBorg: {
+    title: 'ボーグウェア',
+    headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
+    rows: [
+      { name:'アーティフィシャル・ショルダー・マウント', install:'病院', desc:'肩に大型武器をマウント。スロット2個占める。',    price:'5,000eb（超高級）', humanity:'14（4d6）' },
+      { name:'センサーアレイ',       install:'病院', desc:'全方位センサー。知覚+2。',                                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'マルチオプティック・マウント', install:'病院', desc:'追加のサイバーアイを搭載。',                                price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'マルチアーム・マウント', install:'病院', desc:'追加の腕を装着。スロット2個占める。',                              price:'5,000eb（超高級）', humanity:'14（4d6）' },
+    ],
+  },
+};
+
+// キャラクターの基礎サイバーウェア状態
+// { 'ceye-r': { installed: true, name: 'サイバーアイ', price: '100eb（上等）' }, ... }
+let cyberFoundationState = {};
+
+// ── スロット消費数を計算するヘルパー ──
+function cyberGetSlotCost(opt) {
+  if (opt.noSlot) return 0;
+  if (opt.slotCost) return opt.slotCost;
+  // descから「スロットをN個占める」「スロットN個占める」パターンを探す
+  const desc = opt.desc || '';
+  const m = desc.match(/スロット[をが]?(\d)個占める/);
+  if (m) return parseInt(m[1]);
+  return 1;
 }
 
-// init some empty cyber rows (initial DOM setup)
-CYBER_IDS.forEach(id => { addCyberItem(id); });
+function cyberCountUsedSlots(state) {
+  let count = 0;
+  (state.options || []).forEach(function(opt) {
+    if (opt.noSlot) return;
+    count += (opt.slotCost || 1);
+  });
+  return count;
+}
+
+// オプションDBから説明文を取得するヘルパー
+function cyberGetOptionDesc(foundationType, optName) {
+  const db = CYBER_OPTION_DB[foundationType];
+  if (!db) return '';
+  const found = db.rows.find(function(r) { return r.name === optName; });
+  return found ? found.desc : '';
+}
+
+// ── 基礎サイバーウェアUIを初期化 ──
+function cyberInitAll() {
+  Object.keys(CYBER_FOUNDATION_DEF).forEach(id => {
+    // noFoundation 部位は自動的にinstalled状態にする
+    const def = CYBER_FOUNDATION_DEF[id];
+    if (def.noFoundation) {
+      if (!cyberFoundationState[id]) cyberFoundationState[id] = {};
+      cyberFoundationState[id].installed = true;
+      cyberFoundationState[id].name = def.label;
+      cyberFoundationState[id].options = cyberFoundationState[id].options || [];
+    }
+    cyberRenderFoundation(id);
+  });
+}
+
+function cyberRenderFoundation(id) {
+  const areaId = id + '-area';
+  const area = document.getElementById(areaId);
+  if (!area) return;
+  const def   = CYBER_FOUNDATION_DEF[id];
+  const state = cyberFoundationState[id];
+  const isNoFoundation = !!def.noFoundation;
+
+  if (!state || !state.installed) {
+    // 未インストール：基礎インストールボタン
+    area.innerHTML = '<button class="cyber-foundation-btn" onclick="cyberOpenFoundationDB(\'' + id + '\')">'
+      + '＋ ' + CYBER_FOUNDATION_DB[def.foundationType].name + ' をインストール</button>';
+  } else {
+    // インストール済み：名前表示 + スロット
+    const isNeural   = (id === 'c-neural');
+    const st         = cyberFoundationState[id];
+    const usedSlots  = cyberCountUsedSlots(st);
+    const maxSlots   = def.slots;
+    const chipwareSockets = (st.chipwareSockets || 0);
+    const foundationDb = CYBER_FOUNDATION_DB[def.foundationType];
+    const foundationDesc = foundationDb ? foundationDb.desc : '';
+
+    let html = '';
+    if (!isNoFoundation) {
+      html += '<div class="cyber-foundation-installed">'
+        + '<div class="cyber-foundation-name">▣ ' + st.name + '</div>'
+        + '<button class="cyber-foundation-remove" onclick="cyberRemoveFoundation(\'' + id + '\')" title="アンインストール">×</button>'
+        + '</div>';
+      if (foundationDesc) {
+        html += '<div class="cyber-foundation-desc">' + foundationDesc + '</div>';
+      }
+    }
+
+    // ロック状態チェック（生身の腕/脚にインストール時）
+    if (st.locked) {
+      html += '<div class="cyber-slot-locked">この部位はロックされています（他のサイバーウェアをインストールできません）</div>';
+      area.innerHTML = html;
+      return;
+    }
+
+    // スロット表示
+    let slotCountHtml = 'オプション・スロット ' + usedSlots + ' / ' + maxSlots;
+    if (isNeural) {
+      slotCountHtml += '　ソケット（空き）: ' + chipwareSockets;
+    }
+    html += '<div class="cyber-slot-count">' + slotCountHtml + '</div>';
+
+    html += '<div class="cyber-slots-area" id="' + id + '-slots">';
+    (st.options || []).forEach(function(opt, i) {
+      const chipLabel = opt.usedSocket
+        ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-right:2px;">[chip]</span>'
+        : '';
+      const slotCostLabel = (opt.slotCost && opt.slotCost > 1)
+        ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[' + opt.slotCost + 'スロット]</span>'
+        : (opt.noSlot ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[0スロット]</span>' : '');
+      const optDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
+      html += '<div class="cyber-item-row" style="flex-wrap:wrap;">'
+        + chipLabel
+        + '<span class="cyber-item-text" style="cursor:default;">' + (opt.name||'') + '</span>'
+        + slotCostLabel
+        + '<button onclick="cyberRemoveOption(\'' + id + '\',' + i + ')" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;flex-shrink:0;">×</button>';
+      if (optDesc) {
+        html += '<div class="cyber-opt-desc" style="width:100%;">' + optDesc + '</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+    if (usedSlots < maxSlots) {
+      html += '<button class="cyber-foundation-btn" style="margin-top:4px;" onclick="cyberOpenOptionDB(\'' + id + '\')">'
+        + '＋ オプションを追加（残' + (maxSlots - usedSlots) + 'スロット）</button>';
+    }
+    area.innerHTML = html;
+  }
+}
+
+// ── 基礎DBポップアップ ──
+let cyberCurrentPartId = '';
+
+function cyberOpenFoundationDB(partId) {
+  cyberCurrentPartId = partId;
+  const def  = CYBER_FOUNDATION_DEF[partId];
+  const data = CYBER_FOUNDATION_DB[def.foundationType];
+  const table = document.getElementById('wdb-table-content');
+  document.getElementById('wdb-modal-title').textContent = def.label + ' をインストール';
+
+  // 腕・脚の場合は追加の基礎選択肢を表示
+  const isArm = (partId === 'carm-r' || partId === 'carm-l');
+  const isLeg = (partId === 'cleg-r' || partId === 'cleg-l');
+
+  let html = '<thead><tr><th>名称</th><th>インストール先</th><th>説明</th><th>価格</th><th>人間性喪失</th></tr></thead><tbody>';
+  // 通常の基礎サイバーウェア
+  html += '<tr class="wdb-row" onclick="cyberInstallFoundation(\'base\')">'
+    + '<td>' + data.name + '</td>'
+    + '<td>' + data.install + '</td>'
+    + '<td>' + data.desc + '</td>'
+    + '<td>' + data.price + '</td>'
+    + '<td>' + data.humanity + '</td>'
+    + '</tr>';
+
+  // 腕：生身の腕にもインストール可能なアイテムを基礎選択肢として追加
+  if (isArm) {
+    const armDb = CYBER_OPTION_DB.cyberArm;
+    armDb.rows.forEach(function(row, i) {
+      if (row.desc.indexOf('生身の腕にもインストール可能') >= 0) {
+        html += '<tr class="wdb-row" onclick="cyberInstallBareArm(' + i + ')">'
+          + '<td>' + row.name + '（生身の腕）</td>'
+          + '<td>' + row.install + '</td>'
+          + '<td>' + row.desc + '</td>'
+          + '<td>' + row.price + '</td>'
+          + '<td>' + row.humanity + '</td>'
+          + '</tr>';
+      }
+    });
+  }
+  // 脚：生身の脚にもインストール可能なアイテムを基礎選択肢として追加
+  if (isLeg) {
+    const legDb = CYBER_OPTION_DB.cyberLeg;
+    legDb.rows.forEach(function(row, i) {
+      if (row.desc.indexOf('生身の脚にもインストール可能') >= 0) {
+        html += '<tr class="wdb-row" onclick="cyberInstallBareLeg(' + i + ')">'
+          + '<td>' + row.name + '（生身の脚）</td>'
+          + '<td>' + row.install + '</td>'
+          + '<td>' + row.desc + '</td>'
+          + '<td>' + row.price + '</td>'
+          + '<td>' + row.humanity + '</td>'
+          + '</tr>';
+      }
+    });
+  }
+
+  html += '</tbody>';
+  table.innerHTML = html;
+
+  wdbCurrentCategory = '__cyberFoundation__';
+  document.getElementById('wdb-overlay').classList.add('open');
+}
+
+function cyberInstallFoundation(type) {
+  const partId = cyberCurrentPartId;
+  const def    = CYBER_FOUNDATION_DEF[partId];
+  const data   = CYBER_FOUNDATION_DB[def.foundationType];
+  if (!cyberFoundationState[partId]) cyberFoundationState[partId] = {};
+  cyberFoundationState[partId].installed = true;
+  cyberFoundationState[partId].name      = data.name;
+  cyberFoundationState[partId].price     = data.price;
+  cyberFoundationState[partId].options   = cyberFoundationState[partId].options || [];
+  // 価格を所持金から差し引く
+  const priceNum = parseInt(data.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
+  if (priceNum > 0) {
+    const mEl = document.querySelector('.money-val-input');
+    if (mEl) { mEl.value = Math.max(0, (parseInt(mEl.value)||0) - priceNum); }
+  }
+  // サイバーアーム → スタンダード・ハンドを自動インストール（スロット0）
+  const isArm = (partId === 'carm-r' || partId === 'carm-l');
+  if (isArm) {
+    cyberFoundationState[partId].options.push({ name: 'スタンダード・ハンド', desc: '標準的なサイバネティック・ハンド。生身の腕にもインストール可能。', noSlot: true, slotCost: 0 });
+  }
+  // サイバーレッグ → スタンダード・フットを自動インストール（スロット0）
+  const isLeg = (partId === 'cleg-r' || partId === 'cleg-l');
+  if (isLeg) {
+    cyberFoundationState[partId].options.push({ name: 'スタンダード・フット', desc: '標準的なサイバネティック・フット。生身の脚にもインストール可能。', noSlot: true, slotCost: 0 });
+  }
+  wdbCloseModal();
+  cyberRenderFoundation(partId);
+  scheduleAutoSave();
+}
+
+// 生身の腕にインストール（ロックあり）
+function cyberInstallBareArm(optIdx) {
+  const partId = cyberCurrentPartId;
+  const row = CYBER_OPTION_DB.cyberArm.rows[optIdx];
+  if (!cyberFoundationState[partId]) cyberFoundationState[partId] = {};
+  const st = cyberFoundationState[partId];
+  st.installed = true;
+  st.name = row.name + '（生身の腕）';
+  st.price = row.price;
+  st.options = [];
+  // 「同腕に他のサイバーウェア不可」の場合はロック
+  if (row.desc.indexOf('同腕に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
+    st.locked = true;
+  }
+  st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
+  // 価格差し引き
+  const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
+  if (priceNum > 0) {
+    const mEl = document.querySelector('.money-val-input');
+    if (mEl) { mEl.value = Math.max(0, (parseInt(mEl.value)||0) - priceNum); }
+  }
+  wdbCloseModal();
+  cyberRenderFoundation(partId);
+  scheduleAutoSave();
+}
+
+// 生身の脚にインストール（ロックあり）
+function cyberInstallBareLeg(optIdx) {
+  const partId = cyberCurrentPartId;
+  const row = CYBER_OPTION_DB.cyberLeg.rows[optIdx];
+  if (!cyberFoundationState[partId]) cyberFoundationState[partId] = {};
+  const st = cyberFoundationState[partId];
+  st.installed = true;
+  st.name = row.name + '（生身の脚）';
+  st.price = row.price;
+  st.options = [];
+  // 「同脚に他のサイバーウェア」の場合はロック
+  if (row.desc.indexOf('同脚に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
+    st.locked = true;
+  }
+  st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
+  // 価格差し引き
+  const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
+  if (priceNum > 0) {
+    const mEl = document.querySelector('.money-val-input');
+    if (mEl) { mEl.value = Math.max(0, (parseInt(mEl.value)||0) - priceNum); }
+  }
+  wdbCloseModal();
+  cyberRenderFoundation(partId);
+  scheduleAutoSave();
+}
+
+function cyberRemoveFoundation(partId) {
+  if (!confirm('基礎サイバーウェアをアンインストールすると、オプションも全て失われます。よろしいですか？')) return;
+  delete cyberFoundationState[partId];
+  cyberRenderFoundation(partId);
+  scheduleAutoSave();
+}
+
+// ── オプションDBポップアップ ──
+function cyberOpenOptionDB(partId) {
+  cyberCurrentPartId = partId;
+  const def  = CYBER_FOUNDATION_DEF[partId];
+  const db   = CYBER_OPTION_DB[def.foundationType];
+  if (!db) return;
+  const table = document.getElementById('wdb-table-content');
+  document.getElementById('wdb-modal-title').textContent = db.title;
+
+  let html = '<thead><tr>';
+  db.headers.forEach(function(h) { html += '<th>' + h + '</th>'; });
+  html += '</tr></thead><tbody>';
+  db.rows.forEach(function(row, i) {
+    html += '<tr class="wdb-row" onclick="cyberSelectOption(' + i + ')">'
+      + '<td>' + row.name + '</td>'
+      + '<td>' + row.install + '</td>'
+      + '<td style="font-size:10px;">' + row.desc + '</td>'
+      + '<td>' + row.price + '</td>'
+      + '<td>' + row.humanity + '</td>'
+      + '</tr>';
+  });
+  html += '</tbody>';
+  table.innerHTML = html;
+  wdbCurrentCategory = '__cyberOption__';
+  document.getElementById('wdb-overlay').classList.add('open');
+}
+
+function cyberSelectOption(idx) {
+  const partId = cyberCurrentPartId;
+  const def    = CYBER_FOUNDATION_DEF[partId];
+  const db     = CYBER_OPTION_DB[def.foundationType];
+  const row    = db.rows[idx];
+  const state  = cyberFoundationState[partId];
+  if (!state || !state.installed) { wdbCloseModal(); return; }
+
+  const isSocket      = !!row.isSocket;
+  const needsChipware = !!row.needsChipware;
+  const isNeural      = (partId === 'c-neural');
+  const isNoSlot      = !!row.noSlot;
+  const slotCost      = isNoSlot ? 0 : cyberGetSlotCost(row);
+  const desc          = row.desc || '';
+
+  // ── ペアインストール判定（サイバーアイ） ──
+  const isEye = (partId === 'ceye-r' || partId === 'ceye-l');
+  const isPairEye = isEye && (desc.indexOf('ペアでインストール必要') >= 0 || desc.indexOf('ペアでインストール') >= 0);
+  if (isPairEye) {
+    const otherEye = (partId === 'ceye-r') ? 'ceye-l' : 'ceye-r';
+    const otherState = cyberFoundationState[otherEye];
+    if (!otherState || !otherState.installed) {
+      alert('サイバーアイが両目にインストールされていません');
+      return;
+    }
+  }
+
+  // ── ペアインストール判定（サイバーレッグ） ──
+  const isLeg = (partId === 'cleg-r' || partId === 'cleg-l');
+  const isPairLeg = isLeg && (desc.indexOf('ペア') >= 0 && desc.indexOf('インストール必要') >= 0);
+  if (isPairLeg) {
+    const otherLeg = (partId === 'cleg-r') ? 'cleg-l' : 'cleg-r';
+    const otherState = cyberFoundationState[otherLeg];
+    if (!otherState || !otherState.installed) {
+      alert('サイバーレッグが両足にインストールされていません');
+      return;
+    }
+  }
+
+  // ── 皮下グリップはニューラル・リンクが必要 ──
+  const isArm = (partId === 'carm-r' || partId === 'carm-l');
+  if (row.name === '皮下グリップ') {
+    const neuralState = cyberFoundationState['c-neural'];
+    if (!neuralState || !neuralState.installed) {
+      alert('ニューラル・リンクがインストールされていません');
+      return;
+    }
+    // ニューラルのスロットに追加（腕ではなくニューラルのスロットを消費）
+    const neuralDef = CYBER_FOUNDATION_DEF['c-neural'];
+    const neuralUsed = cyberCountUsedSlots(neuralState);
+    if (neuralUsed + 1 > neuralDef.slots) {
+      alert('ニューラルウェアのオプション・スロットが足りません');
+      return;
+    }
+    // ニューラルのスロットに追加するが、表示は腕の方にも参考表示
+    neuralState.options = neuralState.options || [];
+    neuralState.options.push({ name: '皮下グリップ（' + def.label + '）', desc: row.desc, slotCost: 1 });
+    // 腕には参考表示のみ（スロット消費なし）
+    state.options = state.options || [];
+    state.options.push({ name: '皮下グリップ', desc: row.desc + '（※ニューラルウェアのスロットを使用）', noSlot: true, slotCost: 0 });
+    // 価格差し引き
+    const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
+    if (priceNum > 0) {
+      const mEl = document.querySelector('.money-val-input');
+      if (mEl) { mEl.value = Math.max(0, (parseInt(mEl.value)||0) - priceNum); }
+    }
+    wdbCloseModal();
+    cyberRenderFoundation(partId);
+    cyberRenderFoundation('c-neural');
+    scheduleAutoSave();
+    return;
+  }
+
+  // ソケット不要品はオプションスロットを消費
+  if (!isSocket && !isNoSlot) {
+    const usedSlots = cyberCountUsedSlots(state);
+    if (usedSlots + slotCost > def.slots) {
+      alert('オプション・スロットが足りません（必要: ' + slotCost + '、空き: ' + (def.slots - usedSlots) + '）');
+      return;
+    }
+  }
+
+  // チップウェア・ソケットが必要なものは空きソケットを確認
+  if (needsChipware) {
+    if ((state.chipwareSockets || 0) <= 0) {
+      alert('チップウェア・ソケットの数が足りません');
+      return;
+    }
+  }
+
+  // ペアの場合、相手側のスロットも確認
+  if (isPairEye) {
+    const otherEye = (partId === 'ceye-r') ? 'ceye-l' : 'ceye-r';
+    const otherState = cyberFoundationState[otherEye];
+    const otherDef = CYBER_FOUNDATION_DEF[otherEye];
+    const otherUsed = cyberCountUsedSlots(otherState);
+    if (otherUsed + slotCost > otherDef.slots) {
+      alert('もう片方のサイバーアイのオプション・スロットが足りません');
+      return;
+    }
+  }
+  if (isPairLeg) {
+    const otherLeg = (partId === 'cleg-r') ? 'cleg-l' : 'cleg-r';
+    const otherState = cyberFoundationState[otherLeg];
+    const otherDef = CYBER_FOUNDATION_DEF[otherLeg];
+    const otherUsed = cyberCountUsedSlots(otherState);
+    if (otherUsed + slotCost > otherDef.slots) {
+      alert('もう片方のサイバーレッグのオプション・スロットが足りません');
+      return;
+    }
+  }
+
+  state.options = state.options || [];
+
+  // チップウェア・ソケット自体はリストに追加せず、空きカウントを増やすだけ
+  if (isSocket) {
+    state.chipwareSockets = (state.chipwareSockets || 0) + 1;
+    // スロットは1個消費する
+    state.options.push({ name: row.name, desc: row.desc, slotCost: 1 });
+  } else {
+    const optEntry = { name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot };
+    if (needsChipware) {
+      optEntry.usedSocket = true;
+      state.chipwareSockets = Math.max(0, (state.chipwareSockets || 0) - 1);
+    }
+    state.options.push(optEntry);
+  }
+
+  // ペアの場合、相手側にも追加
+  if (isPairEye) {
+    const otherEye = (partId === 'ceye-r') ? 'ceye-l' : 'ceye-r';
+    const otherState = cyberFoundationState[otherEye];
+    otherState.options = otherState.options || [];
+    otherState.options.push({ name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
+  }
+  if (isPairLeg) {
+    const otherLeg = (partId === 'cleg-r') ? 'cleg-l' : 'cleg-r';
+    const otherState = cyberFoundationState[otherLeg];
+    otherState.options = otherState.options || [];
+    otherState.options.push({ name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
+  }
+
+  // 価格差し引き（ペアの場合は2倍）
+  const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
+  const priceMult = (isPairEye || isPairLeg) ? 2 : 1;
+  if (priceNum > 0) {
+    const mEl = document.querySelector('.money-val-input');
+    if (mEl) { mEl.value = Math.max(0, (parseInt(mEl.value)||0) - priceNum * priceMult); }
+  }
+  wdbCloseModal();
+  cyberRenderFoundation(partId);
+  // ペアの場合は相手も再描画
+  if (isPairEye) {
+    const otherEye = (partId === 'ceye-r') ? 'ceye-l' : 'ceye-r';
+    cyberRenderFoundation(otherEye);
+  }
+  if (isPairLeg) {
+    const otherLeg = (partId === 'cleg-r') ? 'cleg-l' : 'cleg-r';
+    cyberRenderFoundation(otherLeg);
+  }
+  scheduleAutoSave();
+}
+
+function cyberRemoveOption(partId, idx) {
+  const state = cyberFoundationState[partId];
+  if (!state || !state.options) return;
+  const opt = state.options[idx];
+  const isNeural = (partId === 'c-neural');
+
+  // チップウェア・ソケットを削除した場合
+  if (opt && opt.name === 'チップウェア・ソケット' && isNeural) {
+    state.chipwareSockets = Math.max(0, (state.chipwareSockets || 0) - 1);
+  }
+
+  // ソケットを消費したチップウェアを削除 → 空きソケットを返還
+  if (opt && opt.usedSocket && isNeural) {
+    state.chipwareSockets = (state.chipwareSockets || 0) + 1;
+  }
+
+  state.options.splice(idx, 1);
+  cyberRenderFoundation(partId);
+  scheduleAutoSave();
+}
+
+// wdbSelect で基礎サイバーウェア系は別処理
+const _origWdbSelect = wdbSelect;
+wdbSelect = function(idx) {
+  if (wdbCurrentCategory === '__cyberFoundation__') { return; /* handled by onclick directly */ }
+  if (wdbCurrentCategory === '__cyberOption__')     { cyberSelectOption(idx); return; }
+  _origWdbSelect(idx);
+};
+
+// 初期化
+cyberInitAll();
+
 
 // ── AUTO-SAVE on any input in the sheet ──
 document.getElementById('screen-sheet').addEventListener('input', scheduleAutoSave);
