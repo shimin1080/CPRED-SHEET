@@ -1066,16 +1066,16 @@ input.hp-counter::-webkit-outer-spin-button { }
 }
 
 .cyber-opt-desc {
-  font-size: 9px;
-  color: var(--text3);
-  line-height: 1.3;
-  margin-top: 1px;
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.4;
+  margin-top: 2px;
   padding-left: 2px;
 }
 .cyber-foundation-desc {
-  font-size: 9px;
-  color: var(--text3);
-  line-height: 1.3;
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.4;
   padding: 2px 0 4px 18px;
 }
 
@@ -5365,6 +5365,7 @@ const CYBER_OPTION_DB = {
       { name:'メドスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈応急手当〉と〈救急医療〉に＋2。',               price:'500eb（高級）',  humanity:'7（2d6）' },
       { name:'リバー',                      install:'クリニック', desc:'カーボングラス製の鈎爪。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'ハードンド・シールド',        install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'プラスチック・カヴァーリング', install:'クリニック', desc:'安価なプラスチック製の外装カバー。オプション・スロットを占めない。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
       { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
       { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
     ],
@@ -5380,6 +5381,7 @@ const CYBER_OPTION_DB = {
       { name:'スケート・フット',       install:'クリニック', desc:'インラインスケートを両足に組み込む。隠匿可。速足アクションを行なう際、移動距離が6m増加する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'タロン・フット',         install:'クリニック', desc:'足に取り付けた刃。小型近接武器。隠匿可。生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'ハードンド・シールド',   install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
+      { name:'プラスチック・カヴァーリング', install:'クリニック', desc:'安価なプラスチック製の外装カバー。オプション・スロットを占めない。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
       { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
       { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
     ],
@@ -5438,13 +5440,10 @@ const CYBER_OPTION_DB = {
     title: '体表用サイバーウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'テクヘア',     install:'モール',     desc:'色や長さ、テクスチャを自由に変更できる髪。',                          price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'隠しホルスター', install:'クリニック', desc:'体表に隠した隠しホルスター。',                                    price:'500eb（高級）',     humanity:'3（1d6）' },
-      { name:'皮下ポケット', install:'モール',     desc:'皮膚の下の小型収納スペース。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'皮下装甲',     install:'病院',       desc:'皮膚の下にアーマー。身体SP11のアーマー。スロット2個占める。',        price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'ナソフィルタ', install:'モール',     desc:'鼻腔フィルター。毒ガス等無効。',                                    price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'ラジエーター', install:'病院',       desc:'放熱器。火炎攻撃からのダメージを半減。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'シフトタクト', install:'病院',       desc:'顔を5パターンまで変更。スロット2個占める。',                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'隠しホルスター', install:'クリニック', desc:'体の表面下に設けた隠しホルスター。拳銃サイズまでの武器を1つ隠せる。〈隠蔽/発見〉で見つけるのが難しい。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'皮下アーマー',   install:'病院',       desc:'皮膚の下に埋め込んだアーマー。身体にSP11を提供する。スロット2個占める。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'皮下ポケット',   install:'モール',     desc:'皮膚の下に設けた小さな収納スペース。小型のアイテムを1つ隠せる。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'皮膚編繊',       install:'病院',       desc:'皮膚を強化繊維で編み込む。身体にSP7を提供する。',                                                      price:'500eb（高級）',     humanity:'7（2d6）' },
     ],
   },
   cyberFashion: {
@@ -5506,6 +5505,33 @@ function cyberGetOptionDesc(foundationType, optName) {
   return found ? found.desc : '';
 }
 
+// インストール後に表示する説明文からプレイに不要な情報を除去するヘルパー
+function cyberFilterDisplayDesc(desc) {
+  if (!desc) return '';
+  return desc
+    .replace(/[。、]?\d*個の?サイバーアイに"?ペア"?でインストール必要/g, '')
+    .replace(/[。、]?\d*個の?サイバーレッグに"?ペア"?でインストール必要/g, '')
+    .replace(/[。、]?ペアでインストール必要/g, '')
+    .replace(/[。、]?オプション・スロットを?\d個占める/g, '')
+    .replace(/[。、]?スロット[をが]?\d個占める/g, '')
+    .replace(/[。、]?サイバーアイが必要/g, '')
+    .replace(/[。、]?サイバーアームが必要/g, '')
+    .replace(/[。、]?サイバーレッグが必要/g, '')
+    .replace(/[。、]?サイバー聴覚基本システムが必要/g, '')
+    .replace(/[。、]?ニューラル・リンクが必要/g, '')
+    .replace(/[。、]?チップウェア・ソケットが必要/g, '')
+    .replace(/[。、]?ヴァンパイアが必要/g, '')
+    .replace(/[。、]?生身の腕にもインストール可能だが同腕に他のサイバーウェア不可/g, '')
+    .replace(/[。、]?生身の腕にもインストール可能/g, '')
+    .replace(/[。、]?生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる/g, '')
+    .replace(/[。、]?生身の脚にもインストール可能/g, '')
+    .replace(/[。、]?複数個のスピードウェアのインストールは不可/g, '')
+    .replace(/^[。、]+/, '')
+    .replace(/[。、]+$/, '')
+    .replace(/。。+/g, '。')
+    .trim();
+}
+
 // ── 基礎サイバーウェアUIを初期化 ──
 function cyberInitAll() {
   Object.keys(CYBER_FOUNDATION_DEF).forEach(id => {
@@ -5542,6 +5568,7 @@ function cyberRenderFoundation(id) {
     const chipwareSockets = (st.chipwareSockets || 0);
     const foundationDb = CYBER_FOUNDATION_DB[def.foundationType];
     const foundationDesc = foundationDb ? foundationDb.desc : '';
+    const isBareInstall = !!st.bareInstall; // 生身の腕/脚インストール
 
     let html = '';
     if (!isNoFoundation) {
@@ -5549,12 +5576,24 @@ function cyberRenderFoundation(id) {
         + '<div class="cyber-foundation-name">▣ ' + st.name + '</div>'
         + '<button class="cyber-foundation-remove" onclick="cyberRemoveFoundation(\'' + id + '\')" title="アンインストール">×</button>'
         + '</div>';
-      if (foundationDesc) {
-        html += '<div class="cyber-foundation-desc">' + foundationDesc + '</div>';
+      if (!isBareInstall && foundationDesc) {
+        html += '<div class="cyber-foundation-desc">' + cyberFilterDisplayDesc(foundationDesc) + '</div>';
       }
     }
 
-    // ロック状態チェック（生身の腕/脚にインストール時）
+    // 生身の腕/脚インストール時：ロック表示 + オプション説明のみ
+    if (isBareInstall) {
+      (st.options || []).forEach(function(opt) {
+        const filteredDesc = cyberFilterDisplayDesc(opt.desc || '');
+        if (filteredDesc) {
+          html += '<div class="cyber-opt-desc" style="margin-top:4px;">' + filteredDesc + '</div>';
+        }
+      });
+      area.innerHTML = html;
+      return;
+    }
+
+    // ロック状態チェック（生身の腕/脚にインストール時）- 旧ロジック互換
     if (st.locked) {
       html += '<div class="cyber-slot-locked">この部位はロックされています（他のサイバーウェアをインストールできません）</div>';
       area.innerHTML = html;
@@ -5576,7 +5615,8 @@ function cyberRenderFoundation(id) {
       const slotCostLabel = (opt.slotCost && opt.slotCost > 1)
         ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[' + opt.slotCost + 'スロット]</span>'
         : (opt.noSlot ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[0スロット]</span>' : '');
-      const optDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
+      const rawDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
+      const optDesc = cyberFilterDisplayDesc(rawDesc);
       html += '<div class="cyber-item-row" style="flex-wrap:wrap;">'
         + chipLabel
         + '<span class="cyber-item-text" style="cursor:default;">' + (opt.name||'') + '</span>'
@@ -5697,11 +5737,8 @@ function cyberInstallBareArm(optIdx) {
   st.installed = true;
   st.name = row.name + '（生身の腕）';
   st.price = row.price;
+  st.bareInstall = true;
   st.options = [];
-  // 「同腕に他のサイバーウェア不可」の場合はロック
-  if (row.desc.indexOf('同腕に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
-    st.locked = true;
-  }
   st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
@@ -5723,11 +5760,8 @@ function cyberInstallBareLeg(optIdx) {
   st.installed = true;
   st.name = row.name + '（生身の脚）';
   st.price = row.price;
+  st.bareInstall = true;
   st.options = [];
-  // 「同脚に他のサイバーウェア」の場合はロック
-  if (row.desc.indexOf('同脚に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
-    st.locked = true;
-  }
   st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
