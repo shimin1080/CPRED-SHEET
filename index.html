@@ -120,21 +120,6 @@ html, body {
   margin-left: 4px;
 }
 
-.btn-pdf {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--red);
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-.btn-pdf:hover { opacity: 0.8; }
-
 .btn-export {
   font-family: var(--cond);
   font-weight: 700;
@@ -754,89 +739,6 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .btn-add:hover { background: var(--red); color: #fff; }
 
-.armor-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.armor-slot {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 12px;
-  text-align: center;
-}
-
-.armor-slot-name {
-  font-family: var(--mono);
-  font-size: 7px;
-  letter-spacing: 0.18em;
-  color: var(--text3);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.armor-item-input {
-  font-size: 10px;
-  color: var(--text2);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.armor-sp {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.sp-input {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 32px;
-  color: var(--text);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 48px;
-  text-align: center;
-}
-
-.sp-input:focus { color: var(--red); }
-
-.armor-pen {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text3);
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.pen-input {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text2);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 20px;
-  text-align: center;
-}
-
 /* ── 武器データベース モーダル ── */
 .wdb-overlay {
   display: none; position: fixed; inset: 0;
@@ -1104,49 +1006,7 @@ input.hp-counter::-webkit-outer-spin-button { }
   padding: 10px;
 }
 
-.money-val-input {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 28px;
-  color: var(--text);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-}
 
-.money-val-input:focus { color: var(--red); }
-
-.equip-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.equip-table th {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--red);
-  padding: 5px 10px;
-  text-align: left;
-  border-bottom: 1px solid var(--border2);
-  background: rgba(204,34,34,0.05);
-}
-
-.equip-table td {
-  padding: 5px 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.equip-table td input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text2);
-  font-size: 12px;
-  width: 100%;
-}
 
 /* Memo */
 .memo-area {
@@ -1165,242 +1025,6 @@ input.hp-counter::-webkit-outer-spin-button { }
 }
 
 .memo-area:focus { border-color: var(--border2); }
-
-/* ── INITIATIVE TRACKER ── */
-
-.it-section-head {
-  font-family: var(--cond); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--red);
-  background: rgba(204,34,34,0.08); border-left: 3px solid var(--red);
-  padding: 4px 10px; margin-bottom: 8px;
-}
-
-.it-topbar {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-  padding: 8px 12px; background: var(--bg2); border: 1px solid var(--border);
-}
-.it-round-label { font-family: var(--mono); font-size: 10px; color: var(--text2); letter-spacing: 0.06em; }
-.it-round-num   { font-family: var(--cond); font-weight: 700; font-size: 22px; color: var(--text); margin: 0 2px; }
-.it-phase-badge {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-  padding: 3px 9px; text-transform: uppercase; border: 1px solid;
-}
-.it-phase-badge.setup  { color: var(--text3); border-color: var(--text3); }
-.it-phase-badge.combat { color: #639922; border-color: #639922; background: rgba(99,153,34,0.1); }
-.it-btn-next {
-  font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
-  text-transform: uppercase; background: var(--red); color: #fff; border: none;
-  padding: 7px 18px; cursor: pointer; transition: opacity 0.15s; margin-left: auto;
-}
-.it-btn-next:hover { opacity: 0.82; }
-.it-btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
-.it-btn-ghost {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-  background: transparent; color: var(--text2); border: 1px solid var(--border2);
-  padding: 6px 12px; cursor: pointer; transition: color 0.15s;
-}
-.it-btn-ghost:hover { color: var(--text); }
-
-.it-layout { display: grid; grid-template-columns: 1fr 220px; gap: 12px; }
-
-/* ── QUEUE ── */
-.it-queue { display: flex; flex-direction: column; gap: 4px; }
-.it-queue-empty { font-family: var(--mono); font-size: 10px; color: var(--text3); text-align: center; padding: 36px 0; line-height: 2; }
-
-/* ── COMBATANT CARD ── */
-.it-card {
-  display: flex; align-items: stretch;
-  background: var(--bg2); border: 1px solid var(--border);
-  transition: border-color 0.2s, background 0.2s; overflow: hidden;
-}
-.it-card.pc-type    { border-left: 3px solid #639922; }
-.it-card.enemy-type { border-left: 3px solid #BA7517; }
-.it-card.active { background: rgba(204,34,34,0.04); }
-.it-card.active.pc-type    { border-color: #639922; background: rgba(99,153,34,0.05); }
-.it-card.active.enemy-type { border-color: #BA7517; background: rgba(186,117,23,0.05); }
-.it-card.done-turn { opacity: 0.42; }
-
-.it-rank {
-  width: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  font-family: var(--cond); font-weight: 700; font-size: 22px; color: var(--text3);
-  border-right: 1px solid var(--border); transition: color 0.2s;
-}
-.it-card.active .it-rank { color: var(--text); }
-
-.it-init {
-  width: 58px; flex-shrink: 0; border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 5px 4px; gap: 1px;
-}
-.it-init-num  { font-family: var(--cond); font-weight: 700; font-size: 28px; line-height: 1; color: var(--text); }
-.it-init-sub  { font-family: var(--mono); font-size: 8px; color: var(--text3); text-align: center; }
-.it-init-crit { font-family: var(--mono); font-size: 7px; letter-spacing: 0.06em; }
-.it-init-crit.crit   { color: #639922; }
-.it-init-crit.fumble { color: var(--red); }
-
-/* inline-editable info */
-.it-info { flex: 1; padding: 7px 10px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.it-name-input {
-  font-family: var(--cond); font-weight: 700; font-size: 15px; color: var(--text);
-  background: transparent; border: none; border-bottom: 1px solid transparent;
-  outline: none; width: 100%; transition: border-color 0.15s; padding: 0;
-}
-.it-name-input:hover { border-bottom-color: var(--border); }
-.it-name-input:focus { border-bottom-color: var(--red); }
-.it-stats-row { display: flex; align-items: center; gap: 10px; }
-.it-stat-group { display: flex; align-items: center; gap: 3px; }
-.it-stat-lbl { font-family: var(--mono); font-size: 8px; color: var(--text3); }
-.it-stat-input {
-  font-family: var(--mono); font-size: 11px; color: var(--text2);
-  background: transparent; border: none; border-bottom: 1px solid transparent;
-  outline: none; width: 28px; text-align: center; transition: border-color 0.15s; padding: 0;
-}
-.it-stat-input.wide { width: 36px; }
-.it-stat-input:hover { border-bottom-color: var(--border); }
-.it-stat-input:focus { border-bottom-color: var(--red); color: var(--text); }
-.it-type-lbl { font-family: var(--mono); font-size: 8px; color: var(--text2); margin-left: auto; }
-
-.it-tags { display: flex; gap: 4px; flex-wrap: wrap; min-height: 14px; }
-.it-tag { font-family: var(--mono); font-size: 8px; padding: 1px 5px; border: 1px solid; letter-spacing: 0.04em; }
-.it-tag.heavy { color: #E24B4A; border-color: rgba(226,75,74,0.4); background: rgba(226,75,74,0.07); }
-.it-tag.dying { color: var(--red); border-color: rgba(204,34,34,0.5); background: rgba(204,34,34,0.1); }
-.it-tag.waited { color: #BA7517; border-color: rgba(186,117,23,0.4); background: rgba(186,117,23,0.08); }
-
-/* HP column */
-.it-hp {
-  width: 104px; flex-shrink: 0; border-left: 1px solid var(--border);
-  padding: 7px 8px; display: flex; flex-direction: column; gap: 3px;
-}
-.it-hp-lbl  { font-family: var(--mono); font-size: 8px; color: var(--text3); letter-spacing: 0.1em; }
-.it-hp-bar-track { height: 4px; background: var(--bg3); border: 1px solid var(--border); overflow: hidden; }
-.it-hp-bar-fill  { height: 100%; background: #639922; transition: width 0.22s, background 0.22s; }
-.it-hp-bar-fill.mid { background: #BA7517; }
-.it-hp-bar-fill.low { background: var(--red); }
-.it-hp-counter { font-family: var(--mono); font-size: 9px; color: var(--text2); text-align: center; }
-
-.it-hp-step { display: flex; align-items: center; gap: 2px; margin-top: 2px; }
-.it-step-btn {
-  width: 22px; height: 22px; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text2); font-family: var(--mono); font-size: 14px; font-weight: 500;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: all 0.1s; line-height: 1;
-}
-.it-step-btn.minus:hover { border-color: var(--red); color: var(--red); }
-.it-step-btn.plus:hover  { border-color: #639922; color: #639922; }
-.it-step-spacer { flex: 1; }
-
-.it-hp-bulk { display: flex; gap: 2px; align-items: center; }
-.it-bulk-input {
-  flex: 1; min-width: 0; background: var(--bg3); border: 1px solid var(--border);
-  color: var(--text); font-family: var(--mono); font-size: 9px;
-  text-align: center; padding: 3px 2px; outline: none; transition: border-color 0.15s;
-}
-.it-bulk-input:focus { border-color: rgba(204,34,34,0.4); }
-.it-bulk-input::placeholder { color: var(--text3); }
-.it-bulk-btn {
-  padding: 3px 4px; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text3); font-family: var(--mono); font-size: 8px; cursor: pointer;
-  transition: all 0.1s; white-space: nowrap;
-}
-.it-bulk-btn.dmg:hover  { border-color: var(--red); color: var(--red); }
-.it-bulk-btn.heal:hover { border-color: #639922; color: #639922; }
-
-/* misc action buttons */
-.it-acts {
-  width: 30px; flex-shrink: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 5px; padding: 4px;
-  border-left: 1px solid var(--border);
-}
-.it-act-btn {
-  width: 22px; height: 22px; background: transparent; border: 1px solid var(--border);
-  color: var(--text3); font-family: var(--mono); font-size: 10px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all 0.1s;
-}
-.it-act-btn:hover { border-color: var(--border2); color: var(--text2); }
-.it-act-btn.danger:hover { border-color: var(--red); color: var(--red); }
-.it-act-btn.waited { border-color: #BA7517; color: #BA7517; background: rgba(186,117,23,0.08); }
-
-/* ── SIDE PANEL ── */
-.it-side {
-  background: var(--bg2); border: 1px solid var(--border);
-  display: flex; flex-direction: column;
-}
-.it-side-sec { border-bottom: 1px solid var(--border); padding: 12px 13px; }
-.it-side-title {
-  font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; color: var(--text3);
-  text-transform: uppercase; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 6px;
-}
-.it-side-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-.it-form-row { margin-bottom: 7px; }
-.it-form-lbl { font-family: var(--mono); font-size: 8px; color: var(--text2); letter-spacing: 0.1em; display: block; margin-bottom: 3px; }
-.it-form-input {
-  width: 100%; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--body); font-size: 12px;
-  padding: 5px 7px; outline: none; transition: border-color 0.15s;
-}
-.it-form-input:focus { border-color: rgba(204,34,34,0.5); }
-.it-form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 7px; }
-.it-type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 9px; }
-.it-type-btn {
-  padding: 6px; font-family: var(--mono); font-size: 9px; background: var(--bg3);
-  border: 1px solid var(--border); color: var(--text3); cursor: pointer;
-  text-align: center; transition: all 0.12s;
-}
-.it-type-btn.active.pc    { border-color: #639922; color: #639922; background: rgba(99,153,34,0.1); }
-.it-type-btn.active.enemy { border-color: #BA7517; color: #BA7517; background: rgba(186,117,23,0.1); }
-.it-btn-add {
-  width: 100%; padding: 8px; font-family: var(--cond); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg3);
-  border: 1px solid var(--border2); color: var(--text2); cursor: pointer; transition: all 0.15s;
-}
-.it-btn-add:hover { border-color: var(--red); color: var(--red); }
-.it-btn-roll {
-  width: 100%; padding: 9px; font-family: var(--cond); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase; background: var(--red);
-  border: none; color: #fff; cursor: pointer; transition: opacity 0.15s;
-}
-.it-btn-roll:hover { opacity: 0.82; }
-
-.it-log-area { flex: 1; overflow-y: auto; padding: 8px 13px; min-height: 80px; max-height: 240px; }
-.it-log-line {
-  font-family: var(--mono); font-size: 9px; color: var(--text2);
-  padding: 3px 0; border-bottom: 1px solid var(--border);
-  letter-spacing: 0.03em; line-height: 1.4;
-}
-.it-log-line .r { color: var(--red); }
-.it-log-line .g { color: #639922; }
-.it-log-line .a { color: #BA7517; }
-
-.it-bottom { border-top: 1px solid var(--border); padding: 10px 13px; display: flex; flex-direction: column; gap: 5px; }
-.it-btn-end {
-  width: 100%; padding: 8px; font-family: var(--mono); font-size: 9px;
-  letter-spacing: 0.08em; text-transform: uppercase; background: transparent;
-  border: 1px solid var(--border2); color: var(--text2); cursor: pointer; transition: all 0.12s;
-}
-.it-btn-end:hover { border-color: #639922; color: #639922; }
-.it-btn-clr {
-  width: 100%; padding: 6px; font-family: var(--mono); font-size: 9px;
-  background: transparent; border: 1px solid var(--border); color: var(--text3);
-  cursor: pointer; transition: color 0.12s;
-}
-.it-btn-clr:hover { color: var(--red); }
-
-/* 運命ポイント消費ボタン */
-.it-luck-row {
-  display: flex; align-items: center; gap: 4px; margin-top: 3px;
-}
-.it-luck-label { font-family: var(--mono); font-size: 8px; color: var(--text3); flex: 1; }
-.it-luck-btn {
-  padding: 2px 7px; font-family: var(--mono); font-size: 8px;
-  background: transparent; border: 1px solid var(--border2); color: var(--text3);
-  cursor: pointer; transition: all 0.1s;
-}
-.it-luck-btn:hover { border-color: var(--red); color: var(--red); }
-
-@keyframes itSlideIn { from { opacity:0; transform:translateX(-5px); } to { opacity:1; transform:none; } }
-.it-anim { animation: itSlideIn 0.18s ease-out; }
 
 /* ── LIFEPATH ROLL UI ── */
 .lp-toolbar {
@@ -2062,14 +1686,6 @@ body::after {
   margin-top: 4px;
 }
 
-/* REWARD TOTAL BAR */
-.reward-total-bar {
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(99,153,34,0.08); border: 1px solid rgba(99,153,34,0.3);
-  padding: 8px 12px; margin-bottom: 8px;
-}
-.reward-total-label { font-family: var(--mono); font-size: 9px; color: var(--text2); letter-spacing: 0.1em; flex: 1; }
-.reward-total-val { font-family: var(--cond); font-weight: 700; font-size: 20px; color: #639922; }
 
 /* CHECKLIST */
 .checklist { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
@@ -2113,14 +1729,6 @@ body::after {
   padding: 0 16px;
   gap: 12px;
   flex-shrink: 0;
-}
-.sel-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--text2);
-  text-transform: uppercase;
-  margin-left: 12px;
 }
 .sel-content {
   flex: 1;
@@ -2418,7 +2026,7 @@ body::after {
     page-break-before: auto;
   }
   .id-card, .hp-block, .humanity-block, .luck-block, .role-ability, .stat-cell, .skill-row,
-  .weapons-table, .armor-slot, .lp-field, .cyber-slot-block, .money-box, .equip-table {
+  .weapons-table, .lp-field, .cyber-slot-block, .money-box, .weapons-table {
     background: #fff !important;
     color: #111 !important;
     border-color: #999 !important;
@@ -2427,7 +2035,7 @@ body::after {
   .field-label, .skill-attr-tag, .stat-abbr, .hp-label, .ability-name,
   .sb-sep, .skill-section-title, .section-head, .lp-field-label, .cyber-slot-head { color: #CC2222 !important; }
   .skill-total { color: #333 !important; border-color: #ccc !important; }
-  .step-btn, .btn-add, .btn-pdf { display: none !important; }
+  .step-btn, .btn-add { display: none !important; }
   input, textarea, select {
     border: none !important;
     background: transparent !important;
@@ -2445,7 +2053,6 @@ body::after {
   .skills-page:not(:last-child) { page-break-after: always; }
 }
 </style>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
 
@@ -4944,246 +4551,6 @@ function importCharData(event) {
   reader.readAsText(file, 'utf-8');
 }
 
-// ── PDF出力（従来機能・保持）──
-async function exportToPDF() {
-  if (typeof PDFLib === 'undefined') {
-    alert('pdf-lib が読み込まれていません。\nインターネット接続を確認してページを再読み込みしてください。');
-    return;
-  }
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'application/pdf';
-  input.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const btn = document.querySelector('.btn-pdf');
-    const orig = btn.textContent;
-    btn.textContent = '処理中…';
-    btn.disabled = true;
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      await fillAndDownloadPDF(arrayBuffer);
-    } catch(err) {
-      alert('PDFの出力に失敗しました:\n' + err.message);
-      console.error(err);
-    } finally {
-      btn.textContent = orig;
-      btn.disabled = false;
-    }
-  };
-  input.click();
-}
-
-async function fillAndDownloadPDF(templateBytes) {
-  if (typeof PDFLib === 'undefined') {
-    alert('pdf-lib が読み込まれていません。インターネット接続を確認してください。');
-    return;
-  }
-  const { PDFDocument } = PDFLib;
-  const pdfDoc = await PDFDocument.load(templateBytes, { ignoreEncryption: true });
-  const form = pdfDoc.getForm();
-
-  // Build field index (handle duplicate names)
-  const allFields = form.getFields();
-  const fieldIndex = {};
-  allFields.forEach(f => {
-    const n = f.getName();
-    if (!fieldIndex[n]) fieldIndex[n] = [];
-    fieldIndex[n].push(f);
-  });
-
-  function setTF(name, value, idx) {
-    const list = fieldIndex[name];
-    if (!list) return;
-    const i = (idx !== undefined && idx < list.length) ? idx : 0;
-    try { list[i].setText(value != null ? String(value) : ''); } catch(e) {}
-  }
-
-  // ── 基本情報 ──
-  setTF('ハンドル', document.getElementById('handle').value);
-  setTF('ロール', document.getElementById('role-select').value);
-  setTF('ロール特技', document.getElementById('ability-name').textContent);
-  setTF('ロールランク', document.getElementById('rank-input').value);
-  setTF('メモ', document.querySelector('.memo-area').value);
-
-  // ── 能力値 ──
-  setTF('知力', String(statVals.int));
-  setTF('反応', String(statVals.ref));
-  setTF('敏捷', String(statVals.agi));
-  setTF('技術', String(statVals.tec));
-  setTF('魅力', String(statVals.cha));
-  setTF('意志', String(statVals.wil));
-  setTF('移動', String(statVals.mov));
-  setTF('体格', String(statVals.bod));
-  setTF('共感', String(statVals.emp));
-  setTF('共感大', document.getElementById('emp-max').value);
-
-  // ── HP ──
-  const hpMax = parseInt(document.getElementById('hp-max').value) || 40;
-  setTF('HP最大', String(hpMax));
-  setTF('HP', String(hpCurrent));
-  setTF('重症', String(Math.ceil(hpMax / 2)));
-
-  // ── 人間性 ──
-  setTF('人間性最大', document.getElementById('emp-max').value);
-  setTF('人間性', document.getElementById('emp-cur').value);
-
-  // ── 運命 ──
-  setTF('運命大', String(luckMax));
-  setTF('運命', String(luckOn));
-
-  // ── 技能 ──
-  const skillPdfMap = {
-    '弓術':             ['〈弓術〉Lv','〈弓術〉能力値','〈弓術〉基本値'],
-    '重火器 ×2':        ['〈重火器〉Lv','〈重火器〉能力値','〈重火器〉基本値'],
-    'ハンドガン':        ['〈ハンドガン〉 Lv','〈ハンドガン〉 能力値','〈ハンドガン〉 基本値'],
-    'フルオート射撃 ×2': ['〈フルオート射撃〉Lv','〈フルオート射撃〉能力値','〈フルオート射撃〉基本値'],
-    'ライフル':          ['〈ライフル〉Lv','〈ライフル〉能力値','〈ライフル〉基本値'],
-    '回避':             ['〈回避〉Lv','〈回避〉能力値','〈回避〉基本値'],
-    '格闘':             ['〈格闘〉 Lv','〈格闘〉 能力値','〈格闘〉 基本値'],
-    '近接武器':          ['〈近接武器〉 Lv','〈近接武器〉 能力値','〈近接武器〉 基本値'],
-    '武術 ×2':          ['〈武術〉Lv','〈武術〉能力値','〈武術〉基本値'],
-    '暗号学':            ['〈暗号学〉Lv','〈暗号学〉能力値','〈暗号学〉基本値'],
-    '科学':              ['科学選1Lv','科学選1能力値','科学選1基本値'],
-    '官僚制度':          ['〈官僚制度〉 Lv','〈官僚制度〉 能力値','〈官僚制度〉 基本値'],
-    'ギャンブル':        ['〈ギャンブル〉 Lv','〈ギャンブル〉能力値','〈ギャンブル〉基本値'],
-    '教養':              ['〈教養〉Lv','〈教養〉能力値','〈教養〉基本値'],
-    '経理':              ['〈経理〉 Lv','〈経理〉 能力値','〈経理〉 基本値'],
-    '言語':              ['ストリートスラングLv','ストリートスラング能力値','ストリートスラング基本値'],
-    '推理':              ['〈推理〉 Lv','〈推理〉能力値','〈推理〉基本値'],
-    '戦術':              ['〈戦術〉Lv','〈戦術〉能力値','〈戦術〉基本値'],
-    '動物使い':          ['〈動物使い〉 Lv','〈動物使い〉 能力値','〈動物使い〉 基本値'],
-    '土地鑑':            ['土地鑑1Lv','土地鑑1能力値','土地鑑1基本値'],
-    '犯罪捜査':          ['〈犯罪捜査〉 Lv','〈犯罪捜査〉能力値','〈犯罪捜査〉基本値'],
-    'ビジネス':          ['〈ビジネス〉Lv','〈ビジネス〉能力値','〈ビジネス〉基本値'],
-    '文筆':              ['〈文筆〉 Lv','〈文筆〉 能力値','〈文筆〉 基本値'],
-    '野外生存術':        ['〈野外生存術〉Lv','〈野外生存術〉能力値','〈野外生存術〉基本値'],
-    'ライブラリ検索':    ['〈ライブラリ検索〉 Lv','〈ライブラリ検索〉 能力値','〈ライブラリ検索〉 基本値'],
-    '隠蔽／発見':        ['〈隠蔽／発見〉 Lv','〈隠蔽／発見〉 能力値','〈隠蔽／発見〉 基本値'],
-    '精神集中':          ['〈精神集中〉Lv','〈精神集中〉能力値','〈精神集中〉基本値'],
-    '知覚':              ['〈知覚〉 Lv','〈知覚〉 能力値','〈知覚〉 基本値'],
-    '追跡':              ['〈追跡〉Lv','〈追跡〉能力値','〈追跡〉基本値'],
-    '読唇術':            ['〈読唇術〉 Lv','〈読唇術〉 能力値','〈読唇術〉 基本値'],
-    '応急手当':          ['〈応急手当〉Lv','〈応急手当〉能力値','〈応急手当〉基本値'],
-    '絵画／彫刻':        ['〈絵画／彫刻〉Lv','〈絵画／彫刻〉能力値','〈絵画／彫刻〉基本値'],
-    '海洋ヴィークル技術':['〈海洋ヴィークル技術〉 Lv','〈海洋ヴィークル技術〉 能力値','〈海洋ヴィークル技術〉 基本値'],
-    '鍵開け':            ['〈鍵開け〉 Lv','〈鍵開け〉 能力値','〈鍵開け〉 基本値'],
-    '偽造':              ['〈偽造〉 Lv','〈偽造〉 能力値','〈偽造〉 基本値'],
-    '基礎技術':          ['〈基礎技術〉 Lv','〈基礎技術〉 能力値','〈基礎技術〉基本値'],
-    '救急医療 ×2':       ['〈救急医療〉Lv','〈救急医療〉能力値','〈救急医療〉基本値'],
-    '航空ヴィークル技術':['〈航空ヴィークル技術〉 Lv','〈航空ヴィークル技術〉 能力値','〈航空ヴィークル技術〉 基本値'],
-    'サイバー技術':      ['〈サイバー技術〉 Lv','〈サイバー技術〉 能力値','〈サイバー技術〉 基本値'],
-    '撮影':              ['〈撮影〉Lv','〈撮影〉能力値','〈撮影〉基本値'],
-    'スリ':              ['〈スリ〉 Lv','〈スリ〉  能力値','〈スリ〉 基本値'],
-    '電子／保安技術 ×2': ['〈電子／保安技術〉Lv','〈電子／保安技術〉能力値','〈電子／保安技術〉基本値'],
-    '爆発物 ×2':         ['〈爆発物〉Lv','〈爆発物〉能力値','〈爆発物〉基本値'],
-    '武器技術':          ['〈武器技術〉 Lv','〈武器技術〉 能力値','〈武器技術〉 基本値'],
-    '陸上ヴィークル技術':['〈陸上ヴィークル技術〉 Lv','〈陸上ヴィークル技術〉 能力値','〈陸上ヴィークル技術〉 基本値'],
-    '裏社会':            ['〈裏社会〉Lv','〈裏社会〉能力値','〈裏社会〉基本値'],
-    '会話術':            ['〈会話術〉Lv','〈会話術〉能力値','〈会話術〉基本値'],
-    '真意看破':          ['〈真意看破〉Lv','〈真意看破〉能力値','〈真意看破〉基本値'],
-    '尋問':              ['〈尋問〉Lv','〈尋問〉能力値','〈尋問〉 基本値'],
-    '説得':              ['〈説得〉 Lv','〈説得〉 能力値','〈説得〉 基本値'],
-    '売買':              ['〈売買〉Lv','〈売買〉能力値','〈売買〉基本値'],
-    'ファッション':       ['〈ファッション〉 Lv','〈ファッション〉 能力値','〈ファッション〉 基本値'],
-    '賄賂':              ['〈賄賂〉Lv','〈賄賂〉能力値','〈賄賂〉基本値'],
-    '美容':              ['〈美容〉Lv','〈美容〉能力値','〈美容〉基本値'],
-    '海洋ヴィークル操縦':['〈海洋ヴィークル操縦〉 Lv','〈海洋ヴィークル操縦〉 能力値','〈海洋ヴィークル操縦〉 基本値'],
-    '騎乗':              ['〈騎乗〉 Lv','〈騎乗〉 能力値','〈騎乗〉 基本値'],
-    '航空ヴィークル操縦 ×2':['〈航空ヴィークル操縦〉Lv','〈航空ヴィークル操縦〉能力値','〈航空ヴィークル操縦〉基本値'],
-    '陸上ヴィークル運転':['〈陸上ヴィークル運転〉 Lv','〈陸上ヴィークル運転〉 能力値','〈陸上ヴィークル運転〉 基本値'],
-    '運動':              ['〈運動〉Lv','〈運動〉能力値','〈運動〉基本値'],
-    '隠密':              ['〈隠密〉 Lv','〈隠密〉 能力値','〈隠密〉 基本値'],
-    '拷問／薬物抵抗':    ['〈拷問／薬物抵抗〉Lv','〈拷問／薬物抵抗〉能力値','〈拷問／薬物抵抗〉 基本値'],
-    '柔軟':              ['〈柔軟〉 Lv','〈柔軟〉 能力値','〈柔軟〉 基本値'],
-    '忍耐':              ['〈忍耐〉Lv','〈忍耐〉能力値','〈忍耐〉 基本値'],
-    '舞踊':              ['〈舞踊〉 Lv','〈舞踊〉 能力値','〈舞踊〉 基本値'],
-    '演技':              ['〈演技〉Lv','〈演技〉能力値','〈演技〉基本値'],
-    '演奏':              ['演奏選1Lv','演奏選1能力値','演奏選1基本値'],
-  };
-
-  SKILL_SECTIONS.flatMap(s => s.skills).forEach(sk => {
-    const map = skillPdfMap[sk.name];
-    if (!map) return;
-    const lv = skillLevels[sk.name] || 0;
-    const attr = statVals[sk.key] || 0;
-    const mult = sk.double ? 2 : 1;
-    const total = attr + lv * mult;
-    setTF(map[0], String(lv));
-    setTF(map[1], String(attr));
-    setTF(map[2], String(total));
-  });
-
-  // ── 武器（近接・遠隔）──
-  const meleeRows  = document.querySelectorAll('#melee-body tr');
-  const rangedRows = document.querySelectorAll('#ranged-body tr');
-  [...meleeRows, ...rangedRows].forEach((tr, i) => {
-    if (i >= 6) return;
-    setTF('武器',    tr.querySelector('.w-name')?.value || '', i);
-    setTF('ダメージ', tr.querySelector('.w-damage')?.value || '', i);
-    setTF('装弾数',  tr.querySelector('.w-ammo')?.value || '', i);
-    setTF('攻撃回数', tr.querySelector('.w-attacks')?.value || '', i);
-    setTF('武器詳細', tr.querySelector('.w-note')?.value || '', i);
-  });
-
-  // ── 防具 ──
-  const armorRows = document.querySelectorAll('#armor-table tbody tr');
-  armorRows.forEach((tr, i) => {
-    const nameField = ['防具頭部','防具身体','防具盾'][i];
-    if (nameField) setTF(nameField, tr.querySelector('.a-name')?.value || '');
-    setTF('SP',        tr.querySelector('.a-sp')?.value  || '', i);
-    setTF('ペナルティ', tr.querySelector('.a-pen')?.value || '', i);
-  });
-
-  // ── ライフパス ──
-  const lpInputs = document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea');
-  const lpMap = [
-    '出身文化圏','性格','ファッション・スタイル','ヘアスタイル',
-    'おまえが最も重視するものは？','おまえは世間の連中をどう思っている？',
-    'おまえの人生で一番大事な人物','おまえの一番大事な持ち物',
-    '実家の家庭環境','幼少期の環境','家族を襲った災厄','人生の目標',
-    '親友1','愛の悲劇1','ロール別ライフパス',
-  ];
-  lpInputs.forEach((el, i) => { if (lpMap[i]) setTF(lpMap[i], el.value || ''); });
-
-  // ── 敵（イージー・モード準拠 4列目は自由記入）──
-  const enemyRows = document.querySelectorAll('#enemy-body-em tr');
-  enemyRows.forEach((tr, i) => {
-    const tds = tr.querySelectorAll('td[contenteditable]');
-    const n = i + 1;
-    setTF(`敵 どんな奴？${n}`,           tds[0]?.textContent || '');
-    setTF(`敵対の理由は？${n}`,           tds[1]?.textContent || '');
-    setTF(`どんな反応をする？${n}`,       tds[2]?.textContent || '');
-    setTF(`どんな奴を差し向けて来る？${n}`, tds[3]?.textContent || '');
-  });
-
-  // ── 装備品 ──
-  const equipRows = document.querySelectorAll('#equip-body tr');
-  equipRows.forEach((tr, i) => {
-    const ins = tr.querySelectorAll('input');
-    const n = i + 1;
-    setTF(`装備品${n}`,     ins[0]?.value || '');
-    setTF(`装備品${n}メモ`, ins[1]?.value || '');
-  });
-
-  // ── 所持金・弾薬 ──
-  const moneyInp = document.querySelector('.money-val-input');
-  const ammoArea = document.querySelector('.equip-money .memo-area');
-  setTF('所持金', moneyInp?.value || '');
-  setTF('弾薬',   ammoArea?.value || '');
-
-  // ── ダウンロード ──
-  const pdfBytes = await pdfDoc.save();
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${document.getElementById('handle').value || 'character'}_sheet.pdf`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
 
 // ── PAGE SWITCH ──
 function showPage(name, btn) {
@@ -5302,23 +4669,23 @@ const CYBER_FOUNDATION_DEF = {
 const CYBER_FOUNDATION_DB = {
   cyberEye: {
     name: 'サイバーアイ', install: 'クリニック', price: '100eb（上等）', humanity: '7（2d6）',
-    desc: '人工眼球。サイバーアイ1つごとにオプション・スロット3個。一部のオプションは"ペア"で使う必要がある。',
+    desc: '以下のオプションはいずれも、肉眼を置き換えた人工眼球にインストールするものだ。1個のサイバーアイには、サイバーアイ・オプション用のオプション・スロットが3個ある。一部のオプションは、正常に機能させるためにはペアで使う（同じオプションを2個購入し、使用者が有する2個のサイバーアイに1個ずつインストールすること；人間性喪失は別々に計算する）必要がある。',
   },
   cyberArm: {
     name: 'サイバーアーム', install: '病院', price: '500eb（高級）', humanity: '7（2d6）',
-    desc: '腕の代替品。オプション・スロットが4個ある。最初からスタンダード・ハンドがインストールされている。',
+    desc: '腕の代替品。2本1組のペアである必要はない。サイバーアームにはサイバーアーム用またはサイバー四肢用のオプションをつけるオプション・スロットが4個あり、最初からスタンダード・ハンドがインストールされている。このスタンダード・ハンドは人間性喪失を伴わず、サイバーアームのオプション・スロットを占めることもない。',
   },
   cyberLeg: {
     name: 'サイバーレッグ', install: '病院', price: '100eb（上等）', humanity: '3（1d6）',
-    desc: '脚の代替品。オプション・スロットが3個ある。最初からスタンダード・フットがインストールされている。',
+    desc: '脚の代替品。必ずしも2本1組のペアである必要はない。サイバーレッグにはサイバーレッグ用またはサイバー四肢用のオプションをつけるオプション・スロットが3個あり、最初からスタンダード・フットがインストールされている。このスタンダード・フットは人間性喪失を伴わず、サイバーレッグ用のオプション・スロットを占めることもない。サイバーレッグ用オプションのほとんどは、正常に機能させるためにはペアで使う（同じオプションを2個購入し、使用者が有する2個のサイバーレッグに1個ずつインストールすること。人間性喪失は別々に計算する）必要がある。',
   },
   cyberAudio: {
     name: 'サイバー聴覚基本システム', install: 'クリニック', price: '500eb（高級）', humanity: '7（2d6）',
-    desc: 'オプション・スロットが3個ある。1人に2個以上インストールできない。',
+    desc: 'サイバー聴覚基本システムは頭蓋骨内部にインストールされるため、外からは見えない。このシステムには、サイバー聴覚オプション用のオプション・スロットが3個ある。このシステムは1人に1つしかインストールできない。',
   },
   cyberNeural: {
     name: 'ニューラル・リンク', install: 'クリニック', price: '500eb（高級）', humanity: '7（2d6）',
-    desc: 'ネットワーク接続型人工神経システム。ニューラルウェアおよび皮下グリップを使うために必要。オプション・スロット5個。',
+    desc: 'ニューラルウェアおよび皮下グリップを使うために必要な、ネットワーク接続型人工神経システム。ニューラルウェア・オプション用のオプション・スロットが5個ある。',
   },
 };
 
@@ -5328,148 +4695,149 @@ const CYBER_OPTION_DB = {
     title: 'サイバーアイ オプション',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'対閃光',             install:'モール',   desc:'閃光音響グレネードなどの危険な閃光による、盲目その他の効果を受けない。2個のサイバーアイにペアでインストールが必要。', price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'画像強調',           install:'モール',   desc:'使用者は視覚の要素を含む〈知覚〉、〈読唇術〉、〈隠蔽／発見〉技能の判定に＋2を得る。2個のサイバーアイにペアでインストールが必要。 このオプションを1個のサイバーアイに2個以上インストールしても、さらなる利益はない。', price:'500eb（高級）',  humanity:'3（1d6）' },
-      { name:'ヴァーチャリティ',   install:'モール',   desc:'使用者の視界にサイバースペースのイメージを重ねて投影する。これでもう、ヴァーチャリティ・ゴーグルを忘れてくる心配はない。2個のサイバーアイにペアでインストールが必要。',              price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'カイロン',           install:'モール',   desc:'使用者の視野の中に小さなサブスクリーンを投影し、使用者の他のサイバーウェアまたは電子機器からのメッセージや映像などを表示する。現実の視界にワイプ映像を入れるようなもの。サイバーアイが必要。',                                 price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'光彩変色',           install:'モール',   desc:'1回のアクションとして、色や模様を自由自在に変化させることのできる美容ウェア。温度変化や体内のホルモンに反応して色や模様が変わるものもある。サイバーアイが必要。',                                              price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'ターゲッティング・スコープ', install:'クリニック', desc:'使用者は狙い撃ちを行なう際の判定に＋1を得る。このオプションを2個以上インストールしても、さらなる利益はない。サイバーアイが必要。',                                 price:'500eb（高級）',  humanity:'3（1d6）' },
-      { name:'ダーツガン',         install:'クリニック', desc:'特殊武器。サイバーアイに隠匿されたダーツガン。装弾数は1発のみ。サイバーアイが必要。オプション・スロットを3個占める。', price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'望遠',               install:'クリニック', desc:'最大で800m離れたものを、詳しく見ることができる。単発射撃または狙い撃ちによって、使用者から51m以上離れている目標を攻撃する際、その判定に＋1を得る。このオプションを2個以上インストールしても、さらなる利益はない。武器アタッチメントの狙撃用スコープとも累積しない。サイバーアイが必要。',                              price:'500eb（高級）',  humanity:'3（1d6）' },
-      { name:'放射線感知器',       install:'クリニック', desc:'使用者から100m以内の放射線を感知し、発生源の上に青い光が浮かぶ形で、使用者の視界に表示する。サイバーアイが必要。',                                  price:'1,000eb（超高級）', humanity:'3（1d6）' },
-      { name:'顕微',               install:'クリニック', desc:'最大で400倍の拡大が可能。サイバーアイが必要。',                                                    price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'マイクロ・ビデオ',   install:'クリニック', desc:'眼球に仕込んだカメラで撮影した音と映像を、標準的なメモリ・チップまたはリンクしたエージェントに保存する。サイバーアイが必要。オプション・スロットを2個占める。',                          price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'低光線/赤外線/紫外線', install:'モール', desc:'実体を持たないが視界を遮るもの（暗闇、煙、霧など）により生じるペナルティを0に軽減する。使用者は生体の温かさと金属の冷たさを判別できるが、遮蔽になりうるものを透かして向こう側を見ることはできない。2個のサイバーアイにペアでインストールが必要。サイバーアイ1つごとにオプション・スロットを2個占める。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'対閃光', install:'モール', desc:'使用者は閃光音響グレネードなどの危険な閃光による、盲目その他の効果を受けない。2個のサイバーアイにペアでインストールが必要。', sessionDesc:'盲目などの閃光効果無効。ペア必要。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'画像強調', install:'モール', desc:'使用者は視覚の要素を含む〈知覚〉、〈読唇術〉、〈隠蔽／発見〉技能の判定に＋2を得る。2個のサイバーアイにペアでインストールが必要。 このオプションを1個のサイバーアイに2個以上インストールしても、さらなる利益はない。', sessionDesc:'〈知覚〉〈読唇術〉〈隠蔽／発見〉+2。ペア必要（累積不可）。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ヴァーチャリティ', install:'モール', desc:'使用者の視界にサイバースペースのイメージを重ねて投影する。これでもう、ヴァーチャリティ・ゴーグルを忘れてくる心配はない。2個のサイバーアイにペアでインストールが必要。', sessionDesc:'サイバースペース視覚投影。ペア必要。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'カイロン', install:'モール', desc:'使用者の視野の中に小さなサブスクリーンを投影し、使用者の他のサイバーウェアまたは電子機器からのメッセージや映像などを表示する。現実の視界にワイプ映像を入れるようなもの。サイバーアイが必要。', sessionDesc:'サブスクリーン投影。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'光彩変色', install:'モール', desc:'1回のアクションとして、色や模様を自由自在に変化させることのできる美容ウェア。温度変化や体内のホルモンに反応して色や模様が変わるものもある。サイバーアイが必要。', sessionDesc:'1アクションで色や模様を変更。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'ターゲッティング・スコープ', install:'クリニック', desc:'使用者は狙い撃ちを行なう際の判定に＋1を得る。このオプションを2個以上インストールしても、さらなる利益はない。サイバーアイが必要。', sessionDesc:'狙い撃ちの判定に+1（累積不可）。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ダーツガン', install:'クリニック', desc:'特殊武器。サイバーアイに隠匿されたダーツガン。装弾数は1発のみ。サイバーアイが必要。オプション・スロットを3個占める。', sessionDesc:'特殊武器（隠匿）。装弾1発。スロット3占有。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'望遠', install:'クリニック', desc:'最大で800m離れたものを、詳しく見ることができる。単発射撃または狙い撃ちによって、使用者から51m以上離れている目標を攻撃する際、その判定に＋1を得る。このオプションを2個以上インストールしても、さらなる利益はない。武器アタッチメントの狙撃用スコープとも累積しない。サイバーアイが必要。', sessionDesc:'51m以上の単発/狙い撃ちに+1（累積不可、スコープと累積不可）。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'放射線感知器', install:'クリニック', desc:'使用者から100m以内の放射線を感知し、発生源の上に青い光が浮かぶ形で、使用者の視界に表示する。サイバーアイが必要。', sessionDesc:'100m以内の放射線感知。', price:'1000eb（超高級）', humanity:'3（1d6）' },
+      { name:'顕微', install:'クリニック', desc:'最大で400倍の拡大が可能。サイバーアイが必要。', sessionDesc:'400倍拡大。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'マイクロ・ビデオ', install:'クリニック', desc:'眼球に仕込んだカメラで撮影した音と映像を、標準的なメモリ・チップまたはリンクしたエージェントに保存する。サイバーアイが必要。オプション・スロットを2個占める。', sessionDesc:'音声・映像録画。スロット2占有。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'低光量／赤外線／紫外線', install:'モール', desc:'実体を持たないが視界を遮るもの（暗闇、煙、霧など）により生じるペナルティを0に軽減する。使用者は生体の温かさと金属の冷たさを判別できるが、遮蔽になりうるものを透かして向こう側を見ることはできない。2個のサイバーアイにペアでインストールが必要。サイバーアイ1つごとにオプション・スロットを2個占める。', sessionDesc:'視界不良ペナルティ0（透視不可）。ペア必要。各アイのスロット2占有。', price:'500eb（高級）', humanity:'3（1d6）' },
     ],
   },
   cyberArm: {
     title: 'サイバーアーム オプション',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'スタンダード・ハンド',        install:'クリニック', desc:'標準的なサイバネティック・ハンド。生身の腕にもインストール可能。',                        price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'ウルヴァー',                  install:'クリニック', desc:'拳の甲から長く伸びる爪。大型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'クイック・チェンジ・マウント', install:'クリニック', desc:'1回のアクションでサイバーアームをインストールまたはアンインストールできる。',               price:'100eb（上等）',  humanity:'7（2d6）' },
-      { name:'グラップル・ハンド',          install:'クリニック', desc:'手首を先を、30mのワイヤーがついたフックとして射出できる。武器としては使えない。サイバーアームが必要。', price:'100eb（上等）', humanity:'3（1d6）' },
-      { name:'サイバーデッキ',              install:'クリニック', desc:'サイバーアームにインストールしたサイバーデッキ。スロット3個占める。サイバーアームが必要。', price:'500eb（高級）',  humanity:'3（1d6）' },
-      { name:'皮下グリップ',               install:'クリニック', desc:'インターフェイス・プラグなしでスマートガンを使用できる。ニューラル・リンクが必要。',          price:'100eb（上等）',  humanity:'3（1d6）' },
-      { name:'ショルダー・カム',            install:'クリニック', desc:'肩にマウントしたカメラ。隠匿可。スロット2個占める。サイバーアームが必要。',                 price:'500eb（高級）',  humanity:'7（2d6）' },
-      { name:'スクラッチャー',              install:'モール',    desc:'カーボングラス製の爪。小型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'スライスン・ダイス',          install:'クリニック', desc:'親指に内蔵された単分子繊維鋸。中型近接武器。隠匿可。サイバーアームが必要。同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'ツール・ハンド',              install:'クリニック', desc:'指の中にねじ回し、レンチ、小型ドリルなどを仕込む。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'3（1d6）' },
-      { name:'テクスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈基礎技術〉〈サイバー技術〉〈陸上ヴィークル技術〉〈海洋ヴィークル技術〉〈電子/保安技術〉〈武器技術〉に＋2。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'ビッグ・ナック',              install:'クリニック', desc:'装甲を施した拳。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'100eb（上等）', humanity:'3（1d6）' },
-      { name:'ポップアップ遠隔武器',        install:'クリニック', desc:'サイバーアームにインストールした任意の片手用遠隔武器。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'ポップアップ近接武器',        install:'クリニック', desc:'サイバーアームにインストールした任意の小/中/大型近接武器。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'ポップアップ・グレネード・ランチャー', install:'クリニック', desc:'サイバーアームにインストールした単発のグレネード・ランチャー。スロット2個占める。サイバーアームが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'ポップアップ・シールド',      install:'クリニック', desc:'サイバーアームにインストールした防弾シールド。スロット3個占める。サイバーアームが必要。',   price:'500eb（高級）',  humanity:'7（2d6）' },
-      { name:'メドスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈応急手当〉と〈救急医療〉に＋2。',               price:'500eb（高級）',  humanity:'7（2d6）' },
-      { name:'リバー',                      install:'クリニック', desc:'カーボングラス製の鈎爪。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'ハードンド・シールド',        install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+      { name:'スタンダード・ハンド', install:'クリニック', desc:'普通の手に似せた、標準的なサイバーハンド。生身の腕にインストールした場合、スタンダード・ハンドは生身の腕にインストール可能なサイバーウェアの個数制限に含まれない。サイバーアーム用のオプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+      { name:'ウルヴァー', install:'クリニック', desc:'拳の甲に、伸縮可能なカーボグラス製の爪を複数仕込む。大型近接武器（3d6ダメージ、攻撃回数2）であり、判定なしで隠匿できる。これを武器として使っている間、使用者はその腕の手でものを持つことができない。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の大型近接（3d6、攻撃2）。使用中は手を使えない。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'クイック・チェンジ・マウント', install:'クリニック', desc:'1回のアクションでサイバーアームをインストールまたはアンインストールできるようになる。一度もインストールしたことがないサイバーアームをインストールするたび、クイック・チェンジ・マウントを使っていようといまいと関係なく、人間性喪失を被る。使ったことのあるサイバーアームを再インストールした場合は、人間性喪失の心配はない。サイバーアームが必要。', sessionDesc:'1アクションでアーム着脱。', price:'100eb（上等）', humanity:'7（2d6）' },
+      { name:'グラップル・ハンド', install:'クリニック', desc:'使用者は1回のアクションとしてロケット推進の固定具を発射し、30m以内にある任意の“厚い”遮蔽の表面にしっかりと安全に固定することができる。固定具と本体を結ぶワイヤーは、最大で使用者の体重の2倍までの重さしか支えることができず、HPは10である。このワイヤーを使って登れば、使用者は登攀の際に通常被る移動ペナルティを受けない。また、ワイヤーの巻き取りはアクションを使わずに行なうことができ、登攀しながら巻き取ることも可能だ。固定具として使っている間、使用者はグラップル・ハンドをインストールしてある腕についている手でものを持つことはできない。グラップル・ハンドを武器として使うことはできず、“つかむ”アクションを行なうために使うこともできない。サイバーアームが必要。', sessionDesc:'1アクションで30m発射・固定。登攀ペナルティなし。武器・つかみ不可。使用中は手を使えない。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'サイバーデッキ', install:'クリニック', desc:'使用者のサイバーアームにサイバーデッキを永続的にインストールする。サイバーデッキそのものは、インストールの時点で使用者が別途用意しておく必要がある。サイバーデッキをどこかに置き忘れる心配がなくなるだけでなく、サイバーデッキをサイバーアームに組み込むことで、プログラムとハードウェアのどちらにも使える追加のオプション・スロット1個を得られる。これは永続的なアップグレードだ。サイバーアームからサイバーデッキをアンインストールしようとすると、そのサイバーデッキは修理不能なまでに壊れてしまうが、サイバーデッキについていたプログラムやハードウェアは簡単に回収できる。**サイバーアームが必要。オプション・スロットを3個占める。**このサイバーデッキも、操作するためにはインターフェイス・プラグおよびニューラル・リンクが必要である。', sessionDesc:'スロット3占有（追加オプション枠1獲得）。永続的。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'皮下グリップ', install:'クリニック', desc:'スマートガンを活用するために、手の平の皮下に埋め込むプレートであり、インターフェイス・プラグの安価な代替品である。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。ニューラル・リンクが必要。ニューラルウェア用のオプション・スロットを占める。', sessionDesc:'スマートガン用。ニューラルウェアスロット占有。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'ショルダー・カム', install:'クリニック', desc:'使用者の肩にポップアップするカメラ。使用者の動きに自動的に追随し、撮影した音と映像を内蔵メモリ・チップまたはリンクしたエージェントに保存する。このカメラは判定なしで隠匿できる。使用可能な状態にする（ポップアップさせる）にも再び格納するにもアクションは不要。サイバーアームが必要。オプション・スロットを2個占める。', sessionDesc:'スロット2。映像・音声記録。隠匿可、出し入れアクション不要。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'スクラッチャー', install:'モール', desc:'指の爪をカーボグラス製の人工爪に変える（いくつかの爪に付けてもいい）。この爪は引っ掻くように斜めに角度をつけて切りつけると切断力を発揮するようになっている。小型近接武器（1d6ダメージ、攻撃回数2）であり、判定なしで隠匿できる。これを武器として使っている間、使用者はその腕の手でものを持つことができない。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の小型近接（1d6、攻撃2）。使用中は手を使えない。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'スライス・ン・ダイス', install:'クリニック', desc:'使用者の親指に組み込む単分子線繊維。判定なしで隠匿できる中型近接武器（2d6ダメージ、攻撃回数2）である。これを武器として使っている間、使用者はその腕の手でものを持つことができない。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の中型近接（2d6、攻撃2）。使用中は手を使えない。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ツール・ハンド', install:'クリニック', desc:'指の中にねじ回し、レンチ、小型ドリルなどを仕込む。これでもう、手元にテクツールがなくて困る心配はない！ 生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'テクツール内蔵。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'テクスキャナー', install:'クリニック', desc:'多様な電子機器および機械類を診断し、修理その他の技術的作業をアシストする診断機。使用者は〈基礎技術〉、〈サイバー技術〉、〈陸上ヴィークル技術〉、〈海洋ヴィークル技術〉、〈航空ヴィークル技術〉、〈電子／保安技術〉、〈武器技術〉の各技能に＋2を得る。**サイバーアームが必要。オプション・スロットを2個占める。**このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'スロット2。技術系7種技能+2（累積不可）。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ビッグ・ナック', install:'クリニック', desc:'装甲を施した拳。判定なしで隠匿できる中型近接武器（2d6ダメージ、攻撃回数2）。これを武器として使用している間、使用者はその腕の手でものを持つことができない。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の中型近接（2d6、攻撃2）。使用中は手を使えない。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'ポップアップ遠隔武器', install:'クリニック', desc:'使用者が用意した片手用遠隔武器（隠匿不可の武器でもよい）1つを、武器用アタッチメントも込みで、サイバーアームに永続的にインストールする。これによって、その武器は判定なしに隠匿できるようになる。使用可能な状態にする（ポップアップさせる）にも再び格納するにもアクションは不要。この武器が“ポップアップ”している間、使用者はその腕の手でものを持つことができない。サイバーアームが必要。オプション・スロットを2個占める。', sessionDesc:'スロット2。片手用遠隔武器を隠匿。出し入れアクション不要。使用中は手を使えない。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ近接武器', install:'クリニック', desc:'小型、中型、または大型の片手用近接武器（隠匿不可の武器でもよい）1つをサイバーアームにインストールする。これによって、その武器は判定なしに隠匿できるようになる。使用可能な状態にする（ポップアップさせる）にも再び格納するにもアクションは不要。この武器が“ポップアップ”している間、使用者はその腕の手でものを持つことができない。サイバーアームが必要。オプション・スロットを2個占める。', sessionDesc:'スロット2。片手用近接武器を隠匿。出し入れアクション不要。使用中は手を使えない。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ・グレネード・ランチャー', install:'クリニック', desc:'片手持ちのグレネード・ランチャー。弾倉の装弾数は1発しかない。同じサイバーアームにインストールしたスマートガン・リンクを除き、いかなる武器用アタッチメントも使用できない。このグレネード・ランチャーは判定なしに隠匿でき、射撃可能な状態にする（ポップアップさせる）にも再び格納するにもアクションは不要。この武器が“ポップアップ”している間、使用者はその腕の手でものを持つことができない。サイバーアームが必要。オプション・スロットを2個占める。', sessionDesc:'スロット2。片手用グレネード。装弾1発。隠匿可。出し入れアクション不要。使用中は手を使えない。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'ポップアップ・シールド', install:'クリニック', desc:'防弾シールドを折り畳んでサイバーアームに格納できる。格納中の防弾シールドは隠匿される。盾のHPが1以上残っているなら、盾の展開（ポップアップ）にも格納にもアクションは不要。盾を展開している間、これをインストールしたサイバーアームは盾として使う以外のいかなる用途にも使えず、盾以外のものを持つこともできない。サイバーアームにインストールした盾は容易に取り外して別の盾と交換できるため、掃除や修繕も楽だ。**サイバーアームが必要。オプション・スロットを3個占める。**P.183の戦闘の項の「盾の使用」も参照のこと。', sessionDesc:'スロット3。防弾シールド隠匿。出し入れアクション不要。使用中は盾以外不可。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'メドスキャナー', install:'クリニック', desc:'複数の探針や接触子を備えた診断機。これがあれば怪我と病気を診断でき、使用者が《外科手術》技能を必要としない救急医療を行なう際の補助をしてくれる。使用者は〈応急手当〉および〈救急医療〉技能に＋2を得る。**サイバーアームが必要。オプション・スロットを2個占める。**このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'スロット2。〈応急手当〉〈救急医療〉+2（累積不可）。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'リパー', install:'クリニック', desc:'指の爪を、伸縮可能なカーボグラス製の爪に変える（いくつかの爪に付けてもいい）。中型近接武器（2d6ダメージ、攻撃回数2）である。これを武器として使っている間、使用者はその腕の手でものを持つことができない。生身の腕にもインストール可能だが、そうした場合は同じ腕に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の中型近接（2d6、攻撃2）。使用中は手を使えない。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'スーパークローム®・カヴァーリング', install:'モール', desc:'サイバー四肢をピカピカの金属でコーティングする。〈ファッション〉に＋2。このボーナスは累積しない。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。〈ファッション〉+2（累積不可）。', price:'1000eb（超高級）', humanity:'0（なし）', noSlot:true },
+      { name:'ハードンド・シールディング', install:'クリニック', desc:'これをインストールしたサイバー四肢およびそれにインストールされている他のオプションは、マイクロウェーヴなどのEMP効果および非ブラックICEプログラムの効果を受けない。サイバーアームまたはサイバーレッグが必要。', sessionDesc:'EMP・非ブラックICE無効。', price:'1000eb（超高級）', humanity:'3（1d6）', noSlot:true },
+      { name:'プラスチック・カヴァーリング', install:'モール', desc:'サイバー四肢をプラスチックでコーティングする。多種多様な色と模様を選べる。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'100eb（上等）', humanity:'0（なし）', noSlot:true },
+      { name:'リアルスキン™・カヴァーリング', install:'モール', desc:'サイバー四肢を人工皮膚でコーティングする。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'500eb（高級）', humanity:'0（なし）', noSlot:true },
     ],
   },
   cyberLeg: {
     title: 'サイバーレッグ オプション',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'スタンダード・フット',   install:'クリニック', desc:'標準的なサイバネティック・フット。生身の脚にもインストール可能。',                               price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'ウェブ・フット',         install:'クリニック', desc:'足指の間の薄い水かき。水泳の移動ペナルティを無視する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'グリップ・フット',       install:'クリニック', desc:'静止摩擦増加。登攀の移動ペナルティを無視する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'ジャンプ・ブースター',   install:'クリニック', desc:'両脚に仕込んだ液圧式跳躍機構。跳躍の移動ペナルティを無視する。スロット2個占める。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'スケート・フット',       install:'クリニック', desc:'インラインスケートを両足に組み込む。隠匿可。速足アクションを行なう際、移動距離が6m増加する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'タロン・フット',         install:'クリニック', desc:'足に取り付けた刃。小型近接武器。隠匿可。生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'ハードンド・シールド',   install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+      { name:'スタンダード・フット', install:'クリニック', desc:'普通の足（足首から下）に似せた、標準的なサイバーフット。生身の脚にインストールした場合、スタンダード・フットは生身の脚にインストール可能なサイバーウェアの個数制限に含まれない。サイバーレッグのオプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
+      { name:'ウェブ・フット', install:'クリニック', desc:'足指の間の薄い水かき。水泳の際の移動ペナルティを無視する。2個のサイバーレッグに“ペアで”インストールが必要。', sessionDesc:'ペア必要。水泳ペナルティ無視。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'グリップ・フット', install:'クリニック', desc:'最先端技術の高摩擦係数素材でコーティングされたサイバーフット。使用者は登攀による通常の移動ペナルティを無視する。2個のサイバーレッグに“ペアで”インストールが必要。', sessionDesc:'ペア必要。登攀ペナルティ無視。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'ジャンプ・ブースター', install:'クリニック', desc:'液圧式跳躍機構を仕込んだ脚。跳躍の際に移動ペナルティを無視できる。2個のサイバーレッグに“ペアで”インストールが必要。オプション・スロットを2個占める。', sessionDesc:'スロット2。ペア必要。跳躍ペナルティ無視。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'スケート・フット', install:'クリニック', desc:'インライン・スケート（ローラーブレード）を組み込んだ足。隠匿可。速足アクションを使用した際に、移動距離が6m増加する。2個のサイバーレッグに“ペアで”インストールが必要。', sessionDesc:'ペア必要。隠匿可。速足で移動+6m。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'タロン・フット', install:'クリニック', desc:'足に刃を取り付ける。小型近接武器（1d6ダメージ、攻撃回数2）。判定なしで隠匿できる。生身の脚にもインストール可能だが、そうした場合は同じ脚に他のサイバーウェアをインストールできなくなる。', sessionDesc:'隠匿可の小型近接（1d6、攻撃2）。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'スーパークローム®・カヴァーリング', install:'モール', desc:'サイバー四肢をピカピカの金属でコーティングする。〈ファッション〉に＋2。このボーナスは累積しない。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。〈ファッション〉+2（累積不可）。', price:'1000eb（超高級）', humanity:'0（なし）', noSlot:true },
+      { name:'ハードンド・シールディング', install:'クリニック', desc:'これをインストールしたサイバー四肢およびそれにインストールされている他のオプションは、マイクロウェーヴなどのEMP効果および非ブラックICEプログラムの効果を受けない。サイバーアームまたはサイバーレッグが必要。', sessionDesc:'EMP・非ブラックICE無効。', price:'1000eb（超高級）', humanity:'3（1d6）', noSlot:true },
+      { name:'プラスチック・カヴァーリング', install:'モール', desc:'サイバー四肢をプラスチックでコーティングする。多種多様な色と模様を選べる。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'100eb（上等）', humanity:'0（なし）', noSlot:true },
+      { name:'リアルスキン™・カヴァーリング', install:'モール', desc:'サイバー四肢を人工皮膚でコーティングする。サイバーアームまたはサイバーレッグが必要だが、オプション・スロットを占めない。', sessionDesc:'スロット不占有。', price:'500eb（高級）', humanity:'0（なし）', noSlot:true },
     ],
   },
   cyberAudio: {
     title: 'サイバー聴覚 オプション',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'オーディオ・レコーダー',          install:'クリニック', desc:'音声を録音し、メモリ・チップまたはリンクしたエージェントに保存する。サイバー聴覚基本システムが必要。',                price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'スクランブラー/ディスクランブラー', install:'モール',    desc:'使用者の通信を暗号化して送信し、受信した暗号化通信を復号する。サイバー聴覚基本システムが必要。',             price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'聴覚強化',                        install:'モール',    desc:'聴覚を含む〈知覚〉判定に＋2。サイバー聴覚基本システムが必要。',                                             price:'100eb（上等）',  humanity:'3（1d6）' },
-      { name:'追跡装置',                        install:'クリニック', desc:'リンクした発信機を追跡する装置。有効距離1.6km。サイバー聴覚基本システムが必要。',                           price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'通信スキャナー/音楽プレイヤー',   install:'クリニック', desc:'データ・プールやメモリ・チップから音楽を再生したり、1.6km以内の無線電波を傍受できる。サイバー聴覚基本システムが必要。', price:'50eb（高品）',   humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'盗聴器検出器',                    install:'モール',    desc:'2m以内に聴装置があると、ビープ音が鳴る。サイバー聴覚基本システムが必要。',                                   price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'内蔵型エージェント',              install:'モール',    desc:'通常版と同一の機能を備えた携帯通信端末を埋め込む。サイバー聴覚基本システムが必要。',                         price:'100eb（上等）',  humanity:'3（1d6）' },
-      { name:'ボイス・ストレス・アナライザ',    install:'モール',    desc:'〈真意看破〉と〈尋問〉の判定に＋2。サイバー聴覚基本システムが必要。',                                         price:'100eb（上等）',  humanity:'3（1d6）' },
-      { name:'無線通信機',                      install:'モール',    desc:'最大1.6kmの無線通信を行なえる。サイバー聴覚基本システムが必要。',                                            price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'レーダー探知器',                  install:'クリニック', desc:'100m以内にレーダー・ビームが照射されるとビープ音が鳴る。サイバー聴覚基本システムが必要。',                   price:'500eb（高級）',  humanity:'2（1d6/2、端数切り上げ）' },
-      { name:'レベル・ダンプナー',              install:'モール',    desc:'大きな音による効果を無効化。サイバー聴覚基本システムが必要。',                                               price:'100eb（上等）',  humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'オーディオ・レコーダー', install:'クリニック', desc:'音声を録音し、標準的なメモリ・チップまたはリンクしたエージェントに保存する。サイバー聴覚基本システムが必要。', sessionDesc:'音声録音。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'スクランブラー／ディスクランブラー', install:'モール', desc:'通信暗号化装置は、使用者の送信内容を暗号通信復号装置なしに傍受されないようにする装置。無料で暗号通信復号装置も組み込まれている。サイバー聴覚基本システムが必要。', sessionDesc:'通信の暗号化/復号。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'聴覚強化', install:'モール', desc:'使用者は聴覚の要素を含む〈知覚〉技能の判定に＋2を得る。サイバー聴覚基本システムが必要。 このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'聴覚の〈知覚〉+2（累積不可）。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'追跡装置', install:'クリニック', desc:'これとリンクした追跡子（発信器）を追跡する装置。有効距離は1.6km。リンク済みのボタンサイズの追跡子が1個、無料で付属する。追加の追跡子は1個50eb。サイバー聴覚基本システムが必要。', sessionDesc:'有効1.6km。追跡子1個付属。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'通信スキャナー／音楽プレイヤー', install:'クリニック', desc:'使用者は1回のアクションとして、1.6km以内で現在使われているあらゆる周波数の無線電波をスキャンし傍受できる。音楽プレイヤーはデータ・プールにリンクして最新の音楽を聞いたり、メモリ・チップに保存されている音楽データを再生したりできる。一部の暗号化されたチャンネルの内容を理解するには、暗号通信復号装置を併用する必要がある。サイバー聴覚基本システムが必要。', sessionDesc:'1アクションで1.6km内の電波スキャン/傍受。音楽再生。', price:'高価（50eb）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'盗聴器検出器', install:'モール', desc:'使用者の2m以内にバグ（隠しマイク）やタップ（通信回線に仕掛ける傍受機）などの盗聴装置があると、（自分にだけ聞こえる）ビープ音で警告する。サイバー聴覚基本システムが必要。', sessionDesc:'2m以内の盗聴器をビープ音で警告。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'内蔵型エージェント', install:'モール', desc:'音声のみで操作する、通常版と同一の機能を備えたエージェント（P.352参照）。画像データは音声で説明されるが、画像を見たければカイロン付きのサイバーアイや、手近なスクリーンにリンクして外部出力することも可能。内蔵型エージェントのメモリ・チップを取り外すには外科手術が必要だ。サイバー聴覚基本システムが必要。', sessionDesc:'音声操作エージェント。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'ボイス・ストレス・アナライザ', install:'モール', desc:'使用者は〈真意看破〉および〈尋問〉技能の判定に＋2を得る。また、使用者は1回のアクションとして、1分間持続する特別な嘘発見機能を起動することができる。起動中に使用者が〈真意看破〉または〈尋問〉技能の判定を行なう場合、その判定のダイスはプレイヤーの代わりにGMが隠して振る。嘘を見抜くのに成功した場合にも、判定に失敗した場合にも、ビープ音が鳴る。誤検知には注意しろ。サイバー聴覚基本システムが必要。 このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'〈真意看破〉〈尋問〉+2。1アクションで嘘発見（1分間、GM裏振り）。累積不可。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'無線通信機', install:'モール', desc:'最大1.6kmの範囲で、電波による無線通信ができる。サイバー聴覚基本システムが必要。', sessionDesc:'1.6kmの無線通信。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'レーダー探知器', install:'クリニック', desc:'100m以内にアクティブ・レーダー・ビームが照射されると、それを感知し、照射が続いている間ビープ音が鳴る（訳注：要するにおまえか100m以内にいる誰かに対して誘導ミサイルをロックオンしようとしている奴がいると警告音が鳴るってことだ）。サイバー聴覚基本システムが必要。', sessionDesc:'100m以内のレーダー照射を警告。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'レベル・ダンプナー', install:'モール', desc:'騒音を自動的に軽減する。使用者は閃光音響グレネードなどの危険な轟音やノイズによって引き起こされる聴覚喪失その他の効果を受けない。サイバー聴覚基本システムが必要。', sessionDesc:'騒音ペナルティ・聴覚喪失無効。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
     ],
   },
   cyberNeural: {
     title: 'ニューラルウェア オプション',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'インターフェイス・プラグ', install:'クリニック', desc:'手首または頭部にインストールすることによって、さまざまな機器にジャックイン（接続）できるようになるプラグ。ニューラル・リンクが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'嗅覚増強',               install:'—',         desc:'チップウェア。匂いによって〈追跡〉技能を使える。チップウェア・ソケットが必要。',                                  price:'100eb（上等）',  humanity:'7（2d6）', needsChipware:true },
-      { name:'技能チップ',             install:'—',         desc:'チップウェア。技能1つを3レベルで使用できる。コストが（×2）の技能のものは値段が高い。チップウェア・ソケットが必要。', price:'500eb（高級）または1,000eb（超高級）', humanity:'7（2d6）', needsChipware:true },
-      { name:'化学物質分析器',         install:'—',         desc:'チップウェア。物質を鑑定して正確な化学組成を突き止め、データベースと照合する。チップウェア・ソケットが必要。',        price:'500eb（高級）',  humanity:'3（1d6）', needsChipware:true },
-      { name:'ケレンジコフ',           install:'クリニック', desc:'スピードウェア。使用者のイニシアチブ＋2。複数個のスピードウェアのインストールは不可。ニューラル・リンクが必要。',     price:'500eb（高級）',  humanity:'14（4d6）' },
-      { name:'サンデヴィスタン',       install:'クリニック', desc:'スピードウェア。1回のアクションで起動すると、以後1分間イニシアチブ＋3。再使用まで1時間かかる。複数個のスピードウェアのインストールは不可。ニューラル・リンクが必要。', price:'500eb（高級）', humanity:'7（2d6）' },
-      { name:'触覚増強',               install:'—',         desc:'チップウェア。床や壁に手で触れている間、自分から20m以内で動くものすべてを感知できる。チップウェア・ソケットが必要。',  price:'100eb（上等）',  humanity:'7（2d6）', needsChipware:true },
-      { name:'チップウェア・ソケット', install:'クリニック', desc:'首の後ろにインストールする空きソケット。チップウェアを使うために必要。ニューラル・リンクが必要。',                   price:'500eb（高級）',  humanity:'7（2d6）', isSocket:true },
-      { name:'ブレインダンス・レコーダー', install:'クリニック', desc:'おまえの体験をメモリ・チップまたは外部デバイスに記録する。ニューラル・リンクが必要。',                           price:'500eb（高級）',  humanity:'7（2d6）' },
-      { name:'痛覚操作',               install:'—',         desc:'チップウェア。重傷状態のペナルティを無視する。チップウェア・ソケットが必要。',                                      price:'1,000eb（超高級）', humanity:'14（4d6）', needsChipware:true },
-      { name:'メモリ・チップ',         install:'—',         desc:'データ記録装置。使用者のサイバーウェアがこれのデータにアクセスしたり記録できる。チップウェア・ソケットが必要。',       price:'10eb（安物）',   humanity:'0（なし）', needsChipware:true },
+      { name:'インターフェイス・プラグ', install:'クリニック', desc:'手首または頭部にインストールすることによって、さまざまな機器にジャックイン（接続）できるようになるプラグ。スマートガンやサイバーデッキが使用可能になり、重機を自在に動かしたり、ヴィークルを手放し運転することもできる！ インターフェイス・プラグを複数個インストールすることは可能だが、費用は1個ごとに支払うこと。ニューラル・リンクが必要。', sessionDesc:'機器ジャックイン、スマートガン・サイバーデッキ使用等。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'嗅覚増強', install:'—', desc:'チップウェア。これをチップウェア・ソケットにインストールしている間、使用者の嗅覚は増強され、視覚的な手がかりだけでなく匂いによっても〈追跡〉技能を使うことが可能になる。チップウェア・ソケットが必要。', sessionDesc:'匂いで〈追跡〉可能。', price:'100eb（上等）', humanity:'7（2d6）', needsChipware:true },
+      { name:'技能チップ', install:'—', desc:'チップウェア。これをチップウェア・ソケットにインストールしている間、使用者はチップに対応する技能1つを3レベルで使用できる。ただし、使用者がその技能をすでに4レベル以上で修得している場合は、何の効果もない。価格はコストが（×2）の技能の技能チップは1,000eb、それ以外の技能は500ebだ。チップウェア・ソケットが必要。', sessionDesc:'対応技能を3レベルで使用（4以上は無効）。', price:'500eb（高級）または1,000eb（超高級）', humanity:'7（2d6）', needsChipware:true },
+      { name:'化学物質分析器', install:'—', desc:'チップウェア。これをチップウェア・ソケットにインストールしている間、使用者は1回のアクションとして物質を分析することで、正確な化学的組成が分かり、サンプルの大規模なデータベースを参照してほとんどの成分を即座に識別できる。チップウェア・ソケットが必要。', sessionDesc:'1アクションで物質の化学組成・成分識別。', price:'500eb（高級）', humanity:'3（1d6）', needsChipware:true },
+      { name:'ケレンジコフ', install:'クリニック', desc:'反応速度が加速した状態を維持し続ける、常時起動型のスピードウェア。使用者はイニシアチブ判定に＋2を得る。1人の使用者に複数個のスピードウェアをインストールすることはできない。ニューラル・リンクが必要。', sessionDesc:'常時イニシアチブ+2。他スピードウェアと併用不可。', price:'500eb（高級）', humanity:'14（4d6）' },
+      { name:'サンデヴィスタン', install:'クリニック', desc:'反応速度を短時間だけ大幅に強化するスピードウェア。1回のアクションとしてこれを起動すると、使用者は以後の1分間に行なうすべてのイニシアチブ判定に＋3を得る。その後1時間、サンデヴィスタンは起動不能になる。1人の使用者に複数個のスピードウェアをインストールすることはできない。ニューラル・リンクが必要。', sessionDesc:'1アクション起動で1分間イニシアチブ+3（後1時間使用不可）。他と併用不可。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'触覚増強', install:'—', desc:'チップウェア。チップウェア・ソケットにこれをインストールしている間、使用者の触覚は増強され、床や壁などの表面に1本以上の手で触れている間に限って、自分から20m以内で動くものすべてを感知できる。こうして動きの感知に使っている手は、他のことに一切使えない。チップウェア・ソケットが必要。', sessionDesc:'床や壁に触れて20m以内の動くものを感知。感知中は手が塞がる。', price:'100eb（上等）', humanity:'7（2d6）', needsChipware:true },
+      { name:'チップウェア・ソケット', install:'クリニック', desc:'このソケットを首の後ろにインストールすることによって、多種多様なチップウェアを手軽に差し替えて使えるようになる。ソケット1つにつき、チップウェア1つを使用可能。チップウェア・ソケット1つにチップウェア1つをインストールまたはアンインストールするのは1回のアクションである。これまでに一度もインストールしたことがないチップウェアをインストールするたび、おまえは人間性喪失を被る。使ったことのあるチップウェアを再インストールする場合には、人間性喪失の心配はない。チップウェアはニューラル・リンクのオプション・スロットを占めない。チップウェア・ソケットを複数個インストールすることは可能だが、費用は1個ごとに支払うこと。ニューラル・リンクが必要。', sessionDesc:'スロット不占有。1アクションで着脱。', price:'500eb（高級）', humanity:'7（2d6）', noSlot:true, isSocket:true },
+      { name:'ブレインダンス・レコーダー', install:'クリニック', desc:'おまえの体験したことを、おまえの視点で追体験してもらおう！記録したブレインダンス・コンテンツは、標準的なメモリ・チップまたはリンクしたエージェントに保存される。保存したブレインダンスはブレインダンス・ビューアで再体験できる。ニューラル・リンクが必要。', sessionDesc:'体験の録画。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'痛覚操作', install:'—', desc:'チップウェア。これをチップウェア・ソケットにインストールしている間、使用者は痛覚受容器官の機能をシャットダウンし、重傷状態の効果を無視できるようになる。チップウェア・ソケットが必要。', sessionDesc:'重傷状態の効果を無視。', price:'1000eb（超高級）', humanity:'14（4d6）', needsChipware:true },
+      { name:'メモリ・チップ', install:'—', desc:'チップウェア。標準的なデータ記録装置。このチップをチップウェア・ソケットにインストールしている間、使用者のサイバーウェアはこのチップにデータを記録したり、チップのデータにアクセスすることができる。チップウェア・ソケットが必要。', sessionDesc:'データ記録装置。', price:'10eb（安物）', humanity:'0（なし）', needsChipware:true },
     ],
   },
   cyberInternal: {
     title: '体内用サイバーウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'体内ポケット',         install:'クリニック', desc:'腹部の中の隠し収納スペース。',                                                    price:'50eb（安物）',      humanity:'2（1d6/2）' },
-      { name:'ヴァンパイア',         install:'クリニック', desc:'牙を生やす。小型近接武器。隠匿可。',                                                price:'100eb（上等）',     humanity:'7（2d6）' },
-      { name:'サイバー・カーディオ', install:'病院',       desc:'心臓を機械化。+2 DEATHセーブ。',                                                    price:'500eb（高級）',     humanity:'7（2d6）' },
-      { name:'サイバースネーク',     install:'病院',       desc:'食道にインストールされた蛇型のウエポン。中型近接武器。スロット2個占める。',            price:'500eb（高級）',     humanity:'7（2d6）' },
-      { name:'ナノマシン',           install:'病院',       desc:'体内のナノマシンが負傷した細胞の修復を促進する。',                                    price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'毒牙',                 install:'クリニック', desc:'ヴァンパイアの牙に致死性の毒を加える。ヴァンパイアが必要。',                            price:'500eb（高級）',     humanity:'3（1d6）' },
-      { name:'独立型酸素供給器',     install:'病院',       desc:'酸素を貯蔵。30分間呼吸不要。',                                                      price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'筋肉・骨格強化',       install:'病院',       desc:'体格+2。スロット2個占める。',                                                       price:'1,000eb（超高級）', humanity:'14（4d6）' },
-      { name:'グラフト・マッスル',   install:'クリニック', desc:'ヴァンパイアとスクラッチャーのダメージが＋2。',                                        price:'500eb（高級）',     humanity:'7（2d6）' },
-      { name:'グレーティ・インプラント', install:'モール', desc:'皮下に移植した自在に光る模様。',                                                    price:'100eb（上等）',     humanity:'0（なし）' },
+      { name:'独立空気補給', install:'病院', desc:'30分呼吸できるだけの空気を蓄えるタンク。空気を使い切った後は、周囲に空気があれば1時間で自動的に再充填される。あるいは、1回のアクションで空のタンクを満タンの予備タンク（50eb）に交換することもできる。', sessionDesc:'30分呼吸。1時間で自動充填、または1アクションでタンク交換。', price:'1000eb（超高級）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'ヴァンパイア', install:'クリニック', desc:'使用者の口に埋め込む牙型のインプラント。判定なしで隠匿できる高品質の小型近接武器（1d6ダメージ、攻撃回数2）である。この牙の近くの口蓋に仕込んだ収納スペースに、毒またはバイオトキシンの瓶（別個に購入；P.355のリストを参照）を1つ、安全に格納し判定なしに隠匿できる。そして任意の時点で、収納した瓶の中身をヴァンパイアに塗ることができる（アクション不要）。これによって瓶の中身はすべて消費される。塗った毒の効果は30分間持続する。ヴァンパイアのインストールは、ピザをかじったり何かの判定を失敗しただけで毒が不用意に漏れ出すのを防ぐために、使用者の口腔を丸ごと作り変える大仕事だ。', sessionDesc:'隠匿可の小型近接（1d6、攻撃2）。毒1瓶収納、アクション不要で塗布（30分持続）。', price:'500eb（高級）', humanity:'14（4d6）' },
+      { name:'強化抗体', install:'モール', desc:'使用者は安定化の後、休息に費やした1日ごとに（一日の大半を安静に過ごし、軽度の活動しか行なわなければ）自分の【体格】の2倍に等しいHPを回復する（通常の回復量は【体格】に等しいHP）。', sessionDesc:'安定化後の休息で【体格】×2のHP回復。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'オーディオ・ヴォックス', install:'クリニック', desc:'ボイス・シンセサイザー。使用者は〈演技〉および〈演奏：歌唱〉技能の判定に＋2を得る。このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'〈演技〉〈演奏：歌唱〉+2（累積不可）。', price:'500eb（高級）', humanity:'3（1d6）' },
+      { name:'えら', install:'病院', desc:'使用者は水中でも呼吸できる。', sessionDesc:'水中呼吸。', price:'1000eb（超高級）', humanity:'7（2d6）' },
+      { name:'強化移植筋肉＆骨膜編織', install:'病院', desc:'使用者の【体格】は2増加する。この【体格】の増加により、キャラクターのHPと死亡セーヴも変化する。これを複数個インストールすると、効果は累積する。ただし、これによって【体格】を11以上まで増やすことはできない。', sessionDesc:'【体格】+2（最大11）。HP・死亡セーヴ変更。累積可。', price:'1000eb（超高級）', humanity:'14（4d6）' },
+      { name:'サイバースネーク', install:'病院', desc:'喉と食道に内蔵する、おぞましい触手状の武器。判定なしで隠匿できる超大型近接武器（4d6、攻撃回数1）である。', sessionDesc:'隠匿可の超大型近接（4d6、攻撃1）。', price:'1000eb（超高級）', humanity:'14（4d6）' },
+      { name:'毒素固定体', install:'クリニック', desc:'使用者は〈拷問／薬物抵抗〉技能の判定に＋2を得る。このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'〈拷問／薬物抵抗〉+2（累積不可）。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'鼻孔フィルター', install:'クリニック', desc:'使用者は有毒な気体や飛沫などの、吸入することで作用するあらゆる危険の効果を受けない。必要なら、使用者はアクションなしでフィルターを一時停止することもできる。', sessionDesc:'吸入系の危険無効。アクション不要で停止可。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）' },
+      { name:'避妊インプラント', install:'モール', desc:'望まぬ妊娠を防ぐ。', sessionDesc:'妊娠防止。', price:'10eb（安物）', humanity:'0（なし）' },
+      { name:'ミスター・スタッド™（性的インプラント）', install:'クリニック', desc:'毎晩オールナイト。それでもあいつは気付かない。', sessionDesc:'性的インプラント。', price:'100eb（上等）', humanity:'7（2d6）' },
+      { name:'ミッドナイト・レディ™（性的インプラント）', install:'クリニック', desc:'ビーナスになれ。燃え上がれ。欲情の化身となるのだ。', sessionDesc:'性的インプラント。', price:'100eb（上等）', humanity:'7（2d6）' },
+      { name:'レーダー／ソナー・インプラント', install:'クリニック', desc:'使用者から50m以内の範囲（水中を含む）を常にスキャンし、新たな脅威を探す。閉じた扉の奥の部屋の中身など、遮蔽に隠れているものは探知できない。このスキャンによって動くものを新たに発見するたび、使用者にはビープ音が聞こえ、GMから方向を教えてもらえる。このオプションを2個以上インストールしても、さらなる利益はない。', sessionDesc:'50mスキャン（遮蔽透視不可）。動くもので警告（方向探知）。累積不可。', price:'1000eb（超高級）', humanity:'7（2d6）' },
     ],
   },
   cyberExternal: {
     title: '体表用サイバーウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'テクヘア',     install:'モール',     desc:'色や長さ、テクスチャを自由に変更できる髪。',                          price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'隠しホルスター', install:'クリニック', desc:'体表に隠した隠しホルスター。',                                    price:'500eb（高級）',     humanity:'3（1d6）' },
-      { name:'皮下ポケット', install:'モール',     desc:'皮膚の下の小型収納スペース。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'皮下装甲',     install:'病院',       desc:'皮膚の下にアーマー。身体SP11のアーマー。スロット2個占める。',        price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'ナソフィルタ', install:'モール',     desc:'鼻腔フィルター。毒ガス等無効。',                                    price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'ラジエーター', install:'病院',       desc:'放熱器。火炎攻撃からのダメージを半減。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'シフトタクト', install:'病院',       desc:'顔を5パターンまで変更。スロット2個占める。',                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'隠しホルスター', install:'クリニック', desc:'使用者の体内に埋め込んだホルスターに、元から隠匿可能な武器を格納することで、判定なしで隠匿できる。隠しホルスターから武器を抜くのにアクションは不要だが、それはホルスターが手の届きやすい位置に埋め込んである場合に限る。おまえがズボンをはかない主義でもない限り、太腿に埋め込むのはやめておけ。', sessionDesc:'判定なしで武器隠匿。アクション不要で抜刀。', price:'500eb（高級）', humanity:'7（2d6）' },
+      { name:'皮下アーマー', install:'病院', desc:'使用者の身体と頭部はSP11の防具に覆われる。おまえの各部位のSPは、その部位の防具の中でも最も高いSPを用いる。さらに、ある部位の防具が損耗する際には、その部位のすべての防具が同時に損耗する。使用者の自然治癒が1日ぶん進むたび、ナノマシンが身体および頭部の失われたSPを1ずつ回復させる。', sessionDesc:'身体・頭部SP11。全部位同時損耗。自然治癒1日でSP1回復。', price:'1000eb（超高級）', humanity:'14（4d6）' },
+      { name:'皮下ポケット', install:'クリニック', desc:'リアルスキン™のジッパーがついた、5cm×10cmの隠しポケット。この中に、判定なしに物を隠匿できる。', sessionDesc:'5×10cm、判定なしで物隠匿。', price:'100eb（上等）', humanity:'3（1d6）' },
+      { name:'皮膚繊維', install:'病院', desc:'使用者の身体と頭部はSP7の防具に覆われる。おまえの各部位のSPは、その部位の防具の中でも最も高いSPを用いる。さらに、ある部位の防具が損耗する際には、その部位のすべての防具が同時に損耗する。使用者の自然治癒が1日ぶん進むたび、ナノマシンが身体および頭部の失われたSPを1ずつ回復させる。', sessionDesc:'身体・頭部SP7。全部位同時損耗。自然治癒1日でSP1回復。', price:'500eb（高級）', humanity:'7（2d6）' },
     ],
   },
   cyberFashion: {
     title: 'ファッションウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'バイオリアル・ヘア',     install:'モール', desc:'動物毛のような質感の生体髪。',                          price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'チーク・ポーチ',         install:'モール', desc:'頬の内側に小型収納。',                                  price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'カラーシフト',           install:'モール', desc:'肌の色を自在に変化。',                                  price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'エレクトロクロミック衣服', install:'モール', desc:'色が変化する衣服。',                                  price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'フィンガーチップ・ブレード', install:'モール', desc:'指先から伸びる小型刃。',                            price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'ライト・タトゥー',       install:'モール', desc:'発光するタトゥー。',                                    price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'テクヘア',               install:'モール', desc:'色・長さを自由に変えられる髪。',                        price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'シフトタクト目',         install:'モール', desc:'虹彩の色を自在に変化。',                                price:'100eb（上等）', humanity:'0（なし）' },
-      { name:'シフトタクト肌',         install:'モール', desc:'肌の色を自在に変化。',                                  price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'EMPスレッディング', install:'モール', desc:'メディアの寵児UR（ユーアー）がインストールしたことでポピュラーになった、体中に電子回路のような細い銀色の線模様を走らせるインプラント。これが“ファラデーの籠”のように放射線やEMP効果から守ってくれると信じている者は多いが、それを裏付ける科学的根拠はない。いずれにせよ、見た目がクールなのは間違いない。ほとんどの人々はファッション的な自己主張としてEMPスレッディングを身に着けている。', sessionDesc:'見た目のみ。防護効果なし。', price:'10eb（安物）', humanity:'0（なし）' },
+      { name:'ケムスキン', install:'モール', desc:'皮膚に注入して永久的に色合いを変化させる染料または色素。傷痕を隠すだけのものから、皮膚全体を蛍光グリーン色に染めるものまで色々ある。温度変化や体内のホルモンに反応して色や模様が変わる色素もある。ケムスキンとテックヘアの両方をインストールしている者は〈美容〉技能に＋2を得る。（このボーナスは累積しない）', sessionDesc:'テックヘアと併用で〈美容〉+2（累積不可）。', price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'シフトタクト', install:'モール', desc:'両目の眼球に埋め込む、色の変化するレンズ。模様も何通りか選べる。温度変化や体内のホルモンに反応して色や模様が変わるレンズもある。1つのレンズに複数の変化パターンを持たせることはできないが、使用者は任意の時点でアクションを使わずにレンズの変化機能を停止することができる。', sessionDesc:'アクション不要で機能停止可能。', price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'スキンウォッチ', install:'モール', desc:'皮膚の下に埋め込んだLED画面が常に現在時刻その他のデータを表示しているのが、表皮ごしに透けて見える。', sessionDesc:'時刻などのデータ表示。', price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'テックヘア', install:'モール', desc:'色が変わったり光を発する人工毛髪。温度変化や体内のホルモンに反応して色や模様や長さが変わるものもある。ケムスキンとテックヘアの両方をインストールしている者は〈美容〉技能に＋2を得る。（このボーナスは累積しない）', sessionDesc:'ケムスキンと併用で〈美容〉+2（累積不可）。', price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'バイオモニタ', install:'モール', desc:'心拍数、体温、呼吸、血糖値などをLED画面で常に表示する皮下インプラント。バイオモニタ（健康監視機）をおまえのエージェントとリンクして、健康管理を任せることもできる。', sessionDesc:'健康データ表示。エージェントとリンク可。', price:'100eb（上等）', humanity:'0（なし）' },
+      { name:'ライト・タトゥー', install:'モール', desc:'皮膚の下に埋め込み、光を蓄えて色や模様として放出する刺青パッチ。大きな絵柄を描くには、このファッションウェアを何枚もインストールする必要がある。ライト・タトゥーを3枚以上インストールしている者は、〈ファッション〉技能に＋2を得る。（このボーナスは累積しない）', sessionDesc:'3枚以上で〈ファッション〉+2（累積不可）。', price:'100eb（上等）', humanity:'0（なし）' },
     ],
   },
   cyberBorg: {
     title: 'ボーグウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'アーティフィシャル・ショルダー・マウント', install:'病院', desc:'肩に大型武器をマウント。スロット2個占める。',    price:'5,000eb（超高級）', humanity:'14（4d6）' },
-      { name:'センサーアレイ',       install:'病院', desc:'全方位センサー。知覚+2。',                                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'マルチオプティック・マウント', install:'病院', desc:'追加のサイバーアイを搭載。',                                price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'マルチアーム・マウント', install:'病院', desc:'追加の腕を装着。スロット2個占める。',                              price:'5,000eb（超高級）', humanity:'14（4d6）' },
+      { name:'埋込型リニア・フレームΣ（シグマ）', install:'病院', desc:'使用者の【体格】は12まで増加する。【体格】の増加により、キャラクターのHPと死亡セーヴも変化する。このボーグウェアによって使用者の【体格】が13以上に増加することはない。インストールには【体格】6以上と強化移植筋肉＆骨膜編織が必要。', sessionDesc:'【体格】12に増加（HP・死亡セーヴ更新）。前提：【体格】6以上＋強化移植筋肉＆骨膜編織。', price:'1000eb（超高級）', humanity:'14（4d6）' },
+      { name:'埋込型リニア・フレームβ（ベータ）', install:'病院', desc:'使用者の【体格】は14まで増加する。【体格】の増加により、キャラクターのHPと死亡セーヴも変化する。このボーグウェアによって使用者の【体格】が15以上に増加することはない。インストールには【体格】8以上と2個の強化移植筋肉＆骨膜編織が必要。', sessionDesc:'【体格】14に増加（HP・死亡セーヴ更新）。前提：【体格】8以上＋強化移植筋肉＆骨膜編織×2。', price:'5000eb（極上）', humanity:'14（4d6）' },
+      { name:'センサー・アレイ', install:'クリニック', desc:'サイバー聴覚基本システムを強化する、頭部から2本1組で突き出す平たいアンテナ。俗に“兎耳”とも。使用者は自分のサイバー聴覚基本システムに追加で5つまでのサイバー聴覚オプションをインストールできる。同じ人物にセンサー・アレイを2個以上インストールすることはできない。サイバー聴覚基本システムが必要だが、サイバー聴覚用オプション・スロットを占めない。', sessionDesc:'聴覚オプション枠+5。1人1つ。スロット不占有。', price:'1000eb（超高級）', humanity:'14（4d6）', noSlot:true },
+      { name:'追加肩マウント', install:'病院', desc:'本来の両腕の下に追加で2本のサイバーアームを取り付けられる。同じ人物に追加肩マウントを2個以上インストールすることはできない。', sessionDesc:'サイバーアーム用枠+2。1人1つ。', price:'1000eb（超高級）', humanity:'14（4d6）' },
+      { name:'多眼（マルチオプティック）マウント', install:'病院', desc:'追加で5つまでのサイバーアイを取り付けられる。追加のサイバーアイは別途購入しインストールすること。同じ人物に多眼マウントを2個以上インストールすることはできない。', sessionDesc:'サイバーアイ用枠+5。1人1つ。', price:'1000eb（超高級）', humanity:'14（4d6）' },
     ],
   },
 };
@@ -5576,7 +4944,7 @@ function cyberRenderFoundation(id) {
       const slotCostLabel = (opt.slotCost && opt.slotCost > 1)
         ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[' + opt.slotCost + 'スロット]</span>'
         : (opt.noSlot ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[0スロット]</span>' : '');
-      const optDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
+      const optDesc = opt.sessionDesc || opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
       html += '<div class="cyber-item-row" style="flex-wrap:wrap;">'
         + chipLabel
         + '<span class="cyber-item-text" style="cursor:default;">' + (opt.name||'') + '</span>'
@@ -5676,12 +5044,14 @@ function cyberInstallFoundation(type) {
   // サイバーアーム → スタンダード・ハンドを自動インストール（スロット0）
   const isArm = (partId === 'carm-r' || partId === 'carm-l');
   if (isArm) {
-    cyberFoundationState[partId].options.push({ name: 'スタンダード・ハンド', desc: '標準的なサイバネティック・ハンド。生身の腕にもインストール可能。', noSlot: true, slotCost: 0 });
+    const handRow = CYBER_OPTION_DB.cyberArm.rows.find(r => r.name === 'スタンダード・ハンド');
+    cyberFoundationState[partId].options.push({ name: 'スタンダード・ハンド', desc: handRow ? handRow.desc : '', sessionDesc: handRow ? handRow.sessionDesc : '', noSlot: true, slotCost: 0 });
   }
   // サイバーレッグ → スタンダード・フットを自動インストール（スロット0）
   const isLeg = (partId === 'cleg-r' || partId === 'cleg-l');
   if (isLeg) {
-    cyberFoundationState[partId].options.push({ name: 'スタンダード・フット', desc: '標準的なサイバネティック・フット。生身の脚にもインストール可能。', noSlot: true, slotCost: 0 });
+    const footRow = CYBER_OPTION_DB.cyberLeg.rows.find(r => r.name === 'スタンダード・フット');
+    cyberFoundationState[partId].options.push({ name: 'スタンダード・フット', desc: footRow ? footRow.desc : '', sessionDesc: footRow ? footRow.sessionDesc : '', noSlot: true, slotCost: 0 });
   }
   wdbCloseModal();
   cyberRenderFoundation(partId);
@@ -5702,7 +5072,7 @@ function cyberInstallBareArm(optIdx) {
   if (row.desc.indexOf('同腕に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
     st.locked = true;
   }
-  st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
+  st.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
   if (priceNum > 0) {
@@ -5728,7 +5098,7 @@ function cyberInstallBareLeg(optIdx) {
   if (row.desc.indexOf('同脚に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
     st.locked = true;
   }
-  st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
+  st.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
   if (priceNum > 0) {
@@ -5830,10 +5200,10 @@ function cyberSelectOption(idx) {
     }
     // ニューラルのスロットに追加するが、表示は腕の方にも参考表示
     neuralState.options = neuralState.options || [];
-    neuralState.options.push({ name: '皮下グリップ（' + def.label + '）', desc: row.desc, slotCost: 1 });
+    neuralState.options.push({ name: '皮下グリップ（' + def.label + '）', desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: 1 });
     // 腕には参考表示のみ（スロット消費なし）
     state.options = state.options || [];
-    state.options.push({ name: '皮下グリップ', desc: row.desc + '（※ニューラルウェアのスロットを使用）', noSlot: true, slotCost: 0 });
+    state.options.push({ name: '皮下グリップ', desc: row.desc + '（※ニューラルウェアのスロットを使用）', sessionDesc: (row.sessionDesc || '') + '（※ニューラルウェアのスロットを使用）', noSlot: true, slotCost: 0 });
     // 価格差し引き
     const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
     if (priceNum > 0) {
@@ -5892,9 +5262,9 @@ function cyberSelectOption(idx) {
   if (isSocket) {
     state.chipwareSockets = (state.chipwareSockets || 0) + 1;
     // スロットは1個消費する
-    state.options.push({ name: row.name, desc: row.desc, slotCost: 1 });
+    state.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: 1 });
   } else {
-    const optEntry = { name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot };
+    const optEntry = { name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot };
     if (needsChipware) {
       optEntry.usedSocket = true;
       state.chipwareSockets = Math.max(0, (state.chipwareSockets || 0) - 1);
@@ -5907,13 +5277,13 @@ function cyberSelectOption(idx) {
     const otherEye = (partId === 'ceye-r') ? 'ceye-l' : 'ceye-r';
     const otherState = cyberFoundationState[otherEye];
     otherState.options = otherState.options || [];
-    otherState.options.push({ name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
+    otherState.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
   }
   if (isPairLeg) {
     const otherLeg = (partId === 'cleg-r') ? 'cleg-l' : 'cleg-r';
     const otherState = cyberFoundationState[otherLeg];
     otherState.options = otherState.options || [];
-    otherState.options.push({ name: row.name, desc: row.desc, slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
+    otherState.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
   }
 
   // 価格差し引き（ペアの場合は2倍）
