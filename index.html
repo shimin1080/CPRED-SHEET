@@ -120,21 +120,6 @@ html, body {
   margin-left: 4px;
 }
 
-.btn-pdf {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--red);
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: opacity 0.15s;
-}
-.btn-pdf:hover { opacity: 0.8; }
-
 .btn-export {
   font-family: var(--cond);
   font-weight: 700;
@@ -754,89 +739,6 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .btn-add:hover { background: var(--red); color: #fff; }
 
-.armor-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.armor-slot {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 12px;
-  text-align: center;
-}
-
-.armor-slot-name {
-  font-family: var(--mono);
-  font-size: 7px;
-  letter-spacing: 0.18em;
-  color: var(--text3);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  display: block;
-}
-
-.armor-item-input {
-  font-size: 10px;
-  color: var(--text2);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 4px;
-}
-
-.armor-sp {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.sp-input {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 32px;
-  color: var(--text);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 48px;
-  text-align: center;
-}
-
-.sp-input:focus { color: var(--red); }
-
-.armor-pen {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text3);
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.pen-input {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--text2);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 20px;
-  text-align: center;
-}
-
 /* ── 武器データベース モーダル ── */
 .wdb-overlay {
   display: none; position: fixed; inset: 0;
@@ -1066,16 +968,16 @@ input.hp-counter::-webkit-outer-spin-button { }
 }
 
 .cyber-opt-desc {
-  font-size: 11px;
-  color: var(--text2);
-  line-height: 1.4;
-  margin-top: 2px;
+  font-size: 9px;
+  color: var(--text3);
+  line-height: 1.3;
+  margin-top: 1px;
   padding-left: 2px;
 }
 .cyber-foundation-desc {
-  font-size: 11px;
-  color: var(--text2);
-  line-height: 1.4;
+  font-size: 9px;
+  color: var(--text3);
+  line-height: 1.3;
   padding: 2px 0 4px 18px;
 }
 
@@ -1104,49 +1006,7 @@ input.hp-counter::-webkit-outer-spin-button { }
   padding: 10px;
 }
 
-.money-val-input {
-  font-family: var(--cond);
-  font-weight: 700;
-  font-size: 28px;
-  color: var(--text);
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-}
 
-.money-val-input:focus { color: var(--red); }
-
-.equip-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.equip-table th {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--red);
-  padding: 5px 10px;
-  text-align: left;
-  border-bottom: 1px solid var(--border2);
-  background: rgba(204,34,34,0.05);
-}
-
-.equip-table td {
-  padding: 5px 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.equip-table td input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--text2);
-  font-size: 12px;
-  width: 100%;
-}
 
 /* Memo */
 .memo-area {
@@ -1165,242 +1025,6 @@ input.hp-counter::-webkit-outer-spin-button { }
 }
 
 .memo-area:focus { border-color: var(--border2); }
-
-/* ── INITIATIVE TRACKER ── */
-
-.it-section-head {
-  font-family: var(--cond); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--red);
-  background: rgba(204,34,34,0.08); border-left: 3px solid var(--red);
-  padding: 4px 10px; margin-bottom: 8px;
-}
-
-.it-topbar {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-  padding: 8px 12px; background: var(--bg2); border: 1px solid var(--border);
-}
-.it-round-label { font-family: var(--mono); font-size: 10px; color: var(--text2); letter-spacing: 0.06em; }
-.it-round-num   { font-family: var(--cond); font-weight: 700; font-size: 22px; color: var(--text); margin: 0 2px; }
-.it-phase-badge {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-  padding: 3px 9px; text-transform: uppercase; border: 1px solid;
-}
-.it-phase-badge.setup  { color: var(--text3); border-color: var(--text3); }
-.it-phase-badge.combat { color: #639922; border-color: #639922; background: rgba(99,153,34,0.1); }
-.it-btn-next {
-  font-family: var(--cond); font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
-  text-transform: uppercase; background: var(--red); color: #fff; border: none;
-  padding: 7px 18px; cursor: pointer; transition: opacity 0.15s; margin-left: auto;
-}
-.it-btn-next:hover { opacity: 0.82; }
-.it-btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
-.it-btn-ghost {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
-  background: transparent; color: var(--text2); border: 1px solid var(--border2);
-  padding: 6px 12px; cursor: pointer; transition: color 0.15s;
-}
-.it-btn-ghost:hover { color: var(--text); }
-
-.it-layout { display: grid; grid-template-columns: 1fr 220px; gap: 12px; }
-
-/* ── QUEUE ── */
-.it-queue { display: flex; flex-direction: column; gap: 4px; }
-.it-queue-empty { font-family: var(--mono); font-size: 10px; color: var(--text3); text-align: center; padding: 36px 0; line-height: 2; }
-
-/* ── COMBATANT CARD ── */
-.it-card {
-  display: flex; align-items: stretch;
-  background: var(--bg2); border: 1px solid var(--border);
-  transition: border-color 0.2s, background 0.2s; overflow: hidden;
-}
-.it-card.pc-type    { border-left: 3px solid #639922; }
-.it-card.enemy-type { border-left: 3px solid #BA7517; }
-.it-card.active { background: rgba(204,34,34,0.04); }
-.it-card.active.pc-type    { border-color: #639922; background: rgba(99,153,34,0.05); }
-.it-card.active.enemy-type { border-color: #BA7517; background: rgba(186,117,23,0.05); }
-.it-card.done-turn { opacity: 0.42; }
-
-.it-rank {
-  width: 34px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  font-family: var(--cond); font-weight: 700; font-size: 22px; color: var(--text3);
-  border-right: 1px solid var(--border); transition: color 0.2s;
-}
-.it-card.active .it-rank { color: var(--text); }
-
-.it-init {
-  width: 58px; flex-shrink: 0; border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 5px 4px; gap: 1px;
-}
-.it-init-num  { font-family: var(--cond); font-weight: 700; font-size: 28px; line-height: 1; color: var(--text); }
-.it-init-sub  { font-family: var(--mono); font-size: 8px; color: var(--text3); text-align: center; }
-.it-init-crit { font-family: var(--mono); font-size: 7px; letter-spacing: 0.06em; }
-.it-init-crit.crit   { color: #639922; }
-.it-init-crit.fumble { color: var(--red); }
-
-/* inline-editable info */
-.it-info { flex: 1; padding: 7px 10px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.it-name-input {
-  font-family: var(--cond); font-weight: 700; font-size: 15px; color: var(--text);
-  background: transparent; border: none; border-bottom: 1px solid transparent;
-  outline: none; width: 100%; transition: border-color 0.15s; padding: 0;
-}
-.it-name-input:hover { border-bottom-color: var(--border); }
-.it-name-input:focus { border-bottom-color: var(--red); }
-.it-stats-row { display: flex; align-items: center; gap: 10px; }
-.it-stat-group { display: flex; align-items: center; gap: 3px; }
-.it-stat-lbl { font-family: var(--mono); font-size: 8px; color: var(--text3); }
-.it-stat-input {
-  font-family: var(--mono); font-size: 11px; color: var(--text2);
-  background: transparent; border: none; border-bottom: 1px solid transparent;
-  outline: none; width: 28px; text-align: center; transition: border-color 0.15s; padding: 0;
-}
-.it-stat-input.wide { width: 36px; }
-.it-stat-input:hover { border-bottom-color: var(--border); }
-.it-stat-input:focus { border-bottom-color: var(--red); color: var(--text); }
-.it-type-lbl { font-family: var(--mono); font-size: 8px; color: var(--text2); margin-left: auto; }
-
-.it-tags { display: flex; gap: 4px; flex-wrap: wrap; min-height: 14px; }
-.it-tag { font-family: var(--mono); font-size: 8px; padding: 1px 5px; border: 1px solid; letter-spacing: 0.04em; }
-.it-tag.heavy { color: #E24B4A; border-color: rgba(226,75,74,0.4); background: rgba(226,75,74,0.07); }
-.it-tag.dying { color: var(--red); border-color: rgba(204,34,34,0.5); background: rgba(204,34,34,0.1); }
-.it-tag.waited { color: #BA7517; border-color: rgba(186,117,23,0.4); background: rgba(186,117,23,0.08); }
-
-/* HP column */
-.it-hp {
-  width: 104px; flex-shrink: 0; border-left: 1px solid var(--border);
-  padding: 7px 8px; display: flex; flex-direction: column; gap: 3px;
-}
-.it-hp-lbl  { font-family: var(--mono); font-size: 8px; color: var(--text3); letter-spacing: 0.1em; }
-.it-hp-bar-track { height: 4px; background: var(--bg3); border: 1px solid var(--border); overflow: hidden; }
-.it-hp-bar-fill  { height: 100%; background: #639922; transition: width 0.22s, background 0.22s; }
-.it-hp-bar-fill.mid { background: #BA7517; }
-.it-hp-bar-fill.low { background: var(--red); }
-.it-hp-counter { font-family: var(--mono); font-size: 9px; color: var(--text2); text-align: center; }
-
-.it-hp-step { display: flex; align-items: center; gap: 2px; margin-top: 2px; }
-.it-step-btn {
-  width: 22px; height: 22px; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text2); font-family: var(--mono); font-size: 14px; font-weight: 500;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: all 0.1s; line-height: 1;
-}
-.it-step-btn.minus:hover { border-color: var(--red); color: var(--red); }
-.it-step-btn.plus:hover  { border-color: #639922; color: #639922; }
-.it-step-spacer { flex: 1; }
-
-.it-hp-bulk { display: flex; gap: 2px; align-items: center; }
-.it-bulk-input {
-  flex: 1; min-width: 0; background: var(--bg3); border: 1px solid var(--border);
-  color: var(--text); font-family: var(--mono); font-size: 9px;
-  text-align: center; padding: 3px 2px; outline: none; transition: border-color 0.15s;
-}
-.it-bulk-input:focus { border-color: rgba(204,34,34,0.4); }
-.it-bulk-input::placeholder { color: var(--text3); }
-.it-bulk-btn {
-  padding: 3px 4px; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text3); font-family: var(--mono); font-size: 8px; cursor: pointer;
-  transition: all 0.1s; white-space: nowrap;
-}
-.it-bulk-btn.dmg:hover  { border-color: var(--red); color: var(--red); }
-.it-bulk-btn.heal:hover { border-color: #639922; color: #639922; }
-
-/* misc action buttons */
-.it-acts {
-  width: 30px; flex-shrink: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 5px; padding: 4px;
-  border-left: 1px solid var(--border);
-}
-.it-act-btn {
-  width: 22px; height: 22px; background: transparent; border: 1px solid var(--border);
-  color: var(--text3); font-family: var(--mono); font-size: 10px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all 0.1s;
-}
-.it-act-btn:hover { border-color: var(--border2); color: var(--text2); }
-.it-act-btn.danger:hover { border-color: var(--red); color: var(--red); }
-.it-act-btn.waited { border-color: #BA7517; color: #BA7517; background: rgba(186,117,23,0.08); }
-
-/* ── SIDE PANEL ── */
-.it-side {
-  background: var(--bg2); border: 1px solid var(--border);
-  display: flex; flex-direction: column;
-}
-.it-side-sec { border-bottom: 1px solid var(--border); padding: 12px 13px; }
-.it-side-title {
-  font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; color: var(--text3);
-  text-transform: uppercase; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 6px;
-}
-.it-side-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-.it-form-row { margin-bottom: 7px; }
-.it-form-lbl { font-family: var(--mono); font-size: 8px; color: var(--text2); letter-spacing: 0.1em; display: block; margin-bottom: 3px; }
-.it-form-input {
-  width: 100%; background: var(--bg3); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--body); font-size: 12px;
-  padding: 5px 7px; outline: none; transition: border-color 0.15s;
-}
-.it-form-input:focus { border-color: rgba(204,34,34,0.5); }
-.it-form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 7px; }
-.it-type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 9px; }
-.it-type-btn {
-  padding: 6px; font-family: var(--mono); font-size: 9px; background: var(--bg3);
-  border: 1px solid var(--border); color: var(--text3); cursor: pointer;
-  text-align: center; transition: all 0.12s;
-}
-.it-type-btn.active.pc    { border-color: #639922; color: #639922; background: rgba(99,153,34,0.1); }
-.it-type-btn.active.enemy { border-color: #BA7517; color: #BA7517; background: rgba(186,117,23,0.1); }
-.it-btn-add {
-  width: 100%; padding: 8px; font-family: var(--cond); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg3);
-  border: 1px solid var(--border2); color: var(--text2); cursor: pointer; transition: all 0.15s;
-}
-.it-btn-add:hover { border-color: var(--red); color: var(--red); }
-.it-btn-roll {
-  width: 100%; padding: 9px; font-family: var(--cond); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.1em; text-transform: uppercase; background: var(--red);
-  border: none; color: #fff; cursor: pointer; transition: opacity 0.15s;
-}
-.it-btn-roll:hover { opacity: 0.82; }
-
-.it-log-area { flex: 1; overflow-y: auto; padding: 8px 13px; min-height: 80px; max-height: 240px; }
-.it-log-line {
-  font-family: var(--mono); font-size: 9px; color: var(--text2);
-  padding: 3px 0; border-bottom: 1px solid var(--border);
-  letter-spacing: 0.03em; line-height: 1.4;
-}
-.it-log-line .r { color: var(--red); }
-.it-log-line .g { color: #639922; }
-.it-log-line .a { color: #BA7517; }
-
-.it-bottom { border-top: 1px solid var(--border); padding: 10px 13px; display: flex; flex-direction: column; gap: 5px; }
-.it-btn-end {
-  width: 100%; padding: 8px; font-family: var(--mono); font-size: 9px;
-  letter-spacing: 0.08em; text-transform: uppercase; background: transparent;
-  border: 1px solid var(--border2); color: var(--text2); cursor: pointer; transition: all 0.12s;
-}
-.it-btn-end:hover { border-color: #639922; color: #639922; }
-.it-btn-clr {
-  width: 100%; padding: 6px; font-family: var(--mono); font-size: 9px;
-  background: transparent; border: 1px solid var(--border); color: var(--text3);
-  cursor: pointer; transition: color 0.12s;
-}
-.it-btn-clr:hover { color: var(--red); }
-
-/* 運命ポイント消費ボタン */
-.it-luck-row {
-  display: flex; align-items: center; gap: 4px; margin-top: 3px;
-}
-.it-luck-label { font-family: var(--mono); font-size: 8px; color: var(--text3); flex: 1; }
-.it-luck-btn {
-  padding: 2px 7px; font-family: var(--mono); font-size: 8px;
-  background: transparent; border: 1px solid var(--border2); color: var(--text3);
-  cursor: pointer; transition: all 0.1s;
-}
-.it-luck-btn:hover { border-color: var(--red); color: var(--red); }
-
-@keyframes itSlideIn { from { opacity:0; transform:translateX(-5px); } to { opacity:1; transform:none; } }
-.it-anim { animation: itSlideIn 0.18s ease-out; }
 
 /* ── LIFEPATH ROLL UI ── */
 .lp-toolbar {
@@ -2062,14 +1686,6 @@ body::after {
   margin-top: 4px;
 }
 
-/* REWARD TOTAL BAR */
-.reward-total-bar {
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(99,153,34,0.08); border: 1px solid rgba(99,153,34,0.3);
-  padding: 8px 12px; margin-bottom: 8px;
-}
-.reward-total-label { font-family: var(--mono); font-size: 9px; color: var(--text2); letter-spacing: 0.1em; flex: 1; }
-.reward-total-val { font-family: var(--cond); font-weight: 700; font-size: 20px; color: #639922; }
 
 /* CHECKLIST */
 .checklist { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
@@ -2113,14 +1729,6 @@ body::after {
   padding: 0 16px;
   gap: 12px;
   flex-shrink: 0;
-}
-.sel-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--text2);
-  text-transform: uppercase;
-  margin-left: 12px;
 }
 .sel-content {
   flex: 1;
@@ -2418,7 +2026,7 @@ body::after {
     page-break-before: auto;
   }
   .id-card, .hp-block, .humanity-block, .luck-block, .role-ability, .stat-cell, .skill-row,
-  .weapons-table, .armor-slot, .lp-field, .cyber-slot-block, .money-box, .equip-table {
+  .weapons-table, .lp-field, .cyber-slot-block, .money-box, .weapons-table {
     background: #fff !important;
     color: #111 !important;
     border-color: #999 !important;
@@ -2427,7 +2035,7 @@ body::after {
   .field-label, .skill-attr-tag, .stat-abbr, .hp-label, .ability-name,
   .sb-sep, .skill-section-title, .section-head, .lp-field-label, .cyber-slot-head { color: #CC2222 !important; }
   .skill-total { color: #333 !important; border-color: #ccc !important; }
-  .step-btn, .btn-add, .btn-pdf { display: none !important; }
+  .step-btn, .btn-add { display: none !important; }
   input, textarea, select {
     border: none !important;
     background: transparent !important;
@@ -2445,7 +2053,6 @@ body::after {
   .skills-page:not(:last-child) { page-break-after: always; }
 }
 </style>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
 
@@ -4944,246 +4551,6 @@ function importCharData(event) {
   reader.readAsText(file, 'utf-8');
 }
 
-// ── PDF出力（従来機能・保持）──
-async function exportToPDF() {
-  if (typeof PDFLib === 'undefined') {
-    alert('pdf-lib が読み込まれていません。\nインターネット接続を確認してページを再読み込みしてください。');
-    return;
-  }
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'application/pdf';
-  input.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const btn = document.querySelector('.btn-pdf');
-    const orig = btn.textContent;
-    btn.textContent = '処理中…';
-    btn.disabled = true;
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      await fillAndDownloadPDF(arrayBuffer);
-    } catch(err) {
-      alert('PDFの出力に失敗しました:\n' + err.message);
-      console.error(err);
-    } finally {
-      btn.textContent = orig;
-      btn.disabled = false;
-    }
-  };
-  input.click();
-}
-
-async function fillAndDownloadPDF(templateBytes) {
-  if (typeof PDFLib === 'undefined') {
-    alert('pdf-lib が読み込まれていません。インターネット接続を確認してください。');
-    return;
-  }
-  const { PDFDocument } = PDFLib;
-  const pdfDoc = await PDFDocument.load(templateBytes, { ignoreEncryption: true });
-  const form = pdfDoc.getForm();
-
-  // Build field index (handle duplicate names)
-  const allFields = form.getFields();
-  const fieldIndex = {};
-  allFields.forEach(f => {
-    const n = f.getName();
-    if (!fieldIndex[n]) fieldIndex[n] = [];
-    fieldIndex[n].push(f);
-  });
-
-  function setTF(name, value, idx) {
-    const list = fieldIndex[name];
-    if (!list) return;
-    const i = (idx !== undefined && idx < list.length) ? idx : 0;
-    try { list[i].setText(value != null ? String(value) : ''); } catch(e) {}
-  }
-
-  // ── 基本情報 ──
-  setTF('ハンドル', document.getElementById('handle').value);
-  setTF('ロール', document.getElementById('role-select').value);
-  setTF('ロール特技', document.getElementById('ability-name').textContent);
-  setTF('ロールランク', document.getElementById('rank-input').value);
-  setTF('メモ', document.querySelector('.memo-area').value);
-
-  // ── 能力値 ──
-  setTF('知力', String(statVals.int));
-  setTF('反応', String(statVals.ref));
-  setTF('敏捷', String(statVals.agi));
-  setTF('技術', String(statVals.tec));
-  setTF('魅力', String(statVals.cha));
-  setTF('意志', String(statVals.wil));
-  setTF('移動', String(statVals.mov));
-  setTF('体格', String(statVals.bod));
-  setTF('共感', String(statVals.emp));
-  setTF('共感大', document.getElementById('emp-max').value);
-
-  // ── HP ──
-  const hpMax = parseInt(document.getElementById('hp-max').value) || 40;
-  setTF('HP最大', String(hpMax));
-  setTF('HP', String(hpCurrent));
-  setTF('重症', String(Math.ceil(hpMax / 2)));
-
-  // ── 人間性 ──
-  setTF('人間性最大', document.getElementById('emp-max').value);
-  setTF('人間性', document.getElementById('emp-cur').value);
-
-  // ── 運命 ──
-  setTF('運命大', String(luckMax));
-  setTF('運命', String(luckOn));
-
-  // ── 技能 ──
-  const skillPdfMap = {
-    '弓術':             ['〈弓術〉Lv','〈弓術〉能力値','〈弓術〉基本値'],
-    '重火器 ×2':        ['〈重火器〉Lv','〈重火器〉能力値','〈重火器〉基本値'],
-    'ハンドガン':        ['〈ハンドガン〉 Lv','〈ハンドガン〉 能力値','〈ハンドガン〉 基本値'],
-    'フルオート射撃 ×2': ['〈フルオート射撃〉Lv','〈フルオート射撃〉能力値','〈フルオート射撃〉基本値'],
-    'ライフル':          ['〈ライフル〉Lv','〈ライフル〉能力値','〈ライフル〉基本値'],
-    '回避':             ['〈回避〉Lv','〈回避〉能力値','〈回避〉基本値'],
-    '格闘':             ['〈格闘〉 Lv','〈格闘〉 能力値','〈格闘〉 基本値'],
-    '近接武器':          ['〈近接武器〉 Lv','〈近接武器〉 能力値','〈近接武器〉 基本値'],
-    '武術 ×2':          ['〈武術〉Lv','〈武術〉能力値','〈武術〉基本値'],
-    '暗号学':            ['〈暗号学〉Lv','〈暗号学〉能力値','〈暗号学〉基本値'],
-    '科学':              ['科学選1Lv','科学選1能力値','科学選1基本値'],
-    '官僚制度':          ['〈官僚制度〉 Lv','〈官僚制度〉 能力値','〈官僚制度〉 基本値'],
-    'ギャンブル':        ['〈ギャンブル〉 Lv','〈ギャンブル〉能力値','〈ギャンブル〉基本値'],
-    '教養':              ['〈教養〉Lv','〈教養〉能力値','〈教養〉基本値'],
-    '経理':              ['〈経理〉 Lv','〈経理〉 能力値','〈経理〉 基本値'],
-    '言語':              ['ストリートスラングLv','ストリートスラング能力値','ストリートスラング基本値'],
-    '推理':              ['〈推理〉 Lv','〈推理〉能力値','〈推理〉基本値'],
-    '戦術':              ['〈戦術〉Lv','〈戦術〉能力値','〈戦術〉基本値'],
-    '動物使い':          ['〈動物使い〉 Lv','〈動物使い〉 能力値','〈動物使い〉 基本値'],
-    '土地鑑':            ['土地鑑1Lv','土地鑑1能力値','土地鑑1基本値'],
-    '犯罪捜査':          ['〈犯罪捜査〉 Lv','〈犯罪捜査〉能力値','〈犯罪捜査〉基本値'],
-    'ビジネス':          ['〈ビジネス〉Lv','〈ビジネス〉能力値','〈ビジネス〉基本値'],
-    '文筆':              ['〈文筆〉 Lv','〈文筆〉 能力値','〈文筆〉 基本値'],
-    '野外生存術':        ['〈野外生存術〉Lv','〈野外生存術〉能力値','〈野外生存術〉基本値'],
-    'ライブラリ検索':    ['〈ライブラリ検索〉 Lv','〈ライブラリ検索〉 能力値','〈ライブラリ検索〉 基本値'],
-    '隠蔽／発見':        ['〈隠蔽／発見〉 Lv','〈隠蔽／発見〉 能力値','〈隠蔽／発見〉 基本値'],
-    '精神集中':          ['〈精神集中〉Lv','〈精神集中〉能力値','〈精神集中〉基本値'],
-    '知覚':              ['〈知覚〉 Lv','〈知覚〉 能力値','〈知覚〉 基本値'],
-    '追跡':              ['〈追跡〉Lv','〈追跡〉能力値','〈追跡〉基本値'],
-    '読唇術':            ['〈読唇術〉 Lv','〈読唇術〉 能力値','〈読唇術〉 基本値'],
-    '応急手当':          ['〈応急手当〉Lv','〈応急手当〉能力値','〈応急手当〉基本値'],
-    '絵画／彫刻':        ['〈絵画／彫刻〉Lv','〈絵画／彫刻〉能力値','〈絵画／彫刻〉基本値'],
-    '海洋ヴィークル技術':['〈海洋ヴィークル技術〉 Lv','〈海洋ヴィークル技術〉 能力値','〈海洋ヴィークル技術〉 基本値'],
-    '鍵開け':            ['〈鍵開け〉 Lv','〈鍵開け〉 能力値','〈鍵開け〉 基本値'],
-    '偽造':              ['〈偽造〉 Lv','〈偽造〉 能力値','〈偽造〉 基本値'],
-    '基礎技術':          ['〈基礎技術〉 Lv','〈基礎技術〉 能力値','〈基礎技術〉基本値'],
-    '救急医療 ×2':       ['〈救急医療〉Lv','〈救急医療〉能力値','〈救急医療〉基本値'],
-    '航空ヴィークル技術':['〈航空ヴィークル技術〉 Lv','〈航空ヴィークル技術〉 能力値','〈航空ヴィークル技術〉 基本値'],
-    'サイバー技術':      ['〈サイバー技術〉 Lv','〈サイバー技術〉 能力値','〈サイバー技術〉 基本値'],
-    '撮影':              ['〈撮影〉Lv','〈撮影〉能力値','〈撮影〉基本値'],
-    'スリ':              ['〈スリ〉 Lv','〈スリ〉  能力値','〈スリ〉 基本値'],
-    '電子／保安技術 ×2': ['〈電子／保安技術〉Lv','〈電子／保安技術〉能力値','〈電子／保安技術〉基本値'],
-    '爆発物 ×2':         ['〈爆発物〉Lv','〈爆発物〉能力値','〈爆発物〉基本値'],
-    '武器技術':          ['〈武器技術〉 Lv','〈武器技術〉 能力値','〈武器技術〉 基本値'],
-    '陸上ヴィークル技術':['〈陸上ヴィークル技術〉 Lv','〈陸上ヴィークル技術〉 能力値','〈陸上ヴィークル技術〉 基本値'],
-    '裏社会':            ['〈裏社会〉Lv','〈裏社会〉能力値','〈裏社会〉基本値'],
-    '会話術':            ['〈会話術〉Lv','〈会話術〉能力値','〈会話術〉基本値'],
-    '真意看破':          ['〈真意看破〉Lv','〈真意看破〉能力値','〈真意看破〉基本値'],
-    '尋問':              ['〈尋問〉Lv','〈尋問〉能力値','〈尋問〉 基本値'],
-    '説得':              ['〈説得〉 Lv','〈説得〉 能力値','〈説得〉 基本値'],
-    '売買':              ['〈売買〉Lv','〈売買〉能力値','〈売買〉基本値'],
-    'ファッション':       ['〈ファッション〉 Lv','〈ファッション〉 能力値','〈ファッション〉 基本値'],
-    '賄賂':              ['〈賄賂〉Lv','〈賄賂〉能力値','〈賄賂〉基本値'],
-    '美容':              ['〈美容〉Lv','〈美容〉能力値','〈美容〉基本値'],
-    '海洋ヴィークル操縦':['〈海洋ヴィークル操縦〉 Lv','〈海洋ヴィークル操縦〉 能力値','〈海洋ヴィークル操縦〉 基本値'],
-    '騎乗':              ['〈騎乗〉 Lv','〈騎乗〉 能力値','〈騎乗〉 基本値'],
-    '航空ヴィークル操縦 ×2':['〈航空ヴィークル操縦〉Lv','〈航空ヴィークル操縦〉能力値','〈航空ヴィークル操縦〉基本値'],
-    '陸上ヴィークル運転':['〈陸上ヴィークル運転〉 Lv','〈陸上ヴィークル運転〉 能力値','〈陸上ヴィークル運転〉 基本値'],
-    '運動':              ['〈運動〉Lv','〈運動〉能力値','〈運動〉基本値'],
-    '隠密':              ['〈隠密〉 Lv','〈隠密〉 能力値','〈隠密〉 基本値'],
-    '拷問／薬物抵抗':    ['〈拷問／薬物抵抗〉Lv','〈拷問／薬物抵抗〉能力値','〈拷問／薬物抵抗〉 基本値'],
-    '柔軟':              ['〈柔軟〉 Lv','〈柔軟〉 能力値','〈柔軟〉 基本値'],
-    '忍耐':              ['〈忍耐〉Lv','〈忍耐〉能力値','〈忍耐〉 基本値'],
-    '舞踊':              ['〈舞踊〉 Lv','〈舞踊〉 能力値','〈舞踊〉 基本値'],
-    '演技':              ['〈演技〉Lv','〈演技〉能力値','〈演技〉基本値'],
-    '演奏':              ['演奏選1Lv','演奏選1能力値','演奏選1基本値'],
-  };
-
-  SKILL_SECTIONS.flatMap(s => s.skills).forEach(sk => {
-    const map = skillPdfMap[sk.name];
-    if (!map) return;
-    const lv = skillLevels[sk.name] || 0;
-    const attr = statVals[sk.key] || 0;
-    const mult = sk.double ? 2 : 1;
-    const total = attr + lv * mult;
-    setTF(map[0], String(lv));
-    setTF(map[1], String(attr));
-    setTF(map[2], String(total));
-  });
-
-  // ── 武器（近接・遠隔）──
-  const meleeRows  = document.querySelectorAll('#melee-body tr');
-  const rangedRows = document.querySelectorAll('#ranged-body tr');
-  [...meleeRows, ...rangedRows].forEach((tr, i) => {
-    if (i >= 6) return;
-    setTF('武器',    tr.querySelector('.w-name')?.value || '', i);
-    setTF('ダメージ', tr.querySelector('.w-damage')?.value || '', i);
-    setTF('装弾数',  tr.querySelector('.w-ammo')?.value || '', i);
-    setTF('攻撃回数', tr.querySelector('.w-attacks')?.value || '', i);
-    setTF('武器詳細', tr.querySelector('.w-note')?.value || '', i);
-  });
-
-  // ── 防具 ──
-  const armorRows = document.querySelectorAll('#armor-table tbody tr');
-  armorRows.forEach((tr, i) => {
-    const nameField = ['防具頭部','防具身体','防具盾'][i];
-    if (nameField) setTF(nameField, tr.querySelector('.a-name')?.value || '');
-    setTF('SP',        tr.querySelector('.a-sp')?.value  || '', i);
-    setTF('ペナルティ', tr.querySelector('.a-pen')?.value || '', i);
-  });
-
-  // ── ライフパス ──
-  const lpInputs = document.querySelectorAll('.lifepath-page .lp-field input, .lifepath-page .lp-field textarea');
-  const lpMap = [
-    '出身文化圏','性格','ファッション・スタイル','ヘアスタイル',
-    'おまえが最も重視するものは？','おまえは世間の連中をどう思っている？',
-    'おまえの人生で一番大事な人物','おまえの一番大事な持ち物',
-    '実家の家庭環境','幼少期の環境','家族を襲った災厄','人生の目標',
-    '親友1','愛の悲劇1','ロール別ライフパス',
-  ];
-  lpInputs.forEach((el, i) => { if (lpMap[i]) setTF(lpMap[i], el.value || ''); });
-
-  // ── 敵（イージー・モード準拠 4列目は自由記入）──
-  const enemyRows = document.querySelectorAll('#enemy-body-em tr');
-  enemyRows.forEach((tr, i) => {
-    const tds = tr.querySelectorAll('td[contenteditable]');
-    const n = i + 1;
-    setTF(`敵 どんな奴？${n}`,           tds[0]?.textContent || '');
-    setTF(`敵対の理由は？${n}`,           tds[1]?.textContent || '');
-    setTF(`どんな反応をする？${n}`,       tds[2]?.textContent || '');
-    setTF(`どんな奴を差し向けて来る？${n}`, tds[3]?.textContent || '');
-  });
-
-  // ── 装備品 ──
-  const equipRows = document.querySelectorAll('#equip-body tr');
-  equipRows.forEach((tr, i) => {
-    const ins = tr.querySelectorAll('input');
-    const n = i + 1;
-    setTF(`装備品${n}`,     ins[0]?.value || '');
-    setTF(`装備品${n}メモ`, ins[1]?.value || '');
-  });
-
-  // ── 所持金・弾薬 ──
-  const moneyInp = document.querySelector('.money-val-input');
-  const ammoArea = document.querySelector('.equip-money .memo-area');
-  setTF('所持金', moneyInp?.value || '');
-  setTF('弾薬',   ammoArea?.value || '');
-
-  // ── ダウンロード ──
-  const pdfBytes = await pdfDoc.save();
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${document.getElementById('handle').value || 'character'}_sheet.pdf`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
 
 // ── PAGE SWITCH ──
 function showPage(name, btn) {
@@ -5365,7 +4732,6 @@ const CYBER_OPTION_DB = {
       { name:'メドスキャナー',              install:'クリニック', desc:'スロット2個占める。サイバーアームが必要。〈応急手当〉と〈救急医療〉に＋2。',               price:'500eb（高級）',  humanity:'7（2d6）' },
       { name:'リバー',                      install:'クリニック', desc:'カーボングラス製の鈎爪。中型近接武器。隠匿可。生身の腕にもインストール可能だが同腕に他のサイバーウェア不可。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'ハードンド・シールド',        install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'プラスチック・カヴァーリング', install:'クリニック', desc:'安価なプラスチック製の外装カバー。オプション・スロットを占めない。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
       { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
       { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
     ],
@@ -5381,7 +4747,6 @@ const CYBER_OPTION_DB = {
       { name:'スケート・フット',       install:'クリニック', desc:'インラインスケートを両足に組み込む。隠匿可。速足アクションを行なう際、移動距離が6m増加する。2個のサイバーレッグに"ペア"でインストール必要。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'タロン・フット',         install:'クリニック', desc:'足に取り付けた刃。小型近接武器。隠匿可。生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる。', price:'500eb（高級）', humanity:'3（1d6）' },
       { name:'ハードンド・シールド',   install:'クリニック', desc:'シールドとして使用できるサイバー四肢カバー。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
-      { name:'プラスチック・カヴァーリング', install:'クリニック', desc:'安価なプラスチック製の外装カバー。オプション・スロットを占めない。', price:'100eb（上等）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
       { name:'スーパー・クロム・カヴァーリング', install:'クリニック', desc:'超硬クロム外装。SP11。オプション・スロットを占めない。', price:'1,000eb（超高級）', humanity:'7（2d6）', noSlot:true },
       { name:'リアルスキン・カヴァーリング', install:'クリニック', desc:'本物そっくりの人工皮膚。オプション・スロットを占めない。', price:'500eb（高級）', humanity:'2（1d6/2、端数切り上げ）', noSlot:true },
     ],
@@ -5440,10 +4805,13 @@ const CYBER_OPTION_DB = {
     title: '体表用サイバーウェア',
     headers: ['名称', 'インストール', '説明', '価格', '人間性喪失'],
     rows: [
-      { name:'隠しホルスター', install:'クリニック', desc:'体の表面下に設けた隠しホルスター。拳銃サイズまでの武器を1つ隠せる。〈隠蔽/発見〉で見つけるのが難しい。', price:'500eb（高級）', humanity:'3（1d6）' },
-      { name:'皮下アーマー',   install:'病院',       desc:'皮膚の下に埋め込んだアーマー。身体にSP11を提供する。スロット2個占める。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
-      { name:'皮下ポケット',   install:'モール',     desc:'皮膚の下に設けた小さな収納スペース。小型のアイテムを1つ隠せる。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
-      { name:'皮膚編繊',       install:'病院',       desc:'皮膚を強化繊維で編み込む。身体にSP7を提供する。',                                                      price:'500eb（高級）',     humanity:'7（2d6）' },
+      { name:'テクヘア',     install:'モール',     desc:'色や長さ、テクスチャを自由に変更できる髪。',                          price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'隠しホルスター', install:'クリニック', desc:'体表に隠した隠しホルスター。',                                    price:'500eb（高級）',     humanity:'3（1d6）' },
+      { name:'皮下ポケット', install:'モール',     desc:'皮膚の下の小型収納スペース。',                                      price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'皮下装甲',     install:'病院',       desc:'皮膚の下にアーマー。身体SP11のアーマー。スロット2個占める。',        price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'ナソフィルタ', install:'モール',     desc:'鼻腔フィルター。毒ガス等無効。',                                    price:'100eb（上等）',     humanity:'2（1d6/2）' },
+      { name:'ラジエーター', install:'病院',       desc:'放熱器。火炎攻撃からのダメージを半減。',                              price:'1,000eb（超高級）', humanity:'7（2d6）' },
+      { name:'シフトタクト', install:'病院',       desc:'顔を5パターンまで変更。スロット2個占める。',                          price:'1,000eb（超高級）', humanity:'7（2d6）' },
     ],
   },
   cyberFashion: {
@@ -5505,33 +4873,6 @@ function cyberGetOptionDesc(foundationType, optName) {
   return found ? found.desc : '';
 }
 
-// インストール後に表示する説明文からプレイに不要な情報を除去するヘルパー
-function cyberFilterDisplayDesc(desc) {
-  if (!desc) return '';
-  return desc
-    .replace(/[。、]?\d*個の?サイバーアイに"?ペア"?でインストール必要/g, '')
-    .replace(/[。、]?\d*個の?サイバーレッグに"?ペア"?でインストール必要/g, '')
-    .replace(/[。、]?ペアでインストール必要/g, '')
-    .replace(/[。、]?オプション・スロットを?\d個占める/g, '')
-    .replace(/[。、]?スロット[をが]?\d個占める/g, '')
-    .replace(/[。、]?サイバーアイが必要/g, '')
-    .replace(/[。、]?サイバーアームが必要/g, '')
-    .replace(/[。、]?サイバーレッグが必要/g, '')
-    .replace(/[。、]?サイバー聴覚基本システムが必要/g, '')
-    .replace(/[。、]?ニューラル・リンクが必要/g, '')
-    .replace(/[。、]?チップウェア・ソケットが必要/g, '')
-    .replace(/[。、]?ヴァンパイアが必要/g, '')
-    .replace(/[。、]?生身の腕にもインストール可能だが同腕に他のサイバーウェア不可/g, '')
-    .replace(/[。、]?生身の腕にもインストール可能/g, '')
-    .replace(/[。、]?生身の脚にもインストール可能だが同脚に他のサイバーウェアをインストールできなくなる/g, '')
-    .replace(/[。、]?生身の脚にもインストール可能/g, '')
-    .replace(/[。、]?複数個のスピードウェアのインストールは不可/g, '')
-    .replace(/^[。、]+/, '')
-    .replace(/[。、]+$/, '')
-    .replace(/。。+/g, '。')
-    .trim();
-}
-
 // ── 基礎サイバーウェアUIを初期化 ──
 function cyberInitAll() {
   Object.keys(CYBER_FOUNDATION_DEF).forEach(id => {
@@ -5568,7 +4909,6 @@ function cyberRenderFoundation(id) {
     const chipwareSockets = (st.chipwareSockets || 0);
     const foundationDb = CYBER_FOUNDATION_DB[def.foundationType];
     const foundationDesc = foundationDb ? foundationDb.desc : '';
-    const isBareInstall = !!st.bareInstall; // 生身の腕/脚インストール
 
     let html = '';
     if (!isNoFoundation) {
@@ -5576,24 +4916,12 @@ function cyberRenderFoundation(id) {
         + '<div class="cyber-foundation-name">▣ ' + st.name + '</div>'
         + '<button class="cyber-foundation-remove" onclick="cyberRemoveFoundation(\'' + id + '\')" title="アンインストール">×</button>'
         + '</div>';
-      if (!isBareInstall && foundationDesc) {
-        html += '<div class="cyber-foundation-desc">' + cyberFilterDisplayDesc(foundationDesc) + '</div>';
+      if (foundationDesc) {
+        html += '<div class="cyber-foundation-desc">' + foundationDesc + '</div>';
       }
     }
 
-    // 生身の腕/脚インストール時：ロック表示 + オプション説明のみ
-    if (isBareInstall) {
-      (st.options || []).forEach(function(opt) {
-        const filteredDesc = cyberFilterDisplayDesc(opt.desc || '');
-        if (filteredDesc) {
-          html += '<div class="cyber-opt-desc" style="margin-top:4px;">' + filteredDesc + '</div>';
-        }
-      });
-      area.innerHTML = html;
-      return;
-    }
-
-    // ロック状態チェック（生身の腕/脚にインストール時）- 旧ロジック互換
+    // ロック状態チェック（生身の腕/脚にインストール時）
     if (st.locked) {
       html += '<div class="cyber-slot-locked">この部位はロックされています（他のサイバーウェアをインストールできません）</div>';
       area.innerHTML = html;
@@ -5615,8 +4943,7 @@ function cyberRenderFoundation(id) {
       const slotCostLabel = (opt.slotCost && opt.slotCost > 1)
         ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[' + opt.slotCost + 'スロット]</span>'
         : (opt.noSlot ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[0スロット]</span>' : '');
-      const rawDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
-      const optDesc = cyberFilterDisplayDesc(rawDesc);
+      const optDesc = opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
       html += '<div class="cyber-item-row" style="flex-wrap:wrap;">'
         + chipLabel
         + '<span class="cyber-item-text" style="cursor:default;">' + (opt.name||'') + '</span>'
@@ -5737,8 +5064,11 @@ function cyberInstallBareArm(optIdx) {
   st.installed = true;
   st.name = row.name + '（生身の腕）';
   st.price = row.price;
-  st.bareInstall = true;
   st.options = [];
+  // 「同腕に他のサイバーウェア不可」の場合はロック
+  if (row.desc.indexOf('同腕に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
+    st.locked = true;
+  }
   st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
@@ -5760,8 +5090,11 @@ function cyberInstallBareLeg(optIdx) {
   st.installed = true;
   st.name = row.name + '（生身の脚）';
   st.price = row.price;
-  st.bareInstall = true;
   st.options = [];
+  // 「同脚に他のサイバーウェア」の場合はロック
+  if (row.desc.indexOf('同脚に他のサイバーウェア') >= 0 || row.desc.indexOf('他のサイバーウェアをインストールできなくなる') >= 0) {
+    st.locked = true;
+  }
   st.options.push({ name: row.name, desc: row.desc, noSlot: true, slotCost: 0 });
   // 価格差し引き
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
