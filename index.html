@@ -862,62 +862,320 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 /* PAGE: CYBERWARE */
 .cyber-page { display: none; }
-.cyber-page.active { display: block; }
+.cyber-page.active { display: flex; gap: 12px; align-items: flex-start; }
 
-.cyber-layout {
+/* ── コンパクトカード列 ── */
+.cyber-cards-col { flex: 0 0 180px; min-width: 0; }
+
+.cyber-cards-section-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin: 10px 0 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
+}
+.cyber-cards-section-label:first-child { margin-top: 0; }
+
+.cyber-body-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  align-items: start;
+  gap: 5px;
+  margin-bottom: 2px;
 }
 
-.cyber-col { display: flex; flex-direction: column; gap: 8px; }
-
-.cyber-slot-block {
+/* コンパクトカード */
+.cyber-card {
   background: var(--bg2);
   border: 1px solid var(--border);
-  padding: 8px;
+  padding: 7px 9px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+  user-select: none;
+  min-height: 60px;
+}
+.cyber-card:hover { border-color: var(--border2); }
+.cyber-card.active { border-color: var(--red); background: rgba(204,34,34,0.04); }
+
+.cyber-card-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
 }
 
+.cyber-card-name {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  text-transform: uppercase;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-card-slot-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text3);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1px 5px;
+  flex-shrink: 0;
+}
+.cyber-card-slot-badge.full { color: var(--red); border-color: rgba(204,34,34,0.3); }
+
+.cyber-card-pills {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  min-height: 18px;
+}
+
+.cyber-card-pill {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text2);
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  padding: 1px 5px;
+  white-space: nowrap;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cyber-card-pill.overflow { color: var(--text3); border-style: dashed; }
+.cyber-card-empty { font-family: var(--mono); font-size: 8px; color: var(--text3); }
+.cyber-card-no-install { font-family: var(--mono); font-size: 8px; color: var(--text3); opacity: 0.6; font-style: italic; }
+
+/* ── 管理パネル ── */
+.cyber-mgmt-panel {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  max-height: calc(100vh - 110px);
+  overflow: hidden;
+}
+
+.cyber-mgmt-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 20px;
+}
+
+.cyber-mgmt-header {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--red);
+  padding: 8px 10px;
+  flex-shrink: 0;
+}
+
+.cyber-mgmt-part-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.cyber-mgmt-foundation-name {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.cyber-mgmt-slot-bar {
+  display: flex;
+  gap: 3px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cyber-mgmt-slot-pip {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--border2);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+.cyber-mgmt-slot-pip.filled { background: var(--red); border-color: var(--red); }
+
+.cyber-mgmt-slot-text {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text3);
+  margin-left: 5px;
+}
+
+.cyber-mgmt-body {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+.cyber-mgmt-item {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cyber-mgmt-item-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cyber-mgmt-item-name {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cyber-mgmt-item-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text3);
+  flex-shrink: 0;
+}
+
+.cyber-mgmt-item-del {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.1s;
+  line-height: 1;
+  padding: 0;
+}
+.cyber-mgmt-item-del:hover { border-color: var(--red); color: var(--red); }
+
+.cyber-mgmt-item-note {
+  width: 100%;
+  margin-top: 5px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: var(--body);
+  font-size: 10px;
+  padding: 4px 6px;
+  resize: vertical;
+  outline: none;
+  line-height: 1.45;
+  min-height: 38px;
+  transition: border-color 0.12s;
+  box-sizing: border-box;
+}
+.cyber-mgmt-item-note:focus { border-color: var(--border2); }
+.cyber-mgmt-item-note::placeholder { color: var(--text3); font-style: italic; }
+
+.cyber-mgmt-locked-msg {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--text3);
+  letter-spacing: 0.06em;
+  padding: 10px;
+  opacity: 0.6;
+}
+
+.cyber-mgmt-footer {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cyber-mgmt-add-btn {
+  width: 100%;
+  padding: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px dashed var(--border2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.cyber-mgmt-add-btn:hover { border-color: var(--red); color: var(--red); }
+.cyber-mgmt-add-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.cyber-mgmt-install-btn {
+  width: 100%;
+  padding: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px dashed rgba(204,34,34,0.5);
+  color: var(--red);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.cyber-mgmt-install-btn:hover { background: rgba(204,34,34,0.08); }
+
+.cyber-mgmt-uninstall-btn {
+  width: 100%;
+  padding: 5px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text3);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.cyber-mgmt-uninstall-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* 旧レイアウト互換 (印刷用等で残す) */
 .cyber-slot-head {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--red);
   text-transform: uppercase;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 5px;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
-
-.cyber-installed-dot {
-  width: 6px;
-  height: 6px;
-  background: var(--red);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.cyber-item-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 3px 0;
-}
-
-.cyber-item-text {
-  font-size: 11px;
-  color: var(--text2);
-  background: transparent;
-  border: none;
-  outline: none;
-  flex: 1;
-}
-
-.cyber-item-text:focus { color: var(--text); }
+.cyber-item-row { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+.cyber-item-text { font-size: 11px; color: var(--text2); background: transparent; border: none; outline: none; flex: 1; }
 
 /* ── 基礎サイバーウェア ── */
 .cyber-foundation-area {
@@ -2001,76 +2259,119 @@ body::after {
 
     <!-- ── PAGE: CYBERWARE ── -->
     <div class="cyber-page" id="page-cyber">
-      <div class="section-head">サイバーウェア</div>
-      <div class="cyber-layout">
-        <!-- LEFT COL -->
-        <div class="cyber-col">
-          <!-- サイバー視覚右 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバー視覚（右目）</div>
-            <div id="ceye-r-area" class="cyber-foundation-area"></div>
+
+      <!-- カード列 -->
+      <div class="cyber-cards-col">
+        <div class="cyber-cards-section-label">外部サイバーウェア</div>
+        <div class="cyber-body-grid">
+          <div class="cyber-card" id="card-ceye-r" onclick="cyberSelectCard('ceye-r')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">右目</span>
+              <span class="cyber-card-slot-badge" id="cbadge-ceye-r">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-ceye-r"><span class="cyber-card-no-install">未インストール</span></div>
           </div>
-          <!-- サイバーアーム右 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバーアーム（右腕）</div>
-            <div id="carm-r-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-ceye-l" onclick="cyberSelectCard('ceye-l')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">左目</span>
+              <span class="cyber-card-slot-badge" id="cbadge-ceye-l">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-ceye-l"><span class="cyber-card-no-install">未インストール</span></div>
           </div>
-          <!-- サイバーレッグ右 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバーレッグ（右脚）</div>
-            <div id="cleg-r-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-carm-r" onclick="cyberSelectCard('carm-r')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">右腕</span>
+              <span class="cyber-card-slot-badge" id="cbadge-carm-r">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-carm-r"><span class="cyber-card-no-install">未インストール</span></div>
           </div>
-          <!-- サイバー聴覚 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバー聴覚</div>
-            <div id="c-audio-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-carm-l" onclick="cyberSelectCard('carm-l')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">左腕</span>
+              <span class="cyber-card-slot-badge" id="cbadge-carm-l">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-carm-l"><span class="cyber-card-no-install">未インストール</span></div>
+          </div>
+          <div class="cyber-card" id="card-cleg-r" onclick="cyberSelectCard('cleg-r')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">右脚</span>
+              <span class="cyber-card-slot-badge" id="cbadge-cleg-r">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-cleg-r"><span class="cyber-card-no-install">未インストール</span></div>
+          </div>
+          <div class="cyber-card" id="card-cleg-l" onclick="cyberSelectCard('cleg-l')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">左脚</span>
+              <span class="cyber-card-slot-badge" id="cbadge-cleg-l">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-cleg-l"><span class="cyber-card-no-install">未インストール</span></div>
+          </div>
+          <div class="cyber-card" id="card-c-audio" onclick="cyberSelectCard('c-audio')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">聴覚</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-audio">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-audio"><span class="cyber-card-no-install">未インストール</span></div>
+          </div>
+          <div class="cyber-card" id="card-c-neural" onclick="cyberSelectCard('c-neural')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">ニューラル</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-neural">—</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-neural"><span class="cyber-card-no-install">未インストール</span></div>
           </div>
         </div>
 
-        <!-- RIGHT COL -->
-        <div class="cyber-col">
-          <!-- サイバー視覚左 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバー視覚（左目）</div>
-            <div id="ceye-l-area" class="cyber-foundation-area"></div>
+        <div class="cyber-cards-section-label">体内・体表・ファッション・ボーグ</div>
+        <div class="cyber-body-grid">
+          <div class="cyber-card" id="card-c-internal" onclick="cyberSelectCard('c-internal')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">体内用</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-internal">0/7</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-internal"><span class="cyber-card-empty">空き</span></div>
           </div>
-          <!-- サイバーアーム左 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバーアーム（左腕）</div>
-            <div id="carm-l-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-c-external" onclick="cyberSelectCard('c-external')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">体表用</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-external">0/7</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-external"><span class="cyber-card-empty">空き</span></div>
           </div>
-          <!-- サイバーレッグ左 -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">サイバーレッグ（左脚）</div>
-            <div id="cleg-l-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-c-fashion" onclick="cyberSelectCard('c-fashion')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">ファッション</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-fashion">0/7</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-fashion"><span class="cyber-card-empty">空き</span></div>
           </div>
-          <!-- ニューラルウェア -->
-          <div class="cyber-slot-block">
-            <div class="cyber-slot-head">ニューラルウェア</div>
-            <div id="c-neural-area" class="cyber-foundation-area"></div>
+          <div class="cyber-card" id="card-c-borg" onclick="cyberSelectCard('c-borg')">
+            <div class="cyber-card-header">
+              <span class="cyber-card-name">ボーグ</span>
+              <span class="cyber-card-slot-badge" id="cbadge-c-borg">0/7</span>
+            </div>
+            <div class="cyber-card-pills" id="cpills-c-borg"><span class="cyber-card-empty">空き</span></div>
           </div>
+        </div>
+
+        <!-- 多眼マウント追加アイ枠 -->
+        <div id="cyber-extra-eyes-section" style="display:none;">
+          <div class="cyber-cards-section-label">追加サイバーアイ（多眼マウント）</div>
+          <div class="cyber-body-grid" id="cyber-extra-eyes-grid"></div>
+        </div>
+
+        <!-- 追加肩マウント追加アーム枠 -->
+        <div id="cyber-extra-arms-section" style="display:none;">
+          <div class="cyber-cards-section-label">追加サイバーアーム（追加肩マウント）</div>
+          <div class="cyber-body-grid" id="cyber-extra-arms-grid"></div>
         </div>
       </div>
 
-      <!-- extra cyberware -->
-      <div class="cyber-extra-grid">
-        <div class="cyber-slot-block">
-          <div class="cyber-slot-head">体内用サイバーウェア</div>
-          <div id="c-internal-area" class="cyber-foundation-area"></div>
-        </div>
-        <div class="cyber-slot-block">
-          <div class="cyber-slot-head">体表用サイバーウェア</div>
-          <div id="c-external-area" class="cyber-foundation-area"></div>
-        </div>
-        <div class="cyber-slot-block">
-          <div class="cyber-slot-head">ファッションウェア</div>
-          <div id="c-fashion-area" class="cyber-foundation-area"></div>
-        </div>
-        <div class="cyber-slot-block">
-          <div class="cyber-slot-head">ボーグウェア</div>
-          <div id="c-borg-area" class="cyber-foundation-area"></div>
-        </div>
+      <!-- 管理パネル -->
+      <div class="cyber-mgmt-panel" id="cyber-mgmt-panel">
+        <div class="cyber-mgmt-placeholder">部位カードを<br>クリックしてください</div>
       </div>
+
     </div>
 
     <!-- ── PAGE: EQUIP ── -->
@@ -2345,7 +2646,7 @@ function collectSheet() {
     desc: tr.querySelector('.eq-desc')?.value||'',
   }));
   // 全サイバーウェア状態はcyberFoundationStateに統合
-  const cyberware = { foundation: JSON.parse(JSON.stringify(cyberFoundationState)) };
+  const cyberware = { foundation: JSON.parse(JSON.stringify(cyberFoundationState)), dynamicDefs: JSON.parse(JSON.stringify(CYBER_DYNAMIC_DEFS)) };
   const memoAreas = document.querySelectorAll('.memo-area');
   return {
     handle: document.getElementById('handle').value,
@@ -2460,6 +2761,11 @@ function restoreSheet(d) {
     } else {
       cyberFoundationState = {};
     }
+    // 動的定義の復元
+    CYBER_DYNAMIC_DEFS = {};
+    if (cw.dynamicDefs) {
+      CYBER_DYNAMIC_DEFS = JSON.parse(JSON.stringify(cw.dynamicDefs));
+    }
     // 旧フォーマット互換：フリースロットをfoundationに変換
     if (cw.free) {
       const FREE_CYBER_IDS = ['c-internal','c-external','c-fashion','c-borg'];
@@ -2475,6 +2781,7 @@ function restoreSheet(d) {
         }
       });
     }
+    cyberRestoreDynamicParts();
     cyberInitAll();
   }
 }
@@ -4144,6 +4451,115 @@ const CYBER_OPTION_DB = {
 // キャラクターの基礎サイバーウェア状態
 // { 'ceye-r': { installed: true, name: 'サイバーアイ', price: '100eb（上等）' }, ... }
 let cyberFoundationState = {};
+let CYBER_DYNAMIC_DEFS = {}; // ボーグウェアで追加される動的部位定義
+
+// スロット上限を取得（extraSlotsを考慮）
+function cyberGetMaxSlots(id) {
+  const def   = CYBER_FOUNDATION_DEF[id];
+  const state = cyberFoundationState[id];
+  const base  = def ? def.slots : 0;
+  const extra = (state && state.extraSlots) || 0;
+  return base + extra;
+}
+
+// ── 動的部位：多眼マウント（+5サイバーアイ枠）──
+function cyberActivateExtraEyes() {
+  const grid    = document.getElementById('cyber-extra-eyes-grid');
+  const section = document.getElementById('cyber-extra-eyes-section');
+  if (!grid || !section) return;
+  for (let i = 1; i <= 5; i++) {
+    const id = 'ceye-ex' + i;
+    if (!CYBER_FOUNDATION_DEF[id]) {
+      CYBER_FOUNDATION_DEF[id] = { foundationType: 'cyberEye', slots: 3, label: '追加サイバーアイ ' + i };
+    }
+    CYBER_DYNAMIC_DEFS[id] = CYBER_FOUNDATION_DEF[id];
+    if (!cyberFoundationState[id]) cyberFoundationState[id] = {};
+    if (!document.getElementById('card-' + id)) {
+      const card = document.createElement('div');
+      card.className = 'cyber-card';
+      card.id = 'card-' + id;
+      card.onclick = (function(cid){ return function(){ cyberSelectCard(cid); }; })(id);
+      card.innerHTML = '<div class="cyber-card-header"><span class="cyber-card-name">追加目' + i + '</span>'
+        + '<span class="cyber-card-slot-badge" id="cbadge-' + id + '">—</span></div>'
+        + '<div class="cyber-card-pills" id="cpills-' + id + '"><span class="cyber-card-no-install">未インストール</span></div>';
+      grid.appendChild(card);
+    }
+    cyberRenderCard(id);
+  }
+  section.style.display = '';
+}
+
+function cyberDeactivateExtraEyes() {
+  for (let i = 1; i <= 5; i++) {
+    const id = 'ceye-ex' + i;
+    delete CYBER_FOUNDATION_DEF[id];
+    delete CYBER_DYNAMIC_DEFS[id];
+    delete cyberFoundationState[id];
+    const card = document.getElementById('card-' + id);
+    if (card) card.remove();
+  }
+  const section = document.getElementById('cyber-extra-eyes-section');
+  if (section) section.style.display = 'none';
+  if (cyberActivePanel && cyberActivePanel.startsWith('ceye-ex')) {
+    cyberActivePanel = null;
+    const panel = document.getElementById('cyber-mgmt-panel');
+    if (panel) panel.innerHTML = '<div class="cyber-mgmt-placeholder">部位カードを<br>クリックしてください</div>';
+  }
+}
+
+// ── 動的部位：追加肩マウント（+2サイバーアーム枠）──
+function cyberActivateExtraArms() {
+  const grid    = document.getElementById('cyber-extra-arms-grid');
+  const section = document.getElementById('cyber-extra-arms-section');
+  if (!grid || !section) return;
+  for (let i = 1; i <= 2; i++) {
+    const id = 'carm-ex' + i;
+    if (!CYBER_FOUNDATION_DEF[id]) {
+      CYBER_FOUNDATION_DEF[id] = { foundationType: 'cyberArm', slots: 4, label: '追加サイバーアーム ' + i };
+    }
+    CYBER_DYNAMIC_DEFS[id] = CYBER_FOUNDATION_DEF[id];
+    if (!cyberFoundationState[id]) cyberFoundationState[id] = {};
+    if (!document.getElementById('card-' + id)) {
+      const card = document.createElement('div');
+      card.className = 'cyber-card';
+      card.id = 'card-' + id;
+      card.onclick = (function(cid){ return function(){ cyberSelectCard(cid); }; })(id);
+      card.innerHTML = '<div class="cyber-card-header"><span class="cyber-card-name">追加腕' + i + '</span>'
+        + '<span class="cyber-card-slot-badge" id="cbadge-' + id + '">—</span></div>'
+        + '<div class="cyber-card-pills" id="cpills-' + id + '"><span class="cyber-card-no-install">未インストール</span></div>';
+      grid.appendChild(card);
+    }
+    cyberRenderCard(id);
+  }
+  section.style.display = '';
+}
+
+function cyberDeactivateExtraArms() {
+  for (let i = 1; i <= 2; i++) {
+    const id = 'carm-ex' + i;
+    delete CYBER_FOUNDATION_DEF[id];
+    delete CYBER_DYNAMIC_DEFS[id];
+    delete cyberFoundationState[id];
+    const card = document.getElementById('card-' + id);
+    if (card) card.remove();
+  }
+  const section = document.getElementById('cyber-extra-arms-section');
+  if (section) section.style.display = 'none';
+  if (cyberActivePanel && cyberActivePanel.startsWith('carm-ex')) {
+    cyberActivePanel = null;
+    const panel = document.getElementById('cyber-mgmt-panel');
+    if (panel) panel.innerHTML = '<div class="cyber-mgmt-placeholder">部位カードを<br>クリックしてください</div>';
+  }
+}
+
+// ── セーブデータからの動的部位復元 ──
+function cyberRestoreDynamicParts() {
+  const hasEyes = Object.keys(CYBER_DYNAMIC_DEFS).some(function(id){ return id.startsWith('ceye-ex'); });
+  const hasArms = Object.keys(CYBER_DYNAMIC_DEFS).some(function(id){ return id.startsWith('carm-ex'); });
+  if (hasEyes) cyberActivateExtraEyes();
+  if (hasArms) cyberActivateExtraArms();
+  // センサー・アレイのextraSlotsはcyberFoundationStateに保存済みなので自動復元
+}
 
 // ── スロット消費数を計算するヘルパー ──
 function cyberGetSlotCost(opt) {
@@ -4188,78 +4604,176 @@ function cyberInitAll() {
   });
 }
 
-function cyberRenderFoundation(id) {
-  const areaId = id + '-area';
-  const area = document.getElementById(areaId);
-  if (!area) return;
+// ── 現在開いているパネルのID ──
+let cyberActivePanel = null;
+
+// カードをクリックして選択
+function cyberSelectCard(id) {
+  if (cyberActivePanel) {
+    const old = document.getElementById('card-' + cyberActivePanel);
+    if (old) old.classList.remove('active');
+  }
+  cyberActivePanel = id;
+  const card = document.getElementById('card-' + id);
+  if (card) card.classList.add('active');
+  cyberRenderPanel(id);
+}
+
+// コンパクトカードを更新
+function cyberRenderCard(id) {
   const def   = CYBER_FOUNDATION_DEF[id];
   const state = cyberFoundationState[id];
+  const badgeEl = document.getElementById('cbadge-' + id);
+  const pillsEl = document.getElementById('cpills-' + id);
+  if (!badgeEl || !pillsEl) return;
+
+  const isInstalled = state && state.installed;
+
+  if (!isInstalled) {
+    badgeEl.textContent = '—';
+    badgeEl.className = 'cyber-card-slot-badge';
+    pillsEl.innerHTML = '<span class="cyber-card-no-install">未インストール</span>';
+    return;
+  }
+
+  const usedSlots = cyberCountUsedSlots(state);
+  const maxSlots  = cyberGetMaxSlots(id);
+  badgeEl.textContent = usedSlots + '/' + maxSlots;
+  badgeEl.className = 'cyber-card-slot-badge' + (usedSlots >= maxSlots ? ' full' : '');
+
+  const opts = state.options || [];
+  if (!opts.length) {
+    pillsEl.innerHTML = '<span class="cyber-card-empty">オプションなし</span>';
+    return;
+  }
+  const MAX = 3;
+  let html = '';
+  opts.slice(0, MAX).forEach(function(opt) {
+    html += '<span class="cyber-card-pill">' + (opt.name || '') + '</span>';
+  });
+  if (opts.length > MAX) {
+    html += '<span class="cyber-card-pill overflow">+' + (opts.length - MAX) + '</span>';
+  }
+  pillsEl.innerHTML = html;
+}
+
+// 管理パネルを描画
+function cyberRenderPanel(id) {
+  const panel = document.getElementById('cyber-mgmt-panel');
+  if (!panel) return;
+  const def   = CYBER_FOUNDATION_DEF[id];
+  if (!def) return;
+  const state = cyberFoundationState[id];
   const isNoFoundation = !!def.noFoundation;
+  const isInstalled = state && state.installed;
+  const isNeural    = (id === 'c-neural');
 
-  if (!state || !state.installed) {
-    // 未インストール：基礎インストールボタン
-    area.innerHTML = '<button class="cyber-foundation-btn" onclick="cyberOpenFoundationDB(\'' + id + '\')">'
-      + '＋ ' + CYBER_FOUNDATION_DB[def.foundationType].name + ' をインストール</button>';
+  let html = '<div style="display:flex;flex-direction:column;height:100%;overflow:hidden;">';
+
+  // ── ヘッダー ──
+  html += '<div class="cyber-mgmt-header">';
+  html += '<div class="cyber-mgmt-part-label">' + def.label + '</div>';
+  if (isInstalled && !isNoFoundation) {
+    html += '<div class="cyber-mgmt-foundation-name">' + (state.name || '') + '</div>';
+    // 生身インストールの場合、最初のオプションのsessionDescを名前の下に表示
+    if (state.bareInstall && state.options && state.options[0] && state.options[0].sessionDesc) {
+      html += '<div style="font-size:10px;color:var(--text2);margin-top:3px;line-height:1.45;">'
+        + state.options[0].sessionDesc.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
+    }
+  } else if (isNoFoundation) {
+    html += '<div class="cyber-mgmt-foundation-name">' + def.label + '</div>';
+  }
+  html += '</div>';
+
+  // ── 未インストール（基礎が必要な部位）──
+  if (!isInstalled && !isNoFoundation) {
+    html += '<div style="flex:1;padding:12px;">';
+    html += '<button class="cyber-mgmt-install-btn" onclick="cyberOpenFoundationDB(\'' + id + '\')">';
+    html += '＋ ' + (CYBER_FOUNDATION_DB[def.foundationType] ? CYBER_FOUNDATION_DB[def.foundationType].name : def.label) + ' をインストール';
+    html += '</button></div>';
+    html += '</div>';
+    panel.innerHTML = html;
+    return;
+  }
+
+  // ── スロットバー ──
+  const usedSlots = cyberCountUsedSlots(state);
+  const maxSlots  = cyberGetMaxSlots(id);
+  html += '<div class="cyber-mgmt-slot-bar">';
+  for (let i = 0; i < maxSlots; i++) {
+    html += '<div class="cyber-mgmt-slot-pip' + (i < usedSlots ? ' filled' : '') + '"></div>';
+  }
+  html += '<span class="cyber-mgmt-slot-text">' + usedSlots + '/' + maxSlots + '</span>';
+  if (isNeural) {
+    const sockets = (state && state.chipwareSockets) || 0;
+    html += '<span class="cyber-mgmt-slot-text" style="margin-left:8px;">ソケット空き:' + sockets + '</span>';
+  }
+  html += '</div>';
+
+  // ── オプション一覧 ──
+  html += '<div class="cyber-mgmt-body">';
+  const opts = (state && state.options) || [];
+
+  if (state && state.locked) {
+    html += '<div class="cyber-mgmt-locked-msg">ロック済み（他のサイバーウェアをインストールできません）</div>';
+  } else if (!opts.length) {
+    html += '<div class="cyber-mgmt-locked-msg" style="opacity:1;color:var(--text2);">オプションなし</div>';
   } else {
-    // インストール済み：名前表示 + スロット
-    const isNeural   = (id === 'c-neural');
-    const st         = cyberFoundationState[id];
-    const usedSlots  = cyberCountUsedSlots(st);
-    const maxSlots   = def.slots;
-    const chipwareSockets = (st.chipwareSockets || 0);
-    const foundationDb = CYBER_FOUNDATION_DB[def.foundationType];
-    const foundationDesc = foundationDb ? foundationDb.desc : '';
+    opts.forEach(function(opt, i) {
+      const metaParts = [];
+      if (opt.usedSocket)             metaParts.push('chip');
+      else if (opt.noSlot)            metaParts.push('0slot');
+      else if (opt.slotCost && opt.slotCost > 1) metaParts.push(opt.slotCost + 'slot');
+      else                            metaParts.push('1slot');
+      const meta = metaParts.join(' ');
 
-    let html = '';
-    if (!isNoFoundation) {
-      html += '<div class="cyber-foundation-installed">'
-        + '<div class="cyber-foundation-name">▣ ' + st.name + '</div>'
-        + '<button class="cyber-foundation-remove" onclick="cyberRemoveFoundation(\'' + id + '\')" title="アンインストール">×</button>'
-        + '</div>';
-      if (foundationDesc) {
-        html += '<div class="cyber-foundation-desc">' + foundationDesc + '</div>';
-      }
-    }
+      const note = (opt.sessionDesc || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-    // ロック状態チェック（生身の腕/脚にインストール時）
-    if (st.locked) {
-      html += '<div class="cyber-slot-locked">この部位はロックされています（他のサイバーウェアをインストールできません）</div>';
-      area.innerHTML = html;
-      return;
-    }
-
-    // スロット表示
-    let slotCountHtml = 'オプション・スロット ' + usedSlots + ' / ' + maxSlots;
-    if (isNeural) {
-      slotCountHtml += '　ソケット（空き）: ' + chipwareSockets;
-    }
-    html += '<div class="cyber-slot-count">' + slotCountHtml + '</div>';
-
-    html += '<div class="cyber-slots-area" id="' + id + '-slots">';
-    (st.options || []).forEach(function(opt, i) {
-      const chipLabel = opt.usedSocket
-        ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-right:2px;">[chip]</span>'
-        : '';
-      const slotCostLabel = (opt.slotCost && opt.slotCost > 1)
-        ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[' + opt.slotCost + 'スロット]</span>'
-        : (opt.noSlot ? '<span style="font-family:var(--mono);font-size:8px;color:var(--text3);margin-left:2px;">[0スロット]</span>' : '');
-      const optDesc = opt.sessionDesc || opt.desc || cyberGetOptionDesc(def.foundationType, opt.name) || '';
-      html += '<div class="cyber-item-row" style="flex-wrap:wrap;">'
-        + chipLabel
-        + '<span class="cyber-item-text" style="cursor:default;">' + (opt.name||'') + '</span>'
-        + slotCostLabel
-        + '<button onclick="cyberRemoveOption(\'' + id + '\',' + i + ')" style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;flex-shrink:0;">×</button>';
-      if (optDesc) {
-        html += '<div class="cyber-opt-desc" style="width:100%;">' + optDesc + '</div>';
-      }
+      html += '<div class="cyber-mgmt-item">';
+      html += '<div class="cyber-mgmt-item-row">';
+      html += '<span class="cyber-mgmt-item-name" title="' + (opt.name||'') + '">' + (opt.name||'') + '</span>';
+      html += '<span class="cyber-mgmt-item-meta">' + meta + '</span>';
+      html += '<button class="cyber-mgmt-item-del" onclick="cyberRemoveOption(\'' + id + '\',' + i + ')" title="削除">×</button>';
+      html += '</div>';
+      html += '<textarea class="cyber-mgmt-item-note" rows="2" placeholder="セッション用メモ（編集可）…" oninput="cyberUpdateOptionNote(\'' + id + '\',' + i + ',this.value)">' + note + '</textarea>';
       html += '</div>';
     });
-    html += '</div>';
-    if (usedSlots < maxSlots) {
-      html += '<button class="cyber-foundation-btn" style="margin-top:4px;" onclick="cyberOpenOptionDB(\'' + id + '\')">'
-        + '＋ オプションを追加（残' + (maxSlots - usedSlots) + 'スロット）</button>';
-    }
-    area.innerHTML = html;
+  }
+  html += '</div>'; // .cyber-mgmt-body
+
+  // ── フッター ──
+  html += '<div class="cyber-mgmt-footer">';
+  if (!state || state.locked) {
+    // nothing
+  } else {
+    const canAdd = usedSlots < maxSlots;
+    html += '<button class="cyber-mgmt-add-btn" onclick="cyberOpenOptionDB(\'' + id + '\')" ' + (canAdd ? '' : 'disabled') + '>';
+    html += canAdd ? '＋ オプションを追加（残' + (maxSlots - usedSlots) + 'スロット）' : 'スロット満杯';
+    html += '</button>';
+  }
+  if (isInstalled && !isNoFoundation) {
+    html += '<button class="cyber-mgmt-uninstall-btn" onclick="cyberRemoveFoundation(\'' + id + '\')">';
+    html += '▣ ' + (state.name || '') + ' をアンインストール</button>';
+  }
+  html += '</div>'; // .cyber-mgmt-footer
+
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
+// オプションのセッション用メモを更新
+function cyberUpdateOptionNote(partId, idx, value) {
+  const state = cyberFoundationState[partId];
+  if (!state || !state.options || !state.options[idx]) return;
+  state.options[idx].sessionDesc = value;
+  scheduleAutoSave();
+}
+
+// メインの描画関数（カード更新 ＋ パネル更新）
+function cyberRenderFoundation(id) {
+  cyberRenderCard(id);
+  if (cyberActivePanel === id) {
+    cyberRenderPanel(id);
   }
 }
 
@@ -4364,6 +4878,7 @@ function cyberInstallBareArm(optIdx) {
   if (!cyberFoundationState[partId]) cyberFoundationState[partId] = {};
   const st = cyberFoundationState[partId];
   st.installed = true;
+  st.bareInstall = true;
   st.name = row.name + '（生身の腕）';
   st.price = row.price;
   st.options = [];
@@ -4390,6 +4905,7 @@ function cyberInstallBareLeg(optIdx) {
   if (!cyberFoundationState[partId]) cyberFoundationState[partId] = {};
   const st = cyberFoundationState[partId];
   st.installed = true;
+  st.bareInstall = true;
   st.name = row.name + '（生身の脚）';
   st.price = row.price;
   st.options = [];
@@ -4585,6 +5101,19 @@ function cyberSelectOption(idx) {
     otherState.options.push({ name: row.name, desc: row.desc, sessionDesc: row.sessionDesc || '', slotCost: isNoSlot ? 0 : slotCost, noSlot: isNoSlot });
   }
 
+  // ── ボーグウェア特殊処理 ──
+  if (partId === 'c-borg') {
+    if (row.name === 'センサー・アレイ') {
+      if (!cyberFoundationState['c-audio']) cyberFoundationState['c-audio'] = {};
+      cyberFoundationState['c-audio'].extraSlots = (cyberFoundationState['c-audio'].extraSlots || 0) + 5;
+      cyberRenderFoundation('c-audio');
+    } else if (row.name === '追加肩マウント') {
+      cyberActivateExtraArms();
+    } else if (row.name === '多眼（マルチオプティック）マウント') {
+      cyberActivateExtraEyes();
+    }
+  }
+
   // 価格差し引き（ペアの場合は2倍）
   const priceNum = parseInt(row.price.replace(/,/g,'').replace(/eb.*/,'')) || 0;
   const priceMult = (isPairEye || isPairLeg) ? 2 : 1;
@@ -4620,6 +5149,19 @@ function cyberRemoveOption(partId, idx) {
   // ソケットを消費したチップウェアを削除 → 空きソケットを返還
   if (opt && opt.usedSocket && isNeural) {
     state.chipwareSockets = (state.chipwareSockets || 0) + 1;
+  }
+
+  // ── ボーグウェア特殊処理（アンインストール時の逆処理）──
+  if (partId === 'c-borg' && opt) {
+    if (opt.name === 'センサー・アレイ') {
+      const audioState = cyberFoundationState['c-audio'];
+      if (audioState) audioState.extraSlots = Math.max(0, (audioState.extraSlots || 0) - 5);
+      cyberRenderFoundation('c-audio');
+    } else if (opt.name === '追加肩マウント') {
+      cyberDeactivateExtraArms();
+    } else if (opt.name === '多眼（マルチオプティック）マウント') {
+      cyberDeactivateExtraEyes();
+    }
   }
 
   state.options.splice(idx, 1);
