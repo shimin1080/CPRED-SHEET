@@ -865,7 +865,7 @@ input.hp-counter::-webkit-outer-spin-button { }
 .cyber-page.active { display: flex; gap: 12px; align-items: flex-start; }
 
 /* ── コンパクトカード列 ── */
-.cyber-cards-col { flex: 0 0 180px; min-width: 0; }
+.cyber-cards-col { flex: 0 0 230px; min-width: 0; overflow: hidden; }
 
 .cyber-cards-section-label {
   font-family: var(--mono);
@@ -881,7 +881,7 @@ input.hp-counter::-webkit-outer-spin-button { }
 
 .cyber-body-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, calc(50% - 3px));
   gap: 5px;
   margin-bottom: 2px;
 }
